@@ -1,0 +1,360 @@
+/* ==========================================================================
+   COMMENTS CONTAINER
+   ========================================================================== */
+.comments-area {
+  margin-top: var(--s-12);
+  font-family: var(--font-body);
+}
+
+.comments-title {
+  font-size: var(--text-lg);
+  font-weight: var(--fw-bold);
+  color: var(--n-900);
+  margin-bottom: var(--s-8);
+  padding-right: var(--s-4);
+  border-right: 4px solid var(--primary);
+}
+
+.comments-area .comment-list,
+.comments-area .children {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+/* ==========================================================================
+   CURVED THREAD LINES (خطوط رابط منحنی پاسخ‌ها)
+   ========================================================================== */
+.comments-area .comment-list > .comment {
+  margin-bottom: var(--s-6);
+}
+
+/* تورفتگی برای بخش پاسخ‌ها */
+.comments-area .children {
+  margin-top: 0.5rem;
+  margin-right: 40px; /* فضای افقی برای کشیدن منحنی */
+  position: relative;
+}
+
+
+
+/* منحنی اتصال پاسخ به خط عمودی اصلی */
+.comments-area .children .comment::before {
+  content: "";
+  position: absolute;
+  right: -24px;
+  top: -20px; /* شروع از بالای کارت */
+  width: 24px;
+  height: 44px; /* هدایت منحنی تا تراز شدن با آواتار کارت پاسخ */
+  border-right: 2px solid var(--n-200);
+  border-bottom: 2px solid var(--n-200);
+  border-bottom-right-radius: var(--r-lg); /* خمیدگی زاویه اتصال */
+  z-index: 1;
+}
+
+/* ==========================================================================
+   COMMENT BODY (CARD DESIGN & GRID HEADER)
+   ========================================================================== */
+.comments-area .comment-body {
+  position: relative;
+  background-color: var(--white);
+  border: var(--border);
+  border-radius: var(--r-xl);
+  padding: var(--s-5);
+  box-shadow: var(--shadow-sm);
+  transition: border-color var(--t-base) var(--ease), box-shadow var(--t-base) var(--ease);
+  z-index: 2;
+
+  /* جادوی گرید برای تراز افقی هدر بدون تغییر HTML */
+  display: grid;
+  grid-template-columns: auto 1fr;
+  align-items: center;
+  column-gap: var(--s-3);
+  row-gap: var(--s-3);
+}
+
+.comments-area .comment-body:hover {
+  border-color: var(--n-300);
+  box-shadow: var(--shadow-md);
+}
+
+/* ردیف اول گرید: ستون اول برای تصویر و نام نویسنده */
+.comments-area .comment-author.vcard {
+  grid-column: 1;
+  grid-row: 1;
+  display: flex;
+  align-items: center;
+  gap: var(--s-3);
+}
+
+/* آواتار */
+.comments-area .avatar {
+  width: 44px;
+  height: 44px;
+  border-radius: var(--r-full);
+  border: 1px solid var(--n-200);
+  object-fit: cover;
+  display: block;
+}
+
+/* نام نویسنده */
+.comments-area .comment-author .fn {
+  font-style: normal;
+  font-weight: var(--fw-bold);
+  color: var(--n-800);
+  font-size: var(--text-sm);
+}
+
+/* حذف کلمه خشک "گفت:" */
+.comments-area .comment-author .says {
+  display: none;
+}
+
+/* ردیف اول گرید: ستون دوم برای تاریخ و زمان دیدگاه */
+.comments-area .comment-meta.commentmetadata {
+  grid-column: 2;
+  grid-row: 1;
+  font-size: var(--text-xs);
+  color: var(--n-400);
+  align-self: center;
+}
+
+.comments-area .comment-meta.commentmetadata a {
+  color: inherit;
+  text-decoration: none;
+  transition: color var(--t-fast);
+}
+
+.comments-area .comment-meta.commentmetadata a:hover {
+  color: var(--primary);
+}
+
+/* ایجاد یک دات یا جداکننده ظریف قبل از تاریخ */
+.comments-area .comment-meta.commentmetadata::before {
+  content: "•";
+  margin-left: var(--s-2);
+  color: var(--n-300);
+  font-size: var(--text-xs);
+  font-weight: bold;
+}
+
+/* ردیف‌های بعدی گرید: متن کامنت و سایر تگ‌های اضافی تمام‌عرض می‌شوند */
+.comments-area .comment-body > *:not(.comment-author):not(.comment-meta) {
+  grid-column: 1 / -1;
+}
+
+/* متن دیدگاه */
+.comments-area .comment-body > p {
+  color: var(--n-600);
+  font-size: var(--text-sm);
+  line-height: var(--lh-relaxed);
+  margin: 0;
+  padding-right: 56px; /* تراز کردن شروع متن با لبه‌ی نام نویسنده (۴۴px آواتار + ۱۲px فاصله) */
+}
+
+/* دکمه پاسخ */
+.comments-area .reply {
+  display: flex;
+  justify-content: flex-end;
+  margin-top: var(--s-1);
+}
+
+.comments-area .reply a {
+  display: inline-flex;
+  align-items: center;
+  color: var(--primary);
+  background-color: var(--primary-light);
+  font-size: var(--text-xs);
+  font-weight: var(--fw-semibold);
+  text-decoration: none;
+  padding: 6px var(--s-3);
+  border-radius: var(--r-md);
+  transition: all var(--t-fast) var(--ease);
+}
+
+.comments-area .reply a:hover {
+  background-color: var(--primary);
+  color: var(--white);
+}
+
+/* پیغام وضعیت نظرات */
+.no-comments {
+  text-align: center;
+  color: var(--n-400);
+  font-size: var(--text-sm);
+  padding: var(--s-6) 0;
+  border-top: var(--border);
+}
+
+/* ==========================================================================
+   COMMENT FORM (RESPOND) - کاملاً بهینه‌سازی شده
+   ========================================================================== */
+.comment-respond {
+  margin-top: var(--s-12);
+  padding: var(--s-6);
+  background-color: var(--bg-2);
+  border: var(--border);
+  border-radius: var(--r-xl);
+}
+
+.comment-reply-title {
+  font-size: var(--text-lg);
+  font-weight: var(--fw-bold);
+  color: var(--n-900);
+  margin-bottom: var(--s-6);
+}
+
+#cancel-comment-reply-link {
+  margin-right: var(--s-2);
+  font-size: var(--text-xs);
+  color: var(--danger);
+  background-color: var(--danger-light);
+  padding: var(--s-1) var(--s-2);
+  border-radius: var(--r-sm);
+  text-decoration: none;
+  font-weight: var(--fw-medium);
+}
+
+.comment-form {
+  display: grid;
+  gap: var(--s-4);
+}
+
+.comment-form .comment-notes,
+.comment-form .comment-form-comment,
+.comment-form .form-submit {
+  grid-column: span 3;
+}
+
+.comment-form .comment-notes {
+  font-size: var(--text-xs);
+  color: var(--n-500);
+  margin-bottom: var(--s-2);
+}
+
+.comment-form .comment-form-author,
+.comment-form .comment-form-email,
+.comment-form .comment-form-url {
+  grid-column: span 1; 
+}
+
+.comment-form label {
+  display: block;
+  font-size: var(--text-xs);
+  font-weight: var(--fw-semibold);
+  color: var(--n-700);
+  margin-bottom: var(--s-1-5);
+}
+
+.comment-form input[type="text"],
+.comment-form input[type="email"],
+.comment-form input[type="url"],
+.comment-form textarea {
+  width: 100%;
+  padding: var(--s-3) var(--s-4);
+  font-family: var(--font-body);
+  font-size: var(--text-sm);
+  color: var(--n-800);
+  background-color: var(--white);
+  border: var(--border);
+  border-radius: var(--r-lg);
+  outline: none;
+  box-shadow: var(--shadow-xs);
+  transition: all var(--t-base) var(--ease);
+}
+
+.comment-form input[type="text"]:focus,
+.comment-form input[type="email"]:focus,
+.comment-form input[type="url"]:focus,
+.comment-form textarea:focus {
+  border-color: var(--primary);
+  box-shadow: var(--shadow-focus);
+  background-color: var(--white);
+}
+
+.comment-form textarea {
+  min-height: 140px;
+  resize: vertical;
+}
+
+.comment-form .form-submit {
+  display: flex;
+  justify-content: flex-start;
+  margin-top: var(--s-2);
+}
+
+.comment-form .submit {
+  font-family: var(--font-body);
+  font-size: var(--text-sm);
+  font-weight: var(--fw-bold);
+  color: var(--white);
+  background-color: var(--primary);
+  border: none;
+  padding: var(--s-3) var(--s-8);
+  border-radius: var(--r-lg);
+  cursor: pointer;
+  box-shadow: var(--shadow-md);
+  transition: all var(--t-fast) var(--ease);
+}
+
+.comment-form .submit:hover {
+  background-color: var(--primary-hover);
+  box-shadow: var(--shadow-lg);
+  transform: translateY(-1px);
+}
+
+.comment-form .submit:active {
+  background-color: var(--primary-active);
+  transform: translateY(0);
+}
+
+
+
+/* ==========================================================================
+   RESPONSIVE DESIGN (MOBILE & TABLET)
+   ========================================================================== */
+@media (max-width: 1024px) {
+  .comment-form .comment-form-author,
+  .comment-form .comment-form-email {
+    grid-column: span 1.5;
+  }
+  .comment-form .comment-form-url {
+    grid-column: span 3;
+  }
+}
+
+@media (max-width: 768px) {
+  .comment-form {
+    display: flex;
+    flex-direction: column;
+    gap: var(--s-3);
+  }
+  
+  .comment-form .comment-form-author,
+  .comment-form .comment-form-email,
+  .comment-form .comment-form-url {
+    width: 100%;
+  }
+
+  /* در موبایل عرض تورفتگی را کاهش می‌دهیم تا فضا فشرده نشود */
+  .comments-area .children {
+    margin-right: 20px;
+  }
+
+  .comments-area .children::before {
+    right: -12px;
+  }
+
+  .comments-area .children .comment::before {
+    right: -12px;
+    width: 12px;
+    height: 44px;
+    border-bottom-right-radius: var(--r-md);
+  }
+
+  /* برگرداندن پدینگ متن به حالت عادی برای استفاده حداکثری از عرض صفحه موبایل */
+  .comments-area .comment-body > p {
+    padding-right: 0;
+  }
+}
+

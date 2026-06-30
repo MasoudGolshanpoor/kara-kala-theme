@@ -1,0 +1,147 @@
+/* ============================================================
+   VELA — Shop Page  (page-specific overrides)
+   ============================================================ */
+
+/* ─── PAGE HERO ─── */
+.shop-hero {
+  background: var(--bg-2);
+  border-bottom: var(--border);
+  padding: var(--s-6) 0 0;
+}
+
+.shop-hero__title {
+  font-family: var(--font-head);
+  font-size: clamp(1.5rem, 3vw, var(--text-3xl));
+  font-weight: var(--fw-extrabold);
+  color: var(--n-900);
+  margin: var(--s-2) 0 var(--s-1);
+}
+
+/* ─── SUB-CATEGORY SCROLL ROW — cat-item cards ─── */
+.shop-subcats {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--s-4);
+  overflow-x: auto;
+  scrollbar-width: none;
+  padding: var(--s-4) 0 var(--s-6);
+}
+.shop-subcats::-webkit-scrollbar { display: none; }
+.shop-subcats .cat-item { flex-shrink: 0; }
+
+
+/* ─── SHOP BODY WRAPPER ─── */
+.shop-wrap {
+  padding-top: var(--s-6);
+  padding-bottom: var(--s-16);
+}
+
+/* Prevent overflow in grid context */
+.shop-products { min-width: 0; }
+
+/* ─── PRODUCT GRID
+   style-carts.css handles flex + li.product width for 5→4→3 cols.
+   We only need to remove its default padding here.
+─── */
+.shop-products ul.products {
+  padding: 0;
+  margin: 0 0 var(--s-6);
+}
+
+/* ─── CATEGORY ABOUT (ftr-about pattern) ─── */
+.shop-about {
+  border: var(--border);
+  border-radius: var(--r-xl);
+  padding: var(--s-3);
+  margin-bottom: var(--s-12);
+  background: var(--bg-2);
+}
+.shop-about__title {
+  font-family: var(--font-head);
+  font-size: var(--text-base);
+  font-weight: var(--fw-bold);
+  color: var(--n-800);
+  margin-bottom: var(--s-3);
+}
+.shop-about__body {
+  max-height: 3.2em;
+  overflow: hidden;
+  position: relative;
+  transition: max-height 400ms var(--ease);
+}
+.shop-about__body::after {
+  content: '';
+  position: absolute;
+  bottom: 0; left: 0; right: 0;
+  height: 2.5em;
+  background: linear-gradient(to bottom, transparent, var(--bg-2));
+  pointer-events: none;
+  transition: opacity var(--t-fast);
+}
+.shop-about.is-open .shop-about__body { max-height: 600px; }
+.shop-about.is-open .shop-about__body::after { opacity: 0; }
+.shop-about__text {
+  font-size: var(--text-sm);
+  color: var(--n-600);
+  line-height: var(--lh-relaxed);
+  margin-bottom: var(--s-4);
+}
+.shop-about__text:last-child { margin-bottom: 0; }
+.shop-about__toggle {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--s-2);
+  font-size: var(--text-sm);
+  font-weight: var(--fw-semibold);
+  color: var(--primary);
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: var(--s-2) 0;
+  margin-top: var(--s-3);
+  transition: opacity var(--t-fast);
+}
+.shop-about__toggle:hover { opacity: .75; }
+.shop-about__toggle i { font-size: 11px; transition: transform var(--t-base) var(--ease); }
+.shop-about.is-open .shop-about__toggle i { transform: rotate(90deg); }
+
+/* ─── MOBILE/TABLET ≤ 768px ─── */
+@media (max-width: 768px) {
+  .shop-hero { padding-top: var(--s-4); }
+
+  /* Override mobile-nav.css: keep sidebar as a drawer (NOT display:none) */
+  .filters-sidebar { display: block !important; }
+
+  /* Override mobile-nav.css: keep sort-bar horizontal row (NOT flex-direction:column) */
+  .sort-bar {
+    flex-direction: row !important;
+    flex-wrap: nowrap !important;
+    align-items: center !important;
+    gap: var(--s-2) !important;
+  }
+  .sort-bar__count {
+    white-space: nowrap;
+    flex-shrink: 0;
+  }
+
+  /* Products: horizontal card layout (image right, text left) */
+  .shop-products ul.products li.product {
+    width: 100%;
+    padding-bottom: 0 !important;
+    overflow: visible;
+  }
+  .shop-products ul.products li.product > a {
+    display: grid;
+    grid-template-columns: 110px 1fr;
+    grid-template-areas: "img title" "img footer";
+    gap: 0 var(--s-3);
+    align-items: center;
+  }
+  .shop-products ul.products .product-image-wrap {
+    grid-area: img;
+    max-width: 110px;
+  }
+  .shop-products ul.products .product-footer { padding: 0; }
+  .shop-products ul.products .product-cta,
+  .shop-products ul.products .product-wishlist { display: none; }
+}

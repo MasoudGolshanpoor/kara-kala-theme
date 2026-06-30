@@ -1,0 +1,143 @@
+/* ============================================================
+   VELA — Base Stylesheet
+   Reset · Container · Typography
+   ============================================================ */
+
+/* ─── RESET ─── */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { font-size: 16px; scroll-behavior: smooth; -webkit-text-size-adjust: 100%; }
+body {
+  font-family: var(--font-body);
+  color: var(--n-800);
+  background: var(--bg);
+  line-height: var(--lh-normal);
+  -webkit-font-smoothing: antialiased;
+  overflow-x: hidden;
+}
+img, svg, video { display: block; max-width: 100%; }
+.hidden { display: none !important; }
+a { color: inherit; text-decoration: none; }
+button { font-family: inherit; cursor: pointer; border: none; background: none; }
+input, select, textarea { font-family: inherit; }
+ul, ol { list-style: none; }
+
+/* ─── CONTAINER ─── */
+.cx {
+  width: 100%;
+  max-width: var(--max-2xl);
+  margin-inline: auto;
+  padding-inline: var(--cx-pad);
+}
+.cx--lg  { max-width: var(--max-xl); }
+.cx--md  { max-width: var(--max-lg); }
+
+/* ─── TYPOGRAPHY ─── */
+h1,h2,h3,h4,h5,h6 { font-family: var(--font-head); font-weight: var(--fw-bold); line-height: var(--lh-tight); }
+
+.h1 { font-size: clamp(1.5rem, 3vw, var(--text-4xl)); font-weight: var(--fw-bold); }
+.h2 { font-size: clamp(1.25rem, 2.5vw, var(--text-3xl)); font-weight: var(--fw-semibold); }
+.h3 { font-size: clamp(1.1rem, 2vw, var(--text-2xl)); font-weight: var(--fw-semibold); }
+
+
+
+    /* ─── BREADCRUMB ─── */
+    .breadcrumb { padding-block: var(--s-4); }
+    .breadcrumb ul { display: flex; align-items: center; flex-wrap: wrap; gap: var(--s-2); font-size: var(--text-sm); color: var(--n-500); }
+    .breadcrumb ul li a:hover { color: var(--primary); }
+    .breadcrumb ul li i { font-size: var(--text-xs); color: var(--n-300); }
+    .breadcrumb ul li.active { color: var(--n-800); font-weight: var(--fw-medium); }
+    
+    /* ─── underline ─── */
+
+.underline-accent {
+  position: relative;
+  display: inline-block;
+}
+
+.underline-accent::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  right: 0;          /* RTL */
+  width: 40%;
+  height: 3px;
+  background: var(--bg-red);
+  border-radius: 2px;
+}
+
+/* ─── BUTTONS ─── */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--s-2);
+  font-family: var(--font-head);
+  font-weight: var(--fw-semibold);
+  font-size: var(--text-sm);
+  border-radius: var(--r-full);
+  padding: 0.65rem 1.5rem;
+  transition: all var(--t-base) var(--ease);
+  position: relative;
+  overflow: hidden;
+  white-space: nowrap;
+  cursor: pointer;
+  outline: none;
+}
+.btn::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: rgba(255,255,255,.12);
+  opacity: 0;
+  transition: opacity var(--t-fast) var(--ease);
+}
+.btn:hover::after { opacity: 1; }
+.btn:active { transform: translateY(1px); }
+.btn:focus-visible { box-shadow: var(--shadow-focus); }
+
+.btn--primary {
+  background: var(--primary);
+  color: var(--white);
+  box-shadow: 0 2px 8px rgba(var(--primary-rgb), .35);
+}
+.btn--primary:hover { background: var(--primary-hover); box-shadow: 0 4px 16px rgba(var(--primary-rgb), .45); }
+
+.btn--accent {
+  background: var(--accent);
+  color: var(--white);
+  box-shadow: 0 2px 8px rgba(249,115,22,.35);
+}
+.btn--accent:hover { background: var(--accent-hover); }
+
+.btn--dark {
+  background: var(--n-900);
+  color: var(--white);
+}
+.btn--dark:hover { background: var(--n-800); }
+
+.btn--outline {
+  background: transparent;
+  color: var(--primary);
+  border: 1.5px solid var(--primary);
+}
+.btn--outline:hover { background: var(--primary-light); }
+
+.btn--outline-dark {
+  background: transparent;
+  color: var(--n-800);
+  border: 1.5px solid var(--n-300);
+}
+.btn--outline-dark:hover { background: var(--n-50); border-color: var(--n-400); }
+
+.btn--outline-fw{
+  margin-top: var(--s-4); width: 100%; border: var(--border); padding: var(--s-3); border-radius: var(--r-md); color: var(--n-700); font-weight: var(--fw-medium); display: flex; align-items: center; justify-content: center; gap: var(--s-2);
+}
+
+.btn--ghost { background: transparent; color: var(--n-700); }
+.btn--ghost:hover { background: var(--n-100); color: var(--n-900); }
+
+.btn--sm { font-size: var(--text-xs); padding: 0.4rem 1rem; }
+.btn--lg { font-size: var(--text-base); padding: 0.85rem 2rem; }
+.btn--xl { font-size: var(--text-lg); padding: 1rem 2.5rem; }
+.btn--wide { width: 100%; }
+.btn--loading { pointer-events: none; opacity: .7; }

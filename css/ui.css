@@ -1,0 +1,138 @@
+/* ============================================================
+   VELA — UI Components
+   Toast · Modal · Skeleton · Pagination ·
+   Category Banner · Breadcrumb · Section Spacing · Utilities
+   ============================================================ */
+
+
+/* ─── UTILITIES ─── */
+.hidden { display: none !important; }
+
+
+/* ─── RESPONSIVE ─── */
+@media (max-width: 1200px) {
+}
+@media (max-width: 1024px) {
+}
+@media (max-width: 900px) {
+}
+@media (max-width: 768px) {
+}
+@media (max-width: 480px) {
+  
+}
+
+/* ─── TOAST NOTIFICATION ─── */
+.toast-container { position: fixed; bottom: var(--s-6); left: var(--s-6); z-index: var(--z-toast); display: flex; flex-direction: column; gap: var(--s-3); pointer-events: none; }
+.toast {
+  background: var(--n-900);
+  color: var(--white);
+  padding: var(--s-3) var(--s-4);
+  border-radius: var(--r-xl);
+  box-shadow: var(--shadow-xl);
+  font-size: var(--text-sm);
+  font-weight: var(--fw-medium);
+  display: flex;
+  align-items: center;
+  gap: var(--s-3);
+  pointer-events: all;
+  animation: toast-in var(--t-slow) var(--ease-spring) forwards;
+  max-width: 360px;
+  backdrop-filter: blur(8px);
+}
+.toast--success { background: var(--n-900); border-left: 3px solid var(--success); }
+.toast--error   { background: var(--n-900); border-left: 3px solid var(--danger); }
+.toast--info    { background: var(--n-900); border-left: 3px solid var(--primary); }
+.toast svg { width: 18px; height: 18px; flex-shrink: 0; }
+.toast--success svg { color: var(--success); }
+.toast--error   svg { color: var(--danger); }
+.toast--info    svg { color: var(--primary); }
+@keyframes toast-in  { from { opacity: 0; transform: translateX(100%) scale(.9); } to { opacity: 1; transform: none; } }
+@keyframes toast-out { from { opacity: 1; transform: none; } to { opacity: 0; transform: translateX(100%) scale(.9); } }
+.toast.out { animation: toast-out var(--t-base) var(--ease-in) forwards; }
+
+/* ─── PAGINATION ─── */
+.pagination { display: flex; align-items: center; justify-content: center; gap: var(--s-2); margin-top: var(--s-12); flex-wrap: wrap; }
+.page-btn {
+  width: 40px; height: 40px;
+  border-radius: var(--r-md);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: var(--text-sm);
+  font-weight: var(--fw-semibold);
+  color: var(--n-600);
+  border: var(--border);
+  background: var(--white);
+  transition: all var(--t-fast) var(--ease);
+}
+.page-btn:hover { border-color: var(--primary); color: var(--primary); background: var(--primary-light); }
+.page-btn.active { background: var(--primary); border-color: var(--primary); color: var(--white); }
+.page-btn svg { width: 16px; height: 16px; }
+
+
+/* ─── SCROLL TO TOP (sticky floating) ─── */
+.scroll-top-wrap {
+  position: fixed;
+  bottom: var(--s-6);
+  right: var(--s-6);
+  z-index: var(--z-overlay);
+  width: 52px;
+  height: 52px;
+  opacity: 0;
+  transform: scale(0.6) translateY(8px);
+  transition: opacity 0.3s ease, transform 0.3s ease;
+  pointer-events: none;
+}
+.scroll-top-wrap.is-visible {
+  opacity: 1;
+  transform: scale(1) translateY(0);
+  pointer-events: all;
+}
+.scroll-top-svg {
+  position: absolute;
+  inset: 0;
+  width: 52px;
+  height: 52px;
+  transform: rotate(-90deg);
+  pointer-events: none;
+}
+.scroll-top-svg__track { fill: none; stroke: var(--n-200); stroke-width: 3; }
+.scroll-top-svg__bar {
+  fill: none;
+  stroke: var(--primary);
+  stroke-width: 3;
+  stroke-linecap: round;
+  /* r=22 → circumference ≈ 138 — ring sits just outside the 36px button */
+  stroke-dasharray: 138;
+  stroke-dashoffset: 138;
+  transition: stroke-dashoffset 80ms linear;
+}
+/* button is 36px (inset 8px), radius=18 from center — ring r=22 is fully outside */
+.scroll-top-btn {
+  position: absolute;
+  inset: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--white);
+  color: var(--n-700);
+  border-radius: 50%;
+  box-shadow: 0 4px 14px rgba(0,0,0,.14);
+  border: none;
+  cursor: pointer;
+  transition: color 0.2s ease, box-shadow 0.2s ease;
+}
+.scroll-top-btn:hover {
+  color: var(--primary);
+  box-shadow: 0 6px 20px rgba(0,0,0,.18);
+}
+.scroll-top-btn i { font-size: 15px; }
+
+@media (max-width: 768px) {
+  .scroll-top-wrap {
+    bottom: calc(var(--bottom-nav-h) + var(--s-4));
+    right: var(--s-4);
+  }
+}
+

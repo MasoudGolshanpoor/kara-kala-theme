@@ -1,0 +1,191 @@
+/* ============================================================
+   VELA — Mega Menu Stylesheet
+   desktop full-width mega menu panel
+   ============================================================ */
+
+/* ─── PANEL ─── */
+.mega-menu {
+  position: absolute;
+  top: 100%;
+  left: 0; right: 0;             /* overridden by header.css !important rules */
+  background: var(--white);
+  border: 1px solid var(--n-100);
+  border-radius: var(--r-xl);   /* all 4 corners rounded — box has side margins */
+  overflow: hidden;
+  box-shadow: 0 8px 32px rgba(0,0,0,.10), 0 2px 8px rgba(0,0,0,.06);
+  padding: 0;
+  z-index: var(--z-dropdown);
+  opacity: 0;
+  pointer-events: none;
+  transform: translateY(-4px);
+  /* Promote to GPU layer — prevents jank with backdrop blur below */
+  will-change: opacity, transform;
+  transition: opacity 160ms ease-out, transform 160ms ease-out;
+}
+.mega-menu.open {
+  opacity: 1;
+  pointer-events: all;
+  transform: translateY(0);
+}
+
+/* ─── BODY BACKDROP ─────────────────────────────────────────
+   Semi-transparent overlay — no backdrop-filter (too expensive
+   on open/close animation; causes GPU repaint of full viewport).
+   ─────────────────────────────────────────────────────────── */
+.mega-backdrop {
+  position: fixed;
+  inset: 0;
+  background: rgba(15,23,42,.4);
+  z-index: calc(var(--z-dropdown) - 1);
+  opacity: 0;
+  pointer-events: none;
+  will-change: opacity;
+  transition: opacity 180ms linear;
+}
+.mega-backdrop.show {
+  opacity: 1;
+  pointer-events: all;
+}
+
+/* ─── LAYOUT: sidebar + content ────────────────────────────
+   .mega-cats wraps both columns with no gap — visual
+   separation is achieved through background colors.
+   ─────────────────────────────────────────────────────────── */
+.mega-cats {
+  display: flex;
+  gap: 0;
+  min-height: 380px;
+  align-items: stretch;
+}
+
+/* Left sidebar (right-side in RTL) */
+.mega-cats__list {
+  flex-shrink: 0;
+  width: 210px;
+  background: var(--bg-2);
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  padding: var(--s-4) var(--s-3);
+  list-style: none;
+  margin: 0;
+}
+
+/* Sidebar tab links */
+.mega-cats__tab-link {
+  display: flex;
+  align-items: center;
+  gap: var(--s-2);
+  padding: var(--s-2) var(--s-3);
+  border-radius: var(--r-md);
+  font-size: var(--text-sm);
+  color: var(--n-600);
+  text-decoration: none;
+  transition: background 120ms, color 120ms;
+  white-space: nowrap;
+}
+.mega-cats__tab-link:hover { background: var(--n-100); color: var(--n-900); }
+
+/* Active tab: white card with primary indicator, connects to content panel.
+   margin-inline-end extends the tab past the sidebar's inline-end padding
+   (var(--s-3)) + 1px to overlap the separator border = seamless connection. */
+.mega-cats__tab.is-active .mega-cats__tab-link {
+  background: var(--white);
+  color: var(--primary);
+  font-weight: var(--fw-semibold);
+  border-inline-start: 2.5px solid var(--primary);
+  border-start-end-radius: 0;                           /* flat toward content panel */
+  border-end-end-radius: 0;
+  margin-inline-end: calc(-1 * var(--s-3) - 1px);      /* bridge full sidebar padding + separator */
+  padding-inline-end: calc(var(--s-3) + 1px);           /* keep text readable */
+  position: relative;
+  z-index: 1;
+}
+
+/* Tab icon */
+.mega-cats__tab-icon {
+  width: 20px; height: 20px;
+  object-fit: contain;
+  flex-shrink: 0;
+  opacity: .65;
+}
+.mega-cats__tab.is-active .mega-cats__tab-icon { opacity: 1; }
+
+/* Right content area (left in RTL) */
+.mega-cats__children {
+  flex: 1;
+  border-inline-start: 1px solid var(--n-100);
+  padding: var(--s-6);
+  background: var(--white);
+}
+
+/* Content panels — only active one visible */
+.mega-cats__panel { display: none; }
+.mega-cats__panel.is-active { display: block; }
+
+/* Column grid inside panel */
+.mega-cats__col-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--s-5) var(--s-6);
+  padding-block-end: var(--s-2);
+}
+.mega-cats__col-group {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+.mega-cats__col-title {
+  display: block;
+  font-size: var(--text-sm);
+  font-weight: var(--fw-semibold);
+  color: var(--n-900);
+  padding-block: var(--s-1);
+  padding-inline: var(--s-2);
+  border-radius: var(--r-md);
+  border-bottom: 1px solid var(--n-100);
+  margin-bottom: var(--s-1);
+  text-decoration: none;
+  transition: color 120ms;
+}
+.mega-cats__col-title:hover { color: var(--primary); }
+.mega-cats__col-list {
+  list-style: none;
+  margin: 0; padding: 0;
+  display: flex;
+  flex-direction: column;
+}
+.mega-cats__col-link {
+  display: block;
+  font-size: var(--text-xs);
+  color: var(--n-500);
+  padding: 3px var(--s-2);
+  border-radius: var(--r-md);
+  text-decoration: none;
+  transition: color 120ms, background 120ms;
+  line-height: 1.6;
+}
+.mega-cats__col-link:hover { color: var(--primary); background: var(--primary-light); }
+
+
+/* "View all" link at bottom of panel */
+.mega-cats__view-all {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--s-2);
+  margin-block-start: var(--s-4);
+  font-size: var(--text-sm);
+  font-weight: var(--fw-semibold);
+  color: var(--primary);
+  text-decoration: none;
+}
+.mega-cats__view-all:hover { text-decoration: underline; }
+
+/* ─── RESPONSIVE ─── */
+@media (max-width: 1024px) {
+  .mega-cats__col-grid { grid-template-columns: repeat(2, 1fr); }
+}
+@media (max-width: 768px) {
+  .mega-menu { display: none !important; }
+  .mega-backdrop { display: none !important; }
+}

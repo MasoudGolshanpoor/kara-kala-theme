@@ -1,0 +1,241 @@
+/* ============================================================
+   VELA — Sticky Bottom Nav · Center FAB
+   Structure: [خانه] [سبد خرید] [●FAB●] [پشتیبانی] [دسته‌بندی]
+   ============================================================ */
+
+.bottom-nav {
+  display: none;
+  position: fixed;
+  bottom: var(--s-1); left: 0; right: 0;
+  height: var(--bottom-nav-h);
+  background: rgba(255,255,255,.65);
+  backdrop-filter: blur(28px) saturate(180%);
+  -webkit-backdrop-filter: blur(28px) saturate(180%);
+  border-top: 1px solid rgba(255,255,255,.4);
+  box-shadow: 
+  0 -6px 24px rgba(0,0,0,.08),
+  0 2px 6px rgba(0,0,0,.04);
+  z-index: var(--z-sticky);
+  padding-bottom: env(safe-area-inset-bottom, 0px);
+  will-change: transform;
+  border-radius: 18px;
+  margin: 0 8px;
+}
+@media (max-width: 768px) { .bottom-nav { display: block; } }
+
+.bottom-nav__inner {
+  display: flex;
+  align-items: stretch;
+  height: var(--bottom-nav-h);
+  padding-inline: var(--s-2);
+}
+
+/* Each nav item */
+.bottom-nav__btn {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 3px;
+  font-size: 10px;
+  font-weight: 600;
+  color: var(--n-600);
+  background: none;
+  border: none;
+  cursor: pointer;
+  text-decoration: none;
+  padding: 6px 4px;
+  position: relative;
+  transition: color 150ms;
+}
+.bottom-nav__btn i { font-size: 20px; flex-shrink: 0; line-height: 1; }
+.bottom-nav__btn.is-active { color: var(--primary); }
+.bottom-nav__btn:hover { color: var(--primary); }
+
+/* Cart badge */
+.bottom-nav__cart-wrap { position: relative; display: inline-flex; }
+.bottom-nav__badge {
+  position: absolute;
+  top: -4px; inset-inline-start: -6px;
+  min-width: 16px; height: 16px;
+  background: var(--accent);
+  color: var(--white);
+  font-size: 9px; font-weight: 700;
+  border-radius: var(--r-full);
+  display: flex; align-items: center; justify-content: center;
+  padding: 0 3px;
+  border: 2px solid var(--white);
+  font-family: 'Plus Jakarta Sans', sans-serif;
+}
+
+/* Center FAB slot */
+.bottom-nav__fab-slot {
+  flex: 0 0 68px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+}
+
+.bottom-fab {
+  position: absolute;
+  top: -14px;
+  width: 52px; height: 52px;
+  border-radius: 50%;
+  background: var(--primary);
+  color: var(--white);
+  border: 3px solid var(--white);
+  box-shadow: 0 4px 18px rgba(79,70,229,.4);
+  display: flex; align-items: center; justify-content: center;
+  cursor: pointer;
+  transition:
+    background 220ms var(--ease),
+    transform 320ms cubic-bezier(.34,1.56,.64,1),
+    box-shadow 220ms var(--ease);
+  will-change: transform, background;
+}
+/* Search ↔ Close icon swap */
+.bottom-fab__icon-search,
+.bottom-fab__icon-close {
+  position: absolute;
+  font-size: 1.1rem;
+  transition: opacity 200ms var(--ease), transform 280ms cubic-bezier(.34,1.56,.64,1);
+  will-change: opacity, transform;
+}
+.bottom-fab__icon-search { opacity: 1; transform: scale(1) rotate(0deg); }
+.bottom-fab__icon-close  { opacity: 0; transform: scale(0.3) rotate(-90deg); }
+
+.bottom-fab.is-open {
+  background: var(--n-700);
+  box-shadow: 0 4px 18px rgba(0,0,0,.3);
+}
+.bottom-fab.is-open .bottom-fab__icon-search { opacity: 0; transform: scale(0.3) rotate(90deg); }
+.bottom-fab.is-open .bottom-fab__icon-close  { opacity: 1; transform: scale(1) rotate(0deg); }
+
+
+/* ============================================================
+   VELA — Support Contact Sheet (slides up from bottom)
+   ============================================================ */
+
+.support-sheet {
+  display: none;
+  position: fixed;
+  inset: 0;
+  z-index: var(--z-modal);
+}
+.support-sheet.open { display: block; }
+
+/* Backdrop */
+.support-sheet__backdrop {
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, .45);
+  animation: supportBackdropIn 260ms var(--ease) forwards;
+}
+.support-sheet.closing .support-sheet__backdrop {
+  animation: supportBackdropOut 240ms var(--ease) forwards;
+}
+
+/* Sliding panel */
+.support-sheet__panel {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: var(--white);
+  border-radius: var(--r-2xl) var(--r-2xl) 0 0;
+  padding: var(--s-3) var(--s-5) calc(var(--s-6) + env(safe-area-inset-bottom, 0px));
+  animation: supportPanelIn 300ms cubic-bezier(.32,1,.34,1) forwards;
+}
+.support-sheet.closing .support-sheet__panel {
+  animation: supportPanelOut 240ms var(--ease) forwards;
+}
+
+/* Handle */
+.support-sheet__handle {
+  width: 40px;
+  height: 4px;
+  background: var(--n-300);
+  border-radius: var(--r-full);
+  margin: 0 auto var(--s-4);
+}
+
+/* Title */
+.support-sheet__title {
+  font-size: var(--text-base);
+  font-weight: var(--fw-bold);
+  color: var(--n-900);
+  text-align: center;
+  margin-bottom: var(--s-5);
+}
+
+/* Action rows */
+.support-sheet__actions {
+  display: flex;
+  flex-direction: column;
+  gap: var(--s-3);
+}
+
+.support-sheet__btn {
+  display: flex;
+  align-items: center;
+  gap: var(--s-4);
+  padding: var(--s-4) var(--s-4);
+  border-radius: var(--r-xl);
+  background: var(--bg-2);
+  text-decoration: none;
+  color: var(--n-800);
+  font-weight: var(--fw-medium);
+  font-size: var(--text-sm);
+  transition: background 150ms var(--ease), transform 120ms var(--ease);
+  -webkit-tap-highlight-color: transparent;
+}
+.support-sheet__btn:active { transform: scale(.98); background: var(--n-200); }
+
+/* Icon bubble */
+.support-sheet__icon {
+  width: 44px;
+  height: 44px;
+  border-radius: var(--r-xl);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.25rem;
+  flex-shrink: 0;
+  color: var(--white);
+}
+.support-sheet__icon--phone     { background: #22c55e; }
+.support-sheet__icon--whatsapp  { background: #25d366; }
+.support-sheet__icon--telegram  { background: #2aabee; }
+.support-sheet__icon--instagram { background: linear-gradient(135deg, #f58529, #dd2a7b, #8134af); }
+
+.support-sheet__label { flex: 1; }
+
+.support-sheet__arrow {
+  color: var(--n-400);
+  font-size: 0.75rem;
+}
+
+/* Cancel button */
+.support-sheet__close {
+  display: block;
+  width: 100%;
+  margin-top: var(--s-4);
+  padding: var(--s-3);
+  border: none;
+  border-radius: var(--r-xl);
+  background: none;
+  color: var(--n-500);
+  font-size: var(--text-sm);
+  font-weight: var(--fw-medium);
+  cursor: pointer;
+  transition: color 150ms;
+}
+.support-sheet__close:hover { color: var(--n-800); }
+
+/* Animations */
+@keyframes supportBackdropIn  { from { opacity: 0 } to { opacity: 1 } }
+@keyframes supportBackdropOut { from { opacity: 1 } to { opacity: 0 } }
+@keyframes supportPanelIn     { from { transform: translateY(100%) } to { transform: translateY(0) } }
+@keyframes supportPanelOut    { from { transform: translateY(0) } to { transform: translateY(100%) } }

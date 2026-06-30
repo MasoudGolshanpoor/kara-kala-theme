@@ -1,0 +1,351 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>تسویه حساب - VELA Style</title>
+  <!-- (همان فایل‌های CSS صفحه single-product برای حفظ یکپارچگی) -->
+  <link rel="stylesheet" href="css/tokens.css?v=2">
+  <link rel="stylesheet" href="css/base.css">
+  <link rel="stylesheet" href="css/checkout.css">
+  <link rel="stylesheet" href="css/all.min.css">
+  <link rel="stylesheet" href="css/style-carts.css">
+  <style>
+
+  </style>
+</head>
+<body>
+
+  <!-- ======================================================== -->
+  <!-- CHECKOUT MAIN CONTENT (برای وردپرس: محتوای checkout/form-checkout.php و ری‌رایت) -->
+  <!-- کلاس‌ها منطبق با خروجی ووکامرس: woocommerce-checkout, col2-set, form-row, order_review, payment_methods -->
+  <!-- ======================================================== -->
+  <main class="checkout-wrapper">
+
+    <!-- Breadcrumb -->
+    <nav class="breadcrumb cx" aria-label="مسیر راهنما">
+      <ul>
+        <li><a href="index.html">صفحه اصلی</a></li>
+        <li><i class="fa-solid fa-chevron-left" aria-hidden="true"></i></li>
+        <li><a href="cart-wo.html">سبد خرید</a></li>
+        <li><i class="fa-solid fa-chevron-left" aria-hidden="true"></i></li>
+        <li class="active">تسویه حساب</li>
+      </ul>
+    </nav>
+
+    <!-- Step Bar -->
+    <div class="checkout-steps">
+      <div class="cx">
+        <div class="checkout-steps__inner">
+          <h1 class="checkout-steps__title"><i class="fa-solid fa-credit-card" aria-hidden="true"></i> تسویه حساب</h1>
+          <div class="steps-track">
+            <div class="step done"><span class="step__num"><i class="fa-solid fa-check" style="font-size:11px;"></i></span><span class="step__label">سبد خرید</span></div>
+            <div class="step__sep"></div>
+            <div class="step active"><span class="step__num">۲</span><span class="step__label">اطلاعات و ارسال</span></div>
+            <div class="step__sep"></div>
+            <div class="step"><span class="step__num">۳</span><span class="step__label">پرداخت</span></div>
+          </div>
+          <a href="cart-wo.html" class="step-link-back"><i class="fa-solid fa-chevron-right" aria-hidden="true"></i> بازگشت به سبد</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="cx">
+
+      <div class="checkout-layout" id="checkoutLayout">
+
+        <!-- ── LEFT: Checkout Form ── -->
+        <form class="woocommerce-checkout" action="#" method="post">
+
+          <!-- 1. BILLING / CONTACT -->
+          <section class="section-card">
+            <div class="section-card__title">
+              <i class="fa-solid fa-user" aria-hidden="true"></i>
+              اطلاعات تماس
+            </div>
+            <div class="form-grid">
+              <div class="field form-grid--full">
+                <label for="co-name">نام و نام خانوادگی <span class="req">*</span></label>
+                <input type="text" id="co-name" name="billing_name" placeholder="مثال: علی رضایی" required>
+              </div>
+              <div class="field">
+                <label for="co-phone">شماره موبایل <span class="req">*</span></label>
+                <input type="tel" id="co-phone" name="billing_phone" placeholder="۰۹۱۲۳۴۵۶۷۸۹" required>
+              </div>
+              <div class="field">
+                <label for="co-email">ایمیل</label>
+                <input type="email" id="co-email" name="billing_email" placeholder="example@email.com">
+              </div>
+            </div>
+          </section>
+
+          <!-- 2. SHIPPING ADDRESS -->
+          <section class="section-card">
+            <div class="section-card__title">
+              <i class="fa-solid fa-location-dot" aria-hidden="true"></i>
+              آدرس تحویل
+            </div>
+            <div class="form-grid">
+              <div class="field">
+                <label for="co-province">استان <span class="req">*</span></label>
+                <select id="co-province" name="shipping_state">
+                  <option value="">انتخاب استان</option>
+                  <option>تهران</option>
+                  <option>اصفهان</option>
+                  <option>فارس</option>
+                  <option>خراسان رضوی</option>
+                  <option>آذربایجان شرقی</option>
+                  <option>گیلان</option>
+                </select>
+              </div>
+              <div class="field">
+                <label for="co-city">شهر <span class="req">*</span></label>
+                <select id="co-city" name="shipping_city">
+                  <option value="">انتخاب شهر</option>
+                  <option>تهران</option>
+                  <option>کرج</option>
+                  <option>اصفهان</option>
+                  <option>شیراز</option>
+                </select>
+              </div>
+              <div class="field form-grid--full">
+                <label for="co-postcode">کد پستی <span class="req">*</span></label>
+                <input type="text" id="co-postcode" name="shipping_postcode" placeholder="کد پستی ۱۰ رقمی" maxlength="10" required>
+              </div>
+              <div class="field form-grid--full">
+                <label for="co-address">آدرس کامل <span class="req">*</span></label>
+                <textarea id="co-address" name="shipping_address" placeholder="خیابان، کوچه، پلاک، واحد..." required></textarea>
+              </div>
+              <div class="field form-grid--full">
+                <label for="co-notes">توضیحات سفارش (اختیاری)</label>
+                <textarea id="co-notes" name="order_notes" placeholder="اگر نکته‌ای برای تحویل سفارش دارید بنویسید..."></textarea>
+              </div>
+            </div>
+          </section>
+
+        </form>
+
+        <!-- ── RIGHT: Order Review ── -->
+        <div class="order-review" id="orderReview">
+          <div class="order-review__card">
+            <h2 class="order-review__title"><i class="fa-solid fa-receipt" aria-hidden="true"></i> مرور سفارش</h2>
+
+            <!-- Mini items -->
+            <div class="review-items">
+              <div class="review-item">
+                <img class="review-item__img" src="./img/p4.png" alt="لپ تاپ ایسوس" width="48" height="48" loading="lazy" decoding="async">
+                <span class="review-item__name">لپ تاپ ایسوس Vivobook 15</span>
+                <span class="review-item__qty">۱</span>
+                <span class="review-item__price">۱۲۱,۹۹۹,۰۰۰</span>
+              </div>
+              <div class="review-item">
+                <img class="review-item__img" src="./img/p2.webp" alt="اتومایزر ووپو" width="48" height="48" loading="lazy" decoding="async">
+                <span class="review-item__name">اتومایزر یوفورس ال ووپو</span>
+                <span class="review-item__qty">۲</span>
+                <span class="review-item__price">۶,۸۴۰,۰۰۰</span>
+              </div>
+              <div class="review-item">
+                <img class="review-item__img" src="./img/p2.webp" alt="هدفون سونی" width="48" height="48" loading="lazy" decoding="async">
+                <span class="review-item__name">هدفون سونی WH-1000XM5</span>
+                <span class="review-item__qty">۱</span>
+                <span class="review-item__price">۱۴,۹۰۰,۰۰۰</span>
+              </div>
+            </div>
+
+            <div class="summary-divider"></div>
+
+            <!-- روش ارسال (فشرده، بدون آیکون) -->
+            <div class="review-sub-title">روش ارسال</div>
+            <div class="ship-methods">
+              <label class="ship-card selected" data-ship-cost="0">
+                <input type="radio" name="ship_method" value="post" checked style="display:none;">
+                <span class="ship-card__radio"></span>
+                <span class="ship-card__info">
+                  <span class="ship-card__name">پست پیشتاز</span>
+                  <span class="ship-card__sub">تحویل ۳ تا ۵ روز کاری</span>
+                </span>
+                <span class="ship-card__price free">رایگان</span>
+              </label>
+              <label class="ship-card" data-ship-cost="35000">
+                <input type="radio" name="ship_method" value="tipax" style="display:none;">
+                <span class="ship-card__radio"></span>
+                <span class="ship-card__info">
+                  <span class="ship-card__name">تیپاکس</span>
+                  <span class="ship-card__sub">تحویل ۲ تا ۴ روز کاری</span>
+                </span>
+                <span class="ship-card__price">۳۵,۰۰۰ تومان</span>
+              </label>
+              <label class="ship-card" data-ship-cost="89000">
+                <input type="radio" name="ship_method" value="express" style="display:none;">
+                <span class="ship-card__radio"></span>
+                <span class="ship-card__info">
+                  <span class="ship-card__name">ارسال فوری (پیک)</span>
+                  <span class="ship-card__sub">تحویل همان روز — فقط تهران</span>
+                </span>
+                <span class="ship-card__price">۸۹,۰۰۰ تومان</span>
+              </label>
+            </div>
+
+            <!-- روش پرداخت (فشرده، بدون آیکون) -->
+            <div class="review-sub-title">روش پرداخت</div>
+            <div class="pay-methods">
+              <label class="pay-card selected" data-pay="zarinpal">
+                <input type="radio" name="pay_method" value="zarinpal" checked style="display:none;">
+                <span class="pay-card__radio"></span>
+                <span class="pay-card__info">
+                  <span class="pay-card__name">پرداخت آنلاین (زرین‌پال)</span>
+                  <span class="pay-card__sub">پرداخت با تمام کارت‌های شتاب</span>
+                </span>
+                <span class="pay-card__logo">زرین‌پال</span>
+              </label>
+              <label class="pay-card" data-pay="snapp">
+                <input type="radio" name="pay_method" value="snapp" style="display:none;">
+                <span class="pay-card__radio"></span>
+                <span class="pay-card__info">
+                  <span class="pay-card__name">اسنپ‌پی</span>
+                  <span class="pay-card__sub">پرداخت اقساطی تا ۴ قسط</span>
+                </span>
+                <span class="pay-card__logo">اسنپ‌پی</span>
+              </label>
+              <label class="pay-card" data-pay="cod">
+                <input type="radio" name="pay_method" value="cod" style="display:none;">
+                <span class="pay-card__radio"></span>
+                <span class="pay-card__info">
+                  <span class="pay-card__name">پرداخت در محل</span>
+                  <span class="pay-card__sub">پرداخت هنگام تحویل — فقط تهران</span>
+                </span>
+                <span class="pay-card__logo">نقدی</span>
+              </label>
+            </div>
+
+            <div class="summary-divider"></div>
+
+            <div class="summary-line">
+              <span>جمع کالاها</span><span class="val" id="rv-subtotal">۱۴۳,۷۳۹,۰۰۰ تومان</span>
+            </div>
+            <div class="summary-line summary-line--saving">
+              <span>سود از خرید</span><span class="val">۱۰,۹۱۵,۰۰۰ تومان</span>
+            </div>
+            <div class="summary-line summary-line--shipping">
+              <span>هزینه ارسال</span><span class="val" id="rv-shipping">رایگان</span>
+            </div>
+            <div class="summary-line">
+              <span>مالیات بر ارزش افزوده</span><span class="val" id="rv-tax">۱۱,۴۹۹,۱۲۰ تومان</span>
+            </div>
+
+            <div class="summary-divider"></div>
+
+            <div class="summary-line summary-line--total">
+              <span>مبلغ قابل پرداخت</span><span class="val" id="rv-total">۱۵۵,۲۳۸,۱۲۰ تومان</span>
+            </div>
+
+            <label class="terms-row">
+              <input type="checkbox" id="acceptTerms">
+              <span>من <a href="#">قوانین و مقررات</a> فروشگاه را خوانده و می‌پذیرم. امکان بازگشت کالا مطابق سیاست فروشگاه است.</span>
+            </label>
+
+            <button type="button" class="btn-place-order" id="placeOrderBtn" disabled>
+              <i class="fa-solid fa-lock" aria-hidden="true"></i>
+              ثبت و پرداخت سفارش
+            </button>
+
+            <div class="review-trust">
+              <div class="trust-item"><i class="fa-solid fa-shield-halved" aria-hidden="true"></i> پرداخت امن از طریق درگاه معتبر بانکی</div>
+              <div class="trust-item"><i class="fa-solid fa-lock" aria-hidden="true"></i> اطلاعات شما رمزنگاری شده نگهداری می‌شود</div>
+              <div class="trust-item"><i class="fa-solid fa-badge-check" aria-hidden="true"></i> اصالت و سلامت کالا تضمین شده</div>
+            </div>
+          </div>
+        </div>
+
+      </div><!-- /.checkout-layout -->
+
+      <!-- SUCCESS STATE (پس از ثبت سفارش نمایش داده می‌شود) -->
+      <div class="order-success" id="orderSuccess">
+        <div class="order-success__icon"><i class="fa-solid fa-check" aria-hidden="true"></i></div>
+        <h2 class="order-success__title">سفارش شما با موفقیت ثبت شد!</h2>
+        <p class="order-success__desc">از خرید شما سپاسگزاریم. جزئیات سفارش و لینک پیگیری به شماره موبایل و ایمیل شما ارسال شد.</p>
+        <div class="order-num-box">
+          <span class="order-num-box__label">شماره سفارش:</span>
+          <span class="order-num-box__val" id="orderNumber">#VLA-۱۴۰۳-۸۸۴۲۳</span>
+        </div>
+        <div style="display:flex;gap:var(--s-3);justify-content:center;flex-wrap:wrap;">
+          <a href="index.html" class="btn-place-order" style="max-width:220px;">بازگشت به فروشگاه</a>
+        </div>
+      </div>
+
+    </div><!-- /.cx -->
+  </main>
+
+  <script>
+    /* ============================================================
+       CHECKOUT JS (تسویه حساب) — ساده و بهینه
+       در وردپرس این کد به فایل checkout.js قالب منتقل می‌شود و ووکامرس
+       فرآیند AJAX خود را دارد؛ اینجا صرفاً برای دمو است.
+       ============================================================ */
+    document.addEventListener('DOMContentLoaded', () => {
+
+      const fmt = (n) => Number(n).toLocaleString('fa-IR');
+
+      const SUBTOTAL = 143739000;
+      const TAX_RATE = 0.09;
+
+      // ── Shipping method selection ──
+      const shipCards = document.querySelectorAll('.ship-card');
+      shipCards.forEach(card => {
+        card.addEventListener('click', () => {
+          shipCards.forEach(c => c.classList.remove('selected'));
+          card.classList.add('selected');
+          card.querySelector('input[type="radio"]').checked = true;
+          recalc();
+        });
+      });
+
+      // ── Payment method selection ──
+      const payCards = document.querySelectorAll('.pay-card');
+      payCards.forEach(card => {
+        card.addEventListener('click', () => {
+          payCards.forEach(c => c.classList.remove('selected'));
+          card.classList.add('selected');
+          card.querySelector('input[type="radio"]').checked = true;
+        });
+      });
+
+      // ── Terms checkbox enables place order ──
+      const acceptTerms = document.getElementById('acceptTerms');
+      const placeBtn = document.getElementById('placeOrderBtn');
+      acceptTerms.addEventListener('change', () => {
+        placeBtn.disabled = !acceptTerms.checked;
+      });
+
+      // ── Place order (demo) ──
+      placeBtn.addEventListener('click', () => {
+        const original = placeBtn.innerHTML;
+        placeBtn.innerHTML = '<i class="fa-solid fa-spinner fa-spin" aria-hidden="true"></i> در حال پردازش...';
+        placeBtn.disabled = true;
+        setTimeout(() => {
+          document.getElementById('checkoutLayout').style.display = 'none';
+          const steps = document.querySelectorAll('.step');
+          steps[1].classList.remove('active'); steps[1].classList.add('done');
+          steps[2].classList.add('active');
+          document.getElementById('orderSuccess').classList.add('is-placed');
+          window.scrollTo({ top: 0, behavior: 'smooth' });
+        }, 1500);
+      });
+
+      // ── Recalculate ──
+      function recalc() {
+        const selected = document.querySelector('.ship-card.selected');
+        const shipCost = parseInt(selected?.dataset.shipCost || 0);
+        const tax = Math.round(SUBTOTAL * TAX_RATE);
+        const total = SUBTOTAL + shipCost + tax;
+
+        document.getElementById('rv-shipping').textContent = shipCost === 0 ? 'رایگان' : fmt(shipCost) + ' تومان';
+        document.getElementById('rv-tax').textContent = fmt(tax) + ' تومان';
+        document.getElementById('rv-total').textContent = fmt(total) + ' تومان';
+      }
+
+      recalc();
+    });
+  </script>
+</body>
+</html>

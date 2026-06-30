@@ -1,0 +1,449 @@
+/* ============================================================
+   VELA — Page Sections
+   Section Header · Hero · Stats Strip · Flash Sale ·
+   Promo Banners · Brand Strip · Newsletter · Trust Bar · Footer
+   ============================================================ */
+
+/* ─── SECTION HEADER ─── */
+/* ─── SECTION SPACING ─── */
+.section { padding-block: var(--s-20); }
+.section--sm { padding-block: var(--s-12); }
+.section--lg { padding-block: var(--s-32); }
+.section--flush-top    { padding-top: 0; }
+.section--flush-bottom { padding-bottom: 0; }
+
+/* ─── HERO BANNER SLIDER ─── */
+
+.hero-slider-section {
+  padding: 0;
+  background: var(--bg-2);
+}
+
+/* Full-width clip wrapper – border-radius clips corners during slide transitions */
+.hero-slider-wrap {
+  position: relative;
+  overflow: hidden;
+  border-radius: var(--r-xl);
+  /* Cap width on very wide monitors */
+  max-width: var(--max-2xl);
+  margin-inline: auto;
+  padding-top: var(--s-4);
+}
+
+.hero-swiper { width: 100%; }
+
+.hero-swiper .swiper-slide { overflow: hidden;     border-radius: var(--r-xl);
+ }
+
+.hero-slide__link {
+  display: block;
+  cursor: pointer;
+  border-radius: var(--r-xl);
+  /*
+   * Reserve space = prevent CLS.
+   * Matches s3.jpg ratio 2000×600 = 10:3 (first/primary slide).
+   * Browser also reads this from the width/height HTML attributes.
+   */
+  aspect-ratio: 10 / 3;
+}
+
+.hero-slide__img {
+  display: block;
+  width: 100%;
+  height: auto;        /* natural height — no upscaling, no cropping */
+  /* NO object-fit: cover so the full image is visible at true quality */
+}
+
+/* ── Controls group – bottom-right on desktop ── */
+.hero-slider-controls {
+  position: absolute;
+  bottom: var(--s-4);
+  right: var(--s-5);
+  z-index: 10;
+  display: flex;
+  align-items: center;
+  gap: var(--s-2);
+  direction: ltr; /* keep bullets + buttons in LTR order */
+}
+
+/* Pagination wrapper (Swiper fills bullets inside) */
+.hero-slider-pagination {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  /* override Swiper's default absolute positioning */
+  position: static !important;
+  width: auto !important;
+  bottom: auto !important;
+  left: auto !important;
+}
+
+.hero-slider-pagination .swiper-pagination-bullet {
+  width: 8px;
+  height: 8px;
+  border-radius: 4px;
+  background: rgba(255, 255, 255, 0.5);
+  opacity: 1;
+  transition: width 0.35s ease, background 0.35s ease;
+  margin: 0 !important;
+  flex-shrink: 0;
+  cursor: pointer;
+}
+
+.hero-slider-pagination .swiper-pagination-bullet-active {
+  width: 24px;
+  background: #fff;
+}
+
+/* Nav buttons */
+.hero-slider-btns {
+  display: flex;
+  gap: 5px;
+}
+
+.hero-slider-btn {
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.88);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  border: none;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--n-900);
+  flex-shrink: 0;
+  transition: background 0.2s ease, transform 0.15s ease;
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.2);
+}
+
+.hero-slider-btn:hover {
+  background: #fff;
+  transform: scale(1.1);
+}
+
+.hero-slider-btn.swiper-button-disabled {
+  opacity: 0.4;
+  pointer-events: none;
+}
+
+.hero-slider-btn svg {
+  pointer-events: none;
+  width: 18px;
+  height: 18px;
+  flex-shrink: 0;
+}
+
+/* ─── MOBILE ─── */
+@media (max-width: 767px) {
+  .hero-slider-section {
+    padding: var(--s-3) 0 0;
+    overflow: hidden; /* clips peek overflow */
+  }
+
+  /* Let wrap overflow so adjacent slides peek */
+  .hero-slider-wrap {
+    overflow: visible;
+    border-radius: 0;
+  }
+
+  /* Swiper itself overflows; padding shows edges of adjacent slides */
+  .hero-swiper {
+    overflow: visible;
+    padding: 0 var(--s-4);
+  }
+
+  .hero-swiper .swiper-slide {
+    border-radius: var(--r-xl);
+  }
+
+  /*
+   * On mobile the natural 24:5 ratio gives only ~70px height — too short.
+   * Override to 2:1 which gives ~170px on a 375px screen: a usable banner.
+   * Use cover + center so the middle of the wide image is shown.
+   */
+  .hero-slide__link {
+    /* 16:5 ≈ 3.2:1 — wider ratio means cover zooms in ~67% width instead of 42%,
+       so nearly all the banner content is visible without heavy cropping */
+    aspect-ratio: 5 / 2;
+    border-radius: var(--r-xl);
+    overflow: hidden;
+  }
+
+  .hero-slide__img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center center;
+    border-radius: 0;
+  }
+
+  /* Controls: move below the slide, centered */
+  .hero-slider-controls {
+    position: static;
+    margin-top: var(--s-3);
+    justify-content: center;
+    padding-bottom: var(--s-2);
+  }
+
+  /* Hide nav arrows on mobile */
+  .hero-slider-btns { display: none !important; }
+
+  /* Bullets: use brand color instead of white */
+  .hero-slider-pagination .swiper-pagination-bullet {
+    background: var(--n-300);
+  }
+
+  .hero-slider-pagination .swiper-pagination-bullet-active {
+    background: var(--primary);
+    width: 20px;
+  }
+}
+
+
+/* ─── STATS STRIP ─── */
+.stats-strip {
+  background: var(--n-50);
+  padding: var(--s-6) 0;
+}
+.stats-strip__inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--s-6);
+  flex-wrap: wrap;
+}
+.stats-strip__item {
+  text-align: center;
+  flex: 1;
+  min-width: 140px;
+}
+.stats-strip__num {
+  font-family: var(--font-head);
+  font-size: var(--text-3xl);
+  font-weight: var(--fw-extrabold);
+  /* color: var(--white); */
+  letter-spacing: -.03em;
+}
+.stats-strip__num span { color: var(--accent); }
+.stats-strip__label { font-size: var(--text-sm); color: var(--n-600); margin-top: var(--s-1); }
+.stats-strip__divider { width: 1px; height: 40px; background: var(--n-300); }
+@media (max-width: 768px) {
+  .stats-strip__divider { display: none; }
+}
+/* ─── FLASH SALE ─── */
+.flash-sale {
+  background: linear-gradient(135deg, #0F172A 0%, #1E293B 40%, #312E81 100%);
+  padding: var(--s-16) 0;
+  position: relative;
+  overflow: hidden;
+}
+.flash-sale::before {
+  content: '';
+  position: absolute;
+  top: -50%; right: -20%;
+  width: 600px; height: 600px;
+  border-radius: var(--r-full);
+  background: radial-gradient(circle, rgba(79,70,229,.25) 0%, transparent 70%);
+}
+.flash-sale__header { display: flex; align-items: center; justify-content: space-between; margin-bottom: var(--s-8); flex-wrap: wrap; gap: var(--s-4); }
+.flash-sale__title-group { display: flex; align-items: center; gap: var(--s-4); flex-wrap: wrap; }
+.flash-sale__title {
+  font-family: var(--font-head);
+  font-size: clamp(1.5rem, 3vw, var(--text-4xl));
+  font-weight: var(--fw-extrabold);
+  color: var(--white);
+}
+.countdown {
+  display: flex;
+  align-items: center;
+  gap: var(--s-2);
+}
+.countdown__item {
+  background: rgba(255,255,255,.1);
+  border: 1px solid rgba(255,255,255,.15);
+  border-radius: var(--r-md);
+  width: 52px;
+  text-align: center;
+  padding: var(--s-2) var(--s-1);
+  backdrop-filter: blur(4px);
+}
+.countdown__num {
+  font-family: var(--font-head);
+  font-size: var(--text-xl);
+  font-weight: var(--fw-extrabold);
+  color: var(--white);
+  line-height: 1;
+}
+.countdown__unit { font-size: 10px; color: rgba(255,255,255,.5); text-transform: uppercase; letter-spacing: .06em; margin-top: 2px; }
+.countdown__sep { color: var(--accent); font-size: var(--text-xl); font-weight: var(--fw-bold); margin-bottom: 4px; }
+
+/* ─── PROMO BANNERS ─── */
+.promo-banners {padding: var(--s-1); display: grid; grid-template-columns: 1fr 1fr; gap: var(--s-6); }
+.promo-banner {
+  border-radius: var(--r-2xl);
+  display: block;
+  transition: transform 0.35s var(--ease), box-shadow 0.35s var(--ease);
+}
+.promo-banner:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-md);
+}
+.promo-banner__img {
+  width: 100%;
+  height: auto;
+  display: block;
+  border-radius: var(--r-2xl);
+}
+
+.btn--white { background: white; color: var(--primary); font-weight: var(--fw-bold); }
+.btn--white:hover { background: var(--n-100); }
+
+.swiper-sec--alt { background: var(--bg-2); }
+
+.cat-section { background: var(--bg-2); }
+.testi-sec { background: var(--bg-2); }
+
+/* ─── BRAND STRIP ─── */
+.brand-strip { padding: var(--s-10) 0;  }
+.brand-strip__title {
+  font-size: var(--text-lg);
+  font-weight: var(--fw-bold);
+  color: var(--n-900);
+  text-align: center;
+  margin-bottom: var(--s-6);
+}
+/* Track: 2/3 of cx, centered, fade edges */
+.brand-strip__track {
+  width: 80%;
+  margin: 0 auto;
+  overflow: hidden;
+  mask-image: linear-gradient(to right, transparent 0%, black 12%, black 88%, transparent 100%);
+  -webkit-mask-image: linear-gradient(to right, transparent 0%, black 12%, black 88%, transparent 100%);
+}
+/* Swiper slides: auto-width so each slide wraps its image */
+.brand-swiper { overflow: hidden; }
+/* Force linear so autoplay delay:0 flows without easing stutter */
+.brand-swiper .swiper-wrapper { transition-timing-function: linear !important; }
+.brand-slide {
+  width: auto !important;
+  display: flex;
+  align-items: center;
+}
+.brand-logo__img {
+  height: 36px;
+  width: auto;
+  object-fit: contain;
+  opacity: .55;
+  filter: grayscale(1);
+  transition: opacity var(--t-fast), filter var(--t-fast);
+  display: block;
+}
+.brand-logo__img:hover { opacity: 1; filter: grayscale(0); }
+
+/* ─── TESTIMONIALS ─── */
+.testi-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--s-4);
+  margin-bottom: var(--s-8);
+  flex-wrap: nowrap;
+}
+.testi-header__eyebrow {
+  font-size: var(--text-xs);
+  font-weight: var(--fw-semibold);
+  letter-spacing: .1em;
+  text-transform: uppercase;
+  color: var(--primary);
+  margin-bottom: var(--s-2);
+}
+.testi-header__title {
+  font-family: var(--font-head);
+  font-weight: var(--fw-extrabold);
+  color: var(--n-900);
+}
+.testi-nav { display: flex; gap: var(--s-2); align-items: center; flex-shrink: 0; }
+.testi-btn {
+  width: 36px; height: 36px;
+  border-radius: var(--r-md);
+  border: var(--border);
+  background: var(--white);
+  color: var(--n-600);
+  display: flex; align-items: center; justify-content: center;
+  cursor: pointer;
+  font-size: 12px;
+  transition: all var(--t-fast);
+}
+.testi-btn:hover { background: var(--primary); border-color: var(--primary); color: var(--white); }
+.testi-btn:disabled { opacity: .35; cursor: default; }
+
+/* Equal-height slides */
+.testi-swiper { padding-bottom: var(--s-10) !important; }
+.testi-swiper .swiper-slide { display: flex; height: auto; }
+
+.testi-card {
+  background: var(--white);
+  border: var(--border);
+  border-radius: var(--r-2xl);
+  padding: var(--s-6);
+  display: flex;
+  flex-direction: column;
+  gap: var(--s-5);
+  flex: 1;
+  box-shadow:var(--shadow-md);
+}
+.testi-card__header {
+  display: flex;
+  align-items: center;
+  gap: var(--s-4);
+}
+.testi-card__avatar {
+  width: 52px; height: 52px;
+  border-radius: 50%;
+  object-fit: cover;
+  flex-shrink: 0;
+  border: 3px solid var(--primary-light);
+}
+.testi-card__info { display: flex; flex-direction: column; gap: 2px; flex: 1; }
+.testi-card__name { font-size: var(--text-sm); font-weight: var(--fw-bold); color: var(--n-900); }
+.testi-card__role { font-size: var(--text-xs); color: var(--n-500); }
+.testi-card__icon {
+  font-size: 1.6rem;
+  color: var(--primary-light);
+  flex-shrink: 0;
+  margin-inline-start: auto;
+}
+.testi-card__text {
+  font-size: var(--text-sm);
+  line-height: var(--lh-relaxed);
+  color: var(--n-600);
+  flex: 1;
+}
+
+/* Pill pagination — same pattern as hero-slider */
+.testi-pagination {
+  display: flex !important;
+  justify-content: center;
+  align-items: center;
+  gap: 5px;
+  bottom: var(--s-3) !important;
+}
+.testi-pagination .swiper-pagination-bullet {
+  width: 8px;
+  height: 8px;
+  border-radius: 4px;
+  background: var(--n-300);
+  opacity: 1;
+  margin: 0 !important;
+  flex-shrink: 0;
+  transition: width 0.35s ease, background 0.35s ease;
+}
+.testi-pagination .swiper-pagination-bullet-active {
+  width: 24px;
+  background: var(--primary);
+}
+
+

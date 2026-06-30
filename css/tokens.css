@@ -1,0 +1,195 @@
+/* IRANYekan Web */
+
+@font-face {
+  font-family: 'IRANYekanWeb';
+  src: url('../fonts/iranyekanwebregular.woff') format('woff');
+  font-weight: 300 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'IRANYekanWeb';
+  src: url('../fonts/iranyekanwebmedium.woff') format('woff');
+  font-weight: 500 600;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'IRANYekanWeb';
+  src: url('../fonts/iranyekanwebbold.woff') format('woff');
+  font-weight: 700 800;
+  font-style: normal;
+  font-display: swap;
+}
+
+
+:root {
+
+  /* ─── BRAND ─── */
+  --primary: #4F46E5;
+  --primary-hover: #4338CA;
+  --primary-active: #3730A3;
+  --primary-light: #EEF2FF;
+  --primary-rgb: 79, 70, 229;
+
+  --accent: #F97316;
+  --accent-hover: #EA580C;
+  --accent-light: #FFF7ED;
+
+  /* ─── SEMANTIC ─── */
+  --success: #10B981;
+  --success-light: #ECFDF5;
+  --warning: #F59E0B;
+  --warning-light: #FFFBEB;
+  --danger: #EF4444;
+  --danger-light: #FEF2F2;
+
+  /* ─── NEUTRALS ─── */
+  --white: #FFFFFF;
+  --black: #000000;
+  --n-50: #F8FAFC;
+  --n-100: #F1F5F9;
+  --n-200: #E2E8F0;
+  --n-300: #CBD5E1;
+  --n-400: #94A3B8;
+  --n-500: #64748B;
+  --n-600: #475569;
+  --n-700: #334155;
+  --n-800: #1E293B;
+  --n-900: #0F172A;
+
+  /* ─── BACKGROUNDS ─── */
+  --bg: #FFFFFF;
+  --bg-2: #F8FAFC;
+  --bg-3: #F1F5F9;
+  --bg-dark: #0F172A;
+  --bg-dark2: #1E293B;
+  --bg-red: #ef1923;
+
+  
+
+  /* ─── TYPOGRAPHY ─── */
+  /* --font-head: 'Plus Jakarta Sans', 'Vazirmatn', sans-serif;
+  --font-body: 'Inter', 'Vazirmatn', sans-serif;
+  --font-persian: 'Vazirmatn', sans-serif; */
+
+  --font-head: 'IRANYekanWeb', sans-serif;
+  --font-body: 'IRANYekanWeb', sans-serif;
+  --font-persian: 'IRANYekanWeb', sans-serif;
+
+
+  --text-xs: 0.75rem;
+  --text-sm: 0.875rem;
+  --text-base: 1rem;
+  --text-lg: 1.125rem;
+  --text-xl: 1.25rem;
+  --text-2xl: 1.5rem;
+  --text-3xl: 1.875rem;
+  --text-4xl: 2.25rem;
+  --text-5xl: 3rem;
+  --text-6xl: 3.75rem;
+  --text-7xl: 4.5rem;
+  --text-8xl: 6rem;
+
+  --fw-light: 300;
+  --fw-regular: 400;
+  --fw-medium: 500;
+  --fw-semibold: 600;
+  --fw-bold: 700;
+  --fw-extrabold: 800;
+
+  --lh-tight: 1.2;
+  --lh-snug: 1.35;
+  --lh-normal: 1.5;
+  --lh-relaxed: 1.65;
+
+  /* ─── SPACING (4px base, 8px grid) ─── */
+  --s-1: 0.25rem;
+  --s-2: 0.5rem;
+  --s-3: 0.75rem;
+  --s-4: 1rem;
+  --s-5: 1.25rem;
+  --s-6: 1.5rem;
+  --s-8: 2rem;
+  --s-10: 2.5rem;
+  --s-12: 3rem;
+  --s-16: 4rem;
+  --s-20: 5rem;
+  --s-24: 6rem;
+  --s-32: 8rem;
+
+  /* ─── BORDER RADIUS ─── */
+  --r-xs: 2px;
+  --r-sm: 4px;
+  --r-md: 8px;
+  --r-lg: 12px;
+  --r-xl: 16px;
+  --r-2xl: 24px;
+  --r-3xl: 32px;
+  --r-full: 9999px;
+
+  /* ─── SHADOWS ─── */
+  --shadow-xs: 0 1px 2px rgba(0, 0, 0, .05);
+  --shadow-sm: 0 1px 3px rgba(0, 0, 0, .10), 0 1px 2px rgba(0, 0, 0, .06);
+  --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, .10), 0 2px 4px -1px rgba(0, 0, 0, .06);
+  --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, .10), 0 4px 6px -2px rgba(0, 0, 0, .05);
+  --shadow-xl: 0 20px 25px -5px rgba(0, 0, 0, .10), 0 10px 10px -5px rgba(0, 0, 0, .04);
+  --shadow-2xl: 0 25px 50px -12px rgba(0, 0, 0, .25);
+  --shadow-card: 0 2px 8px rgba(0, 0, 0, .07), 0 0 1px rgba(0, 0, 0, .06);
+  --shadow-hover: 0 12px 32px rgba(0, 0, 0, .12), 0 2px 8px rgba(0, 0, 0, .06);
+  --shadow-focus: 0 0 0 3px rgba(79, 70, 229, .25);
+
+  /* ─── BORDERS ─── */
+  --border: 1px solid var(--n-200);
+  --border-dark: 1px solid var(--n-300);
+
+  /* ─── CONTAINERS ─── */
+  --max-xs: 480px;
+  --max-sm: 640px;
+  --max-md: 768px;
+  --max-lg: 1024px;
+  --max-xl: 1280px;
+  --max-2xl: 1640px;
+  --cx-pad: clamp(1rem, 4vw, 2rem);
+
+  /* ─── TRANSITIONS ─── */
+  --ease: cubic-bezier(.4, 0, .2, 1);
+  --ease-in: cubic-bezier(.4, 0, 1, 1);
+  --ease-out: cubic-bezier(0, 0, .2, 1);
+  --ease-spring: cubic-bezier(.34, 1.56, .64, 1);
+
+  --t-fast: 150ms;
+  --t-base: 220ms;
+  --t-slow: 350ms;
+  --t-slower: 500ms;
+
+  /* ─── Z-INDEX SCALE ─── */
+  --z-base: 1;
+  --z-raised: 10;
+  --z-dropdown: 100;
+  --z-sticky: 200;
+  --z-overlay: 300;
+  --z-modal: 400;
+  --z-toast: 500;
+
+  /* ─── NAV ─── */
+  --nav-h: 64px;
+  --nav-h-scroll: 56px;
+  --bottom-nav-h: 64px;
+
+  /* ─── PRODUCT CARD ─── */
+  --card-radius: var(--r-xl);
+  --card-p-bg: #f5f5f5;
+
+  /* ─── SEARCH MODAL ─── */
+  --search-modal-z: 600;
+
+  /* ─── FOOTER ─── */
+  --ftr-bg: var(--n-50);
+  --ftr-bg-2: var(--n-50);
+  --ftr-border: rgb(226, 226, 226);
+  --ftr-text: rgb(70, 67, 67);
+  --ftr-text-dim: rgb(56, 50, 50);
+}

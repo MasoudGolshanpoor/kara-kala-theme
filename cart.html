@@ -1,0 +1,359 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>سبد خرید - VELA Style</title>
+  <!-- (همان فایل‌های CSS صفحه single-product برای حفظ یکپارچگی) -->
+  <link rel="stylesheet" href="css/tokens.css?v=2">
+  <link rel="stylesheet" href="css/base.css">
+  <link rel="stylesheet" href="css/checkout.css">
+  <link rel="stylesheet" href="css/all.min.css">
+  <link rel="stylesheet" href="css/style-carts.css">
+</head>
+<body>
+
+  <!-- ======================================================== -->
+  <!-- CART MAIN CONTENT (برای وردپرس: محتوای cart/cart.php و ری‌رایت) -->
+  <!-- کلاس‌ها منطبق با خروجی ووکامرس: woocommerce-cart-form, shop_table, cart_item, cart-collaterals, cart_totals -->
+  <!-- ======================================================== -->
+  <main class="cart-wrapper">
+
+    <!-- Breadcrumb -->
+    <nav class="breadcrumb cx" aria-label="مسیر راهنما">
+      <ul>
+        <li><a href="index.html">صفحه اصلی</a></li>
+        <li><i class="fa-solid fa-chevron-left" aria-hidden="true"></i></li>
+        <li class="active">سبد خرید</li>
+      </ul>
+    </nav>
+
+    <div class="cx">
+
+      <!-- Page Head -->
+      <div class="page-head">
+        <h1><i class="fa-solid fa-cart-shopping" aria-hidden="true"></i> سبد خرید شما</h1>
+        <span class="items-count" id="itemsCount">۳ کالا</span>
+      </div>
+
+      <!-- Free Shipping Progress -->
+      <div class="free-shipping" id="freeShipping">
+        <div class="free-shipping__row">
+          <i class="fa-solid fa-truck-fast" aria-hidden="true"></i>
+          <span>ارسال رایگان برای سفارش‌های بالای <strong>۵,۰۰۰,۰۰۰ تومان</strong>. تا ارسال رایگان <strong id="remainText">۳,۴۸۹,۰۰۰ تومان</strong> دیگر خرید کنید.</span>
+        </div>
+        <div class="free-shipping__track">
+          <div class="free-shipping__fill" id="freeShipFill" style="width: 65%;"></div>
+        </div>
+      </div>
+
+      <div class="cart-layout">
+
+        <!-- ── LEFT: Cart Items ── -->
+        <div>
+
+          <form class="woocommerce-cart-form" action="#" method="post">
+            <div class="cart-form-card">
+              <table class="shop_table cart" cellspacing="0">
+                <thead>
+                  <tr>
+                    <th class="product-thumbnail">تصویر</th>
+                    <th class="product-name">محصول</th>
+                    <th class="product-price">قیمت</th>
+                    <th class="product-quantity">تعداد</th>
+                    <th class="product-subtotal">جمع</th>
+                    <th class="product-remove">حذف</th>
+                  </tr>
+                </thead>
+                <tbody>
+
+                  <!-- CART ITEM 1 -->
+                  <tr class="cart_item" data-key="1">
+                    <td class="product-thumbnail">
+                      <a href="single-product.html">
+                        <img src="./img/p4.png" alt="لپ تاپ ایسوس Vivobook 15" width="96" height="96" loading="lazy" decoding="async">
+                      </a>
+                    </td>
+                    <td class="product-info">
+                      <span class="ci-brand">ایسوس</span>
+                      <h3 class="product-name"><a href="single-product.html">لپ تاپ ۱۵.۶ اینچی ایسوس مدل Vivobook 15 X1504VA</a></h3>
+                      <div class="product-variation">
+                        <span class="v-chip">رنگ: نقره‌ای</span>
+                        <span class="v-chip">رم: ۲۴ گیگ</span>
+                      </div>
+                      <div class="product-meta">گارانتی اصالت و سلامت فیزیکی کالا</div>
+                    </td>
+                    <td class="cart-item-side">
+                      <div class="cart-item-side__top">
+                        <div class="qty-selector" data-qty>
+                          <button type="button" class="qty-btn qty-minus" aria-label="کاهش تعداد">−</button>
+                          <input type="number" class="qty-input" value="1" min="1" max="99" aria-label="تعداد محصول">
+                          <button type="button" class="qty-btn qty-plus" aria-label="افزایش تعداد">+</button>
+                        </div>
+                        <div class="product-price">
+                          <span class="price-current">۱۲۱,۹۹۹,۰۰۰ <span style="font-size:var(--text-xs);font-weight:var(--fw-medium);color:var(--n-500);">تومان</span></span>
+                          <del class="price-old">۱۳۵,۵۵۴,۰۰۰</del>
+                        </div>
+                      </div>
+                      <div class="cart-item-actions">
+                        <button type="button" class="ci-action ci-remove" aria-label="حذف از سبد"><i class="fa-solid fa-trash-can" aria-hidden="true"></i> حذف</button>
+                        <button type="button" class="ci-action ci-save" aria-label="ذخیره برای بعد"><i class="fa-regular fa-bookmark" aria-hidden="true"></i> ذخیره</button>
+                      </div>
+                    </td>
+                  </tr>
+
+                  <!-- CART ITEM 2 -->
+                  <tr class="cart_item" data-key="2">
+                    <td class="product-thumbnail">
+                      <a href="single-product.html">
+                        <img src="./img/p2.webp" alt="اتومایزر یوفورس ال ووپو" width="96" height="96" loading="lazy" decoding="async">
+                      </a>
+                    </td>
+                    <td class="product-info">
+                      <span class="ci-brand">ووپو</span>
+                      <h3 class="product-name"><a href="single-product.html">اتومایزر یوفورس ال ووپو VOOPOO UFORCE-L TANK</a></h3>
+                      <div class="product-variation">
+                        <span class="v-chip">رنگ: مشکی</span>
+                      </div>
+                      <div class="product-meta">گارانتی اصالت کالا</div>
+                    </td>
+                    <td class="cart-item-side">
+                      <div class="cart-item-side__top">
+                        <div class="qty-selector" data-qty>
+                          <button type="button" class="qty-btn qty-minus" aria-label="کاهش تعداد">−</button>
+                          <input type="number" class="qty-input" value="2" min="1" max="99" aria-label="تعداد محصول">
+                          <button type="button" class="qty-btn qty-plus" aria-label="افزایش تعداد">+</button>
+                        </div>
+                        <div class="product-price">
+                          <span class="price-current">۶,۸۴۰,۰۰۰ <span style="font-size:var(--text-xs);font-weight:var(--fw-medium);color:var(--n-500);">تومان</span></span>
+                          <span class="discount-badge">۲ عدد</span>
+                        </div>
+                      </div>
+                      <div class="cart-item-actions">
+                        <button type="button" class="ci-action ci-remove" aria-label="حذف از سبد"><i class="fa-solid fa-trash-can" aria-hidden="true"></i> حذف</button>
+                        <button type="button" class="ci-action ci-save" aria-label="ذخیره برای بعد"><i class="fa-regular fa-bookmark" aria-hidden="true"></i> ذخیره</button>
+                      </div>
+                    </td>
+                  </tr>
+
+                  <!-- CART ITEM 3 -->
+                  <tr class="cart_item" data-key="3">
+                    <td class="product-thumbnail">
+                      <a href="single-product.html">
+                        <img src="./img/p2.webp" alt="هدفون بی سیم سونی" width="96" height="96" loading="lazy" decoding="async">
+                      </a>
+                    </td>
+                    <td class="product-info">
+                      <span class="ci-brand">سونی</span>
+                      <h3 class="product-name"><a href="single-product.html">هدفون بی‌سیم سونی WH-1000XM5 با حذف نویز فعال</a></h3>
+                      <div class="product-variation">
+                        <span class="v-chip">رنگ: مشکی</span>
+                      </div>
+                      <div class="product-meta">۱۸ ماه گارانتی شرکت</div>
+                    </td>
+                    <td class="cart-item-side">
+                      <div class="cart-item-side__top">
+                        <div class="qty-selector" data-qty>
+                          <button type="button" class="qty-btn qty-minus" aria-label="کاهش تعداد">−</button>
+                          <input type="number" class="qty-input" value="1" min="1" max="99" aria-label="تعداد محصول">
+                          <button type="button" class="qty-btn qty-plus" aria-label="افزایش تعداد">+</button>
+                        </div>
+                        <div class="product-price">
+                          <span class="price-current">۱۴,۹۰۰,۰۰۰ <span style="font-size:var(--text-xs);font-weight:var(--fw-medium);color:var(--n-500);">تومان</span></span>
+                          <del class="price-old">۱۷,۵۰۰,۰۰۰</del>
+                          <span class="discount-badge">۱۵٪</span>
+                        </div>
+                      </div>
+                      <div class="cart-item-actions">
+                        <button type="button" class="ci-action ci-remove" aria-label="حذف از سبد"><i class="fa-solid fa-trash-can" aria-hidden="true"></i> حذف</button>
+                        <button type="button" class="ci-action ci-save" aria-label="ذخیره برای بعد"><i class="fa-regular fa-bookmark" aria-hidden="true"></i> ذخیره</button>
+                      </div>
+                    </td>
+                  </tr>
+
+                </tbody>
+              </table>
+            </div>
+
+            <!-- Coupon + Update -->
+            <div class="cart-form-actions">
+              <div class="coupon-box">
+                <label for="coupon_code">کد تخفیف:</label>
+                <input type="text" name="coupon_code" id="coupon_code" placeholder="کد خود را وارد کنید">
+                <button type="button" class="btn btn--sm btn--outline" id="applyCoupon"><i class="fa-solid fa-tag" aria-hidden="true"></i> اعمال</button>
+              </div>
+              <button type="button" class="btn-update-cart" id="updateCart"><i class="fa-solid fa-rotate" aria-hidden="true"></i> به‌روزرسانی سبد</button>
+            </div>
+          </form>
+
+        </div>
+
+        <!-- ── RIGHT: Order Summary ── -->
+        <div class="cart-collaterals">
+          <div class="cart_totals">
+            <h2><i class="fa-solid fa-receipt" aria-hidden="true"></i> خلاصه سفارش</h2>
+
+            <div class="summary-list">
+              <div class="summary-line">
+                <span>جمع کل کالاها</span>
+                <span class="val" id="subtotalVal">۱۴۳,۷۳۹,۰۰۰ تومان</span>
+              </div>
+              <div class="summary-line summary-line--saving">
+                <span>سود شما از خرید</span>
+                <span class="val" id="savingsVal">۱۰,۹۱۵,۰۰۰ تومان</span>
+              </div>
+              <div class="summary-line summary-line--shipping">
+                <span>هزینه ارسال</span>
+                <span class="val" id="shippingVal">۳۸۹,۰۰۰ تومان</span>
+              </div>
+              <div class="summary-line">
+                <span>مالیات بر ارزش افزوده</span>
+                <span class="val" id="taxVal">۱۱,۴۹۹,۱۲۰ تومان</span>
+              </div>
+
+              <div class="summary-divider"></div>
+
+              <div class="summary-line summary-line--total">
+                <span>مبلغ قابل پرداخت</span>
+                <span class="val" id="totalVal">۱۴۴,۱۲۸,۱۲۰ تومان</span>
+              </div>
+            </div>
+
+            <a href="chekout.html" class="btn-checkout">
+              ادامه و تسویه حساب
+              <i class="fa-solid fa-arrow-left" aria-hidden="true"></i>
+            </a>
+            <a href="shop.html" class="btn-continue">
+              <i class="fa-solid fa-chevron-right" aria-hidden="true"></i>
+              ادامه خرید
+            </a>
+
+            <div class="cart-trust">
+              <div class="trust-item"><i class="fa-solid fa-shield-halved" aria-hidden="true"></i> پرداخت امن و رمزنگاری شده</div>
+              <div class="trust-item"><i class="fa-solid fa-rotate-left" aria-hidden="true"></i> ضمانت بازگشت کالا تا ۷ روز</div>
+              <div class="trust-item"><i class="fa-solid fa-badge-check" aria-hidden="true"></i> اصالت کالا تضمین شده</div>
+            </div>
+          </div>
+        </div>
+
+      </div><!-- /.cart-layout -->
+
+      <!-- EMPTY CART STATE (نمایش داده نمی‌شود مگر اینکه سبد خالی شود) -->
+      <div class="cart-empty-state" id="emptyState">
+        <div class="empty-icon"><i class="fa-solid fa-cart-shopping" aria-hidden="true"></i></div>
+        <h2 class="empty-title">سبد خرید شما خالی است</h2>
+        <p class="empty-desc">هنوز محصولی به سبد خرید اضافه نکرده‌اید. برای مشاهده محصولات به فروشگاه بروید.</p>
+        <a href="shop.html" class="btn-checkout" style="max-width:260px;margin-inline:auto;">رفتن به فروشگاه</a>
+      </div>
+
+    </div><!-- /.cx -->
+  </main>
+
+  <script>
+    /* ============================================================
+       CART JS (سبد خرید) — ساده و بهینه
+       در وردپرس این کد به فایل cart.js قالب منتقل می‌شود و ووکامرس
+       رویدادهای آژاکس خود را اجرا می‌کند؛ اینجا صرفاً برای دمو است.
+       ============================================================ */
+    document.addEventListener('DOMContentLoaded', () => {
+
+      // قیمت واحد هر آیتم (به تومان) — در ووکامرس از سمت سرور می‌آید
+      const UNIT_PRICES = {
+        '1': 121999000,
+        '2': 3420000,   // واحد ×۲
+        '3': 14900000
+      };
+      const FREE_SHIP_THRESHOLD = 5000000;
+      const SHIPPING_BASE = 389000;
+      const TAX_RATE = 0.09;
+
+      const fmt = (n) => Number(n).toLocaleString('fa-IR');
+
+      // ── Quantity selectors ──
+      document.querySelectorAll('[data-qty]').forEach(qs => {
+        const input = qs.querySelector('.qty-input');
+        const minus = qs.querySelector('.qty-minus');
+        const plus  = qs.querySelector('.qty-plus');
+        minus.addEventListener('click', () => {
+          let v = parseInt(input.value) || 1;
+          if (v > parseInt(input.min)) input.value = v - 1;
+          recalc();
+        });
+        plus.addEventListener('click', () => {
+          let v = parseInt(input.value) || 1;
+          if (v < parseInt(input.max)) input.value = v + 1;
+          recalc();
+        });
+        input.addEventListener('input', () => {
+          let v = parseInt(input.value); const min = parseInt(input.min), max = parseInt(input.max);
+          if (isNaN(v) || v < min) v = min; if (v > max) v = max;
+          input.value = v; recalc();
+        });
+      });
+
+      // ── Remove item ──
+      document.querySelectorAll('.ci-remove').forEach(btn => {
+        btn.addEventListener('click', () => {
+          const row = btn.closest('.cart_item');
+          row.style.transition = 'opacity .25s, transform .25s';
+          row.style.opacity = '0';
+          row.style.transform = 'translateX(-20px)';
+          setTimeout(() => { row.remove(); recalc(); }, 250);
+        });
+      });
+
+      // ── Apply coupon (demo) ──
+      const couponBtn = document.getElementById('applyCoupon');
+      const couponInput = document.getElementById('coupon_code');
+      couponBtn?.addEventListener('click', () => {
+        if (couponInput.value.trim()) {
+          const orig = couponBtn.innerHTML;
+          couponBtn.innerHTML = '<i class="fa-solid fa-check" aria-hidden="true"></i> اعمال شد';
+          couponBtn.style.color = 'var(--success)';
+          setTimeout(() => { couponBtn.innerHTML = orig; couponBtn.style.color = ''; }, 1800);
+        }
+      });
+
+      // ── Recalculate totals ──
+      function recalc() {
+        let subtotal = 0, count = 0;
+        document.querySelectorAll('.cart_item').forEach(row => {
+          const key = row.dataset.key;
+          const qty = parseInt(row.querySelector('.qty-input').value) || 1;
+          const unit = UNIT_PRICES[key] || 0;
+          subtotal += unit * qty;
+          count += qty;
+        });
+
+        const shipping = subtotal >= FREE_SHIP_THRESHOLD || subtotal === 0 ? 0 : SHIPPING_BASE;
+        const tax = Math.round(subtotal * TAX_RATE);
+        const total = subtotal + shipping + tax;
+
+        document.getElementById('subtotalVal').textContent = fmt(subtotal) + ' تومان';
+        document.getElementById('shippingVal').textContent = shipping === 0 ? 'رایگان' : fmt(shipping) + ' تومان';
+        document.getElementById('taxVal').textContent = fmt(tax) + ' تومان';
+        document.getElementById('totalVal').textContent = fmt(total) + ' تومان';
+        document.getElementById('itemsCount').textContent = count.toLocaleString('fa-IR') + ' کالا';
+
+        // Free shipping progress
+        const fill = document.getElementById('freeShipFill');
+        const remain = Math.max(0, FREE_SHIP_THRESHOLD - subtotal);
+        const pct = Math.min(100, (subtotal / FREE_SHIP_THRESHOLD) * 100);
+        fill.style.width = pct + '%';
+        const remainText = document.getElementById('remainText');
+        remainText.textContent = remain > 0 ? fmt(remain) + ' تومان' : '🎉 ارسال شما رایگان شد!';
+
+        // Empty state
+        const empty = document.getElementById('emptyState');
+        if (count === 0) {
+          empty.classList.add('is-empty');
+          document.querySelector('.cart-layout').style.display = 'none';
+          document.getElementById('freeShipping').style.display = 'none';
+        }
+      }
+
+      recalc();
+    });
+  </script>
+</body>
+</html>

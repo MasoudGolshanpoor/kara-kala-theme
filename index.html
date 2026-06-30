@@ -1,0 +1,2390 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ولا — فروشگاه همه چیز</title>
+  <meta name="description"
+    content="خرید الکترونیک، مد، لوازم خانه و بیشتر. تحویل سریع، فروشندگان معتبر، قیمت‌های بی‌نظیر.">
+  <link rel="stylesheet" href="css/tokens.css?v=2">
+  <link rel="stylesheet" href="css/base.css">
+  <link rel="stylesheet" href="css/header.css?v=4">
+  <link rel="stylesheet" href="css/mega-menu.css?v=2">
+  <link rel="stylesheet" href="css/sections.css?v=6">
+  <link rel="stylesheet" href="css/archive.css">
+  <link rel="stylesheet" href="css/ui.css">
+  <link rel="stylesheet" href="css/bottom-nav.css">
+  <link rel="stylesheet" href="css/footer.css?v=4">
+  <link rel="stylesheet" href="css/drawer.css">
+  <link rel="stylesheet" href="css/mini-cart.css">
+  <link rel="stylesheet" href="css/auth-modal.css">
+  <link rel="stylesheet" href="css/cat-item.css?v=2">
+  <link rel="stylesheet" href="css/all.min.css">
+  <link rel="stylesheet" href="css/swiper-bundle.min.css">
+  <link rel="stylesheet" href="css/style-carts.css">
+</head>
+
+<body>
+
+  <!-- ─── HEADER ─── -->
+  <header class="site-header" id="siteHeader">
+
+    <!-- ── Row 1: Announcement bar — scrolls away naturally ── -->
+    <div class="header-top announce-bar" id="announceBar" role="note" aria-label="Promotional announcement">
+      <a href="shop.html" class="announce-bar__link">
+        <img src="img/top-add.gif" alt="تبلیغ ویژه" class="announce-bar__img" loading="eager">
+      </a>
+      <button class="announce-bar__close" data-action="close-announce-bar" aria-label="Close announcement"
+        type="button">×</button>
+    </div>
+
+    <!-- ── Rows 2 & 3 + Mega Menu ── -->
+    <div class="header-sticky-container">
+
+      <!-- ── Row 2: Logo · Search · Actions ── -->
+      <div class="header-main">
+        <div class="cx">
+          <div class="header-main__inner">
+
+            <!-- Logo -->
+            <a href="index.html" class="nav-logo" aria-label="Vela — Home">
+              <img src="img/logo.png" fetchpriority="high" width="96" height="48" decoding="async" alt="Vela" class="nav-logo__img">
+            </a>
+
+            <!-- Search (click → opens modal) -->
+            <div class="nav-search" role="search">
+              <i class="fa-solid fa-magnifying-glass nav-search__icon" aria-hidden="true"></i>
+              <input type="text" class="nav-search__input" placeholder="جستجو در ۲ میلیون محصول…" id="navSearch"
+                autocomplete="off" readonly aria-label="Search products">
+              <!-- <button class="nav-search__btn" type="button">جستجو</button> -->
+            </div>
+
+            <!-- Actions: Wishlist · Cart · Sign in · Hamburger -->
+            <div class="nav-actions">
+
+
+              <button data-action="open-wishlist" class="nav-action" aria-label="علاقه‌مندی‌ها">
+                <i class="fa-regular fa-heart" aria-hidden="true"></i>
+                <span class="nav-action__badge" id="wishlistCount">0</span>
+              </button>
+              <button data-action="open-cart" class="nav-action" aria-label="سبد خرید">
+                <i class="fa-solid fa-cart-shopping" aria-hidden="true"></i>
+                <span class="nav-action__badge" id="cartCount">3</span>
+              </button>
+              <button class="nav-hamburger" id="navHamburger" type="button" aria-label="منو" aria-expanded="false"
+                aria-controls="mobileDrawer">
+                <span></span><span></span><span></span>
+              </button>
+              <button data-action="open-auth-modal" data-tab="login" class="btn nav-signin">
+                <i class="fa-regular fa-user" aria-hidden="true"></i>
+                ورود / ثبت‌نام
+              </button>
+            </div>
+
+          </div>
+        </div>
+      </div><!-- /.header-main -->
+
+      <!-- ── Row 3: Desktop navigation links (hidden on mobile) ── -->
+      <div class="header-nav">
+        <div class="cx">
+
+          <!-- ── Mega Menu Trigger (جداگانه — در وردپرس register_nav_menus جداگانه) ── -->
+          <button class="mega-trigger" id="categoriesMenu" type="button" data-action="open-mega-menu"
+            aria-haspopup="true" aria-expanded="false" aria-controls="megaMenu">
+            <i class="fa-solid fa-bars mega-trigger__bars" aria-hidden="true"></i>
+            دسته‌بندی‌ها
+            <i class="fa-solid fa-chevron-down dnav__chevron" aria-hidden="true"></i>
+          </button>
+          <span class="nav-pipe" aria-hidden="true"></span>
+
+          <!-- ── Main Navigation (منوی اصلی — در وردپرس: wp_nav_menu جداگانه) ── -->
+          <nav class="dnav" aria-label="منوی اصلی">
+            <ul class="dnav__list">
+              <li class="dnav__item">
+                <a href="index.html" class="dnav__link dnav__link--active">خانه</a>
+              </li>
+              <li class="dnav__item dnav__item--has-dropdown">
+                <a href="shop.html" class="dnav__link" aria-haspopup="true" aria-expanded="false">
+                  جدیدترین‌ها
+                  <i class="fa-solid fa-chevron-down dnav__chevron" aria-hidden="true"></i>
+                </a>
+                <ul class="dnav__dropdown" role="menu">
+                  <li><a href="shop.html?sort=newest&amp;cat=electronics" class="dnav__dropdown-link"
+                      role="menuitem">جدیدترین الکترونیک</a></li>
+                  <li><a href="shop.html?sort=newest&amp;cat=fashion" class="dnav__dropdown-link"
+                      role="menuitem">جدیدترین مد</a></li>
+                  <li><a href="shop.html?sort=newest&amp;cat=home" class="dnav__dropdown-link" role="menuitem">جدیدترین
+                      خانه</a></li>
+                  <li><a href="shop.html?sort=newest&amp;cat=beauty" class="dnav__dropdown-link"
+                      role="menuitem">جدیدترین زیبایی</a></li>
+                  <li><a href="shop.html?sort=newest&amp;cat=sports" class="dnav__dropdown-link"
+                      role="menuitem">جدیدترین ورزش</a></li>
+                </ul>
+              </li>
+              <li class="dnav__item dnav__item--has-dropdown">
+                <a href="shop.html?sale=1" class="dnav__link" aria-haspopup="true" aria-expanded="false">
+                  تخفیف‌ها
+                  <i class="fa-solid fa-chevron-down dnav__chevron" aria-hidden="true"></i>
+                </a>
+                <ul class="dnav__dropdown" role="menu">
+                  <li><a href="shop.html?sale=flash" class="dnav__dropdown-link" role="menuitem">فروش فوری</a></li>
+                  <li><a href="shop.html?sale=season" class="dnav__dropdown-link" role="menuitem">حراج فصلی</a></li>
+                  <li><a href="shop.html?sale=clearance" class="dnav__dropdown-link" role="menuitem">کالاهای ویژه</a>
+                  </li>
+                  <li class="dnav__dropdown-divider" role="separator"></li>
+                  <li><a href="shop.html?sale=1&cat=electronics" class="dnav__dropdown-link" role="menuitem">تخفیف
+                      الکترونیک</a></li>
+                  <li><a href="shop.html?sale=1&cat=fashion" class="dnav__dropdown-link" role="menuitem">تخفیف مد</a>
+                  </li>
+                </ul>
+              </li>
+              <li class="dnav__item">
+                <a href="blog.html" class="dnav__link">وبلاگ</a>
+              </li>
+            </ul>
+            <span class="nav-underline" aria-hidden="true"></span>
+          </nav>
+        </div>
+      </div><!-- /.header-nav -->
+
+      <!-- ── Mega Menu ── -->
+      <!-- Full static HTML: content is in DOM source for SEO.
+         mega-menu.js handles open/close + tab switching only. -->
+      <div class="cx mega-menu" id="megaMenu" role="region" aria-label="Category menu">
+
+        <div class="mega-cats">
+
+          <!-- ── Left: Category Tab List ── -->
+          <ul class="mega-cats__list" id="megaCatList" role="list">
+            <li class="mega-cats__tab is-active" data-index="0" role="listitem">
+              <a href="shop.html?cat=electronics" class="mega-cats__tab-link" data-mega-index="0">
+                <img src="img/cat-electronics.svg" class="mega-cats__tab-icon" alt="" width="20" height="20"
+                  aria-hidden="true" onerror="this.style.display='none'">
+                الکترونیک
+              </a>
+            </li>
+            <li class="mega-cats__tab" data-index="1" role="listitem">
+              <a href="shop.html?cat=fashion" class="mega-cats__tab-link" data-mega-index="1">
+                <img src="img/cat-fashion.svg" class="mega-cats__tab-icon" alt="" width="20" height="20"
+                  aria-hidden="true" onerror="this.style.display='none'">
+                مد و پوشاک
+              </a>
+            </li>
+            <li class="mega-cats__tab" data-index="2" role="listitem">
+              <a href="shop.html?cat=home" class="mega-cats__tab-link" data-mega-index="2">
+                <img src="img/cat-home.svg" class="mega-cats__tab-icon" alt="" width="20" height="20" aria-hidden="true"
+                  onerror="this.style.display='none'">
+                خانه و آشپزخانه
+              </a>
+            </li>
+            <li class="mega-cats__tab" data-index="3" role="listitem">
+              <a href="shop.html?cat=beauty" class="mega-cats__tab-link" data-mega-index="3">
+                <img src="img/cat-beauty.svg" class="mega-cats__tab-icon" alt="" width="20" height="20"
+                  aria-hidden="true" onerror="this.style.display='none'">
+                زیبایی و سلامت
+              </a>
+            </li>
+
+          </ul>
+
+          <!-- ── Right: Content Panels (one per category) ── -->
+          <div class="mega-cats__children" id="megaCatChildren">
+
+            <!-- Panel 0: Electronics -->
+            <div class="mega-cats__panel is-active" id="megaPanel-0">
+              <div class="mega-cats__col-grid">
+                <div class="mega-cats__col-group">
+                  <a href="shop.html?cat=mobile-phones" class="mega-cats__col-title">گوشی موبایل</a>
+                  <ul class="mega-cats__col-list">
+                    <li><a href="shop.html?cat=android" class="mega-cats__col-link">اندروید</a></li>
+                    <li><a href="shop.html?cat=iphone" class="mega-cats__col-link">آیفون</a></li>
+                    <li><a href="shop.html?cat=foldable" class="mega-cats__col-link">تاشو</a></li>
+                  </ul>
+                </div>
+                <div class="mega-cats__col-group">
+                  <a href="shop.html?cat=laptops" class="mega-cats__col-title">لپتاپ و کامپیوتر</a>
+                  <ul class="mega-cats__col-list">
+                    <li><a href="shop.html?cat=gaming-laptops" class="mega-cats__col-link">لپتاپ گیمینگ</a></li>
+                    <li><a href="shop.html?cat=ultrabooks" class="mega-cats__col-link">اولترابوک</a></li>
+                    <li><a href="shop.html?cat=desktops" class="mega-cats__col-link">کامپیوتر رومیزی</a></li>
+                  </ul>
+                </div>
+                <div class="mega-cats__col-group">
+                  <a href="shop.html?cat=audio" class="mega-cats__col-title">هدفون و اسپیکر</a>
+                </div>
+                <div class="mega-cats__col-group">
+                  <a href="shop.html?cat=smart-watches" class="mega-cats__col-title">ساعت هوشمند</a>
+                </div>
+                <div class="mega-cats__col-group">
+                  <a href="shop.html?cat=tablets" class="mega-cats__col-title">تبلت</a>
+                </div>
+                <div class="mega-cats__col-group">
+                  <a href="shop.html?cat=cameras" class="mega-cats__col-title">دوربین عکاسی</a>
+                </div>
+                <div class="mega-cats__col-group">
+                  <a href="shop.html?cat=smart-home" class="mega-cats__col-title">خانه هوشمند</a>
+                </div>
+              </div>
+              <a href="shop.html?cat=electronics" class="mega-cats__view-all">مشاهده همه الکترونیک <i
+                  class="fa-solid fa-arrow-left" aria-hidden="true"></i></a>
+            </div>
+
+            <!-- Panel 1: Fashion -->
+            <div class="mega-cats__panel" id="megaPanel-1">
+              <div class="mega-cats__col-grid">
+                <div class="mega-cats__col-group">
+                  <a href="shop.html?cat=womens-clothing" class="mega-cats__col-title">پوشاک زنانه</a>
+                </div>
+                <div class="mega-cats__col-group">
+                  <a href="shop.html?cat=mens-clothing" class="mega-cats__col-title">پوشاک مردانه</a>
+                </div>
+                <div class="mega-cats__col-group">
+                  <a href="shop.html?cat=shoes" class="mega-cats__col-title">کفش</a>
+                </div>
+                <div class="mega-cats__col-group">
+                  <a href="shop.html?cat=bags" class="mega-cats__col-title">کیف و چرم</a>
+                </div>
+                <div class="mega-cats__col-group">
+                  <a href="shop.html?cat=accessories" class="mega-cats__col-title">اکسسوری</a>
+                </div>
+              </div>
+              <a href="shop.html?cat=fashion" class="mega-cats__view-all">مشاهده همه مد و پوشاک <i
+                  class="fa-solid fa-arrow-left" aria-hidden="true"></i></a>
+            </div>
+
+            <!-- Panel 2: Home -->
+            <div class="mega-cats__panel" id="megaPanel-2">
+              <div class="mega-cats__col-grid">
+                <div class="mega-cats__col-group">
+                  <a href="shop.html?cat=kitchen" class="mega-cats__col-title">لوازم آشپزخانه</a>
+                </div>
+                <div class="mega-cats__col-group">
+                  <a href="shop.html?cat=decor" class="mega-cats__col-title">دکوراسیون</a>
+                </div>
+                <div class="mega-cats__col-group">
+                  <a href="shop.html?cat=furniture" class="mega-cats__col-title">مبلمان</a>
+                </div>
+                <div class="mega-cats__col-group">
+                  <a href="shop.html?cat=bedroom" class="mega-cats__col-title">لوازم خواب</a>
+                </div>
+                <div class="mega-cats__col-group">
+                  <a href="shop.html?cat=appliances" class="mega-cats__col-title">لوازم برقی</a>
+                </div>
+              </div>
+              <a href="shop.html?cat=home" class="mega-cats__view-all">مشاهده همه خانه و آشپزخانه <i
+                  class="fa-solid fa-arrow-left" aria-hidden="true"></i></a>
+            </div>
+
+            <!-- Panel 3: Beauty -->
+            <div class="mega-cats__panel" id="megaPanel-3">
+              <div class="mega-cats__col-grid">
+                <div class="mega-cats__col-group">
+                  <a href="shop.html?cat=skincare" class="mega-cats__col-title">مراقبت از پوست</a>
+                </div>
+                <div class="mega-cats__col-group">
+                  <a href="shop.html?cat=cosmetics" class="mega-cats__col-title">آرایشی</a>
+                </div>
+                <div class="mega-cats__col-group">
+                  <a href="shop.html?cat=perfume" class="mega-cats__col-title">عطر و ادکلن</a>
+                </div>
+                <div class="mega-cats__col-group">
+                  <a href="shop.html?cat=hair-nails" class="mega-cats__col-title">مو و ناخن</a>
+                </div>
+              </div>
+              <a href="shop.html?cat=beauty" class="mega-cats__view-all">مشاهده همه زیبایی و سلامت <i
+                  class="fa-solid fa-arrow-left" aria-hidden="true"></i></a>
+            </div>
+
+          </div><!-- /.mega-cats__children -->
+        </div><!-- /.mega-cats -->
+      </div>
+
+    </div><!-- /.header-sticky-container -->
+
+  </header>
+
+  <!-- Mega menu body backdrop -->
+  <div class="mega-backdrop" id="megaBackdrop"></div>
+
+  <!-- ─── MAIN MOBILE DRAWER (A) ─── -->
+  <div class="mobile-drawer__overlay" id="drawerOverlay" data-action="close-mobile-drawer" aria-hidden="true"></div>
+  <div class="mobile-drawer" id="mobileDrawer" role="dialog" aria-modal="true" aria-label="منوی اصلی">
+
+    <!-- Header -->
+    <div class="drawer-header">
+      <a href="index.html" class="nav-logo" dir="ltr">V<span>E</span>LA<span class="nav-logo__dot"></span></a>
+      <button class="drawer-close" data-action="close-mobile-drawer" aria-label="بستن" type="button">×</button>
+    </div>
+
+    <!-- Search -->
+    <button class="drawer-search-btn" data-action="open-search" type="button">
+      <i class="fa-solid fa-magnifying-glass" aria-hidden="true"></i>
+      جستجو در محصولات…
+    </button>
+
+    <!-- Tabs -->
+    <div class="drawer-tabs" role="tablist">
+      <button class="drawer-tab is-active" role="tab" aria-selected="true" data-tab="nav"
+        data-action="switch-drawer-tab" type="button">منو</button>
+      <button class="drawer-tab" role="tab" aria-selected="false" data-tab="cats" data-action="switch-drawer-tab"
+        type="button">دسته‌بندی</button>
+    </div>
+
+    <!-- Panel 1: Main Nav -->
+    <div class="drawer-panel is-active" id="drawerPanelNav" role="tabpanel">
+      <nav class="drawer-nav" aria-label="منو اصلی">
+        <a href="index.html" class="drawer-nav-link active">
+          <i class="fa-solid fa-house" aria-hidden="true"></i>
+          خانه
+        </a>
+        <a href="shop.html" class="drawer-nav-link">
+          <i class="fa-solid fa-store" aria-hidden="true"></i>
+          جدیدترین‌ها
+        </a>
+        <a href="shop.html" class="drawer-nav-link">
+          <i class="fa-solid fa-star" aria-hidden="true"></i>
+          تخفیف‌ها
+        </a>
+        <a href="blog.html" class="drawer-nav-link">
+          <i class="fa-regular fa-file-lines" aria-hidden="true"></i>
+          وبلاگ
+        </a>
+        <a href="#" class="drawer-nav-link">
+          <i class="fa-solid fa-headset" aria-hidden="true"></i>
+          پشتیبانی
+        </a>
+      </nav>
+    </div>
+
+    <!-- Panel 2: Categories 2-column layout -->
+    <div class="drawer-panel" id="drawerPanelCats" role="tabpanel">
+      <div class="drawer-cats-2col">
+
+        <!-- Right: narrow category tab strip -->
+        <nav class="drawer-cats-tabs" aria-label="دسته‌های اصلی">
+          <button class="drawer-cats-tab is-active" data-dcat="0" type="button" data-action="switch-drawer-cat-tab">
+            <img src="img/cat-electronics.svg" class="drawer-cats-tab__icon" alt="" width="24" height="24"
+              aria-hidden="true" onerror="this.style.display='none'">
+            <span class="drawer-cats-tab__label">الکترونیک</span>
+          </button>
+          <button class="drawer-cats-tab" data-dcat="1" type="button" data-action="switch-drawer-cat-tab">
+            <img src="img/cat-fashion.svg" class="drawer-cats-tab__icon" alt="" width="24" height="24"
+              aria-hidden="true" onerror="this.style.display='none'">
+            <span class="drawer-cats-tab__label">مد و پوشاک</span>
+          </button>
+          <button class="drawer-cats-tab" data-dcat="2" type="button" data-action="switch-drawer-cat-tab">
+            <img src="img/cat-home.svg" class="drawer-cats-tab__icon" alt="" width="24" height="24" aria-hidden="true"
+              onerror="this.style.display='none'">
+            <span class="drawer-cats-tab__label">خانه</span>
+          </button>
+          <button class="drawer-cats-tab" data-dcat="3" type="button" data-action="switch-drawer-cat-tab">
+            <img src="img/cat-beauty.svg" class="drawer-cats-tab__icon" alt="" width="24" height="24" aria-hidden="true"
+              onerror="this.style.display='none'">
+            <span class="drawer-cats-tab__label">زیبایی</span>
+          </button>
+        </nav>
+
+        <!-- Left: content panels -->
+        <div class="drawer-cats-content">
+
+          <!-- Panel 0: Electronics -->
+          <div class="drawer-cats-panel is-active" data-dcat-panel="0">
+            <a href="shop.html?cat=electronics" class="drawer-cats-panel__viewall">مشاهده همه الکترونیک</a>
+            <div class="drawer-subcat-item" data-parent="0" data-child="0">
+              <button class="drawer-subcat-trigger" type="button" data-action="toggle-drawer-subcat" data-parent="0"
+                data-child="0">گوشی موبایل<svg class="drawer-cat-chevron" viewBox="0 0 24 24" fill="none"
+                  stroke="currentColor" stroke-width="2">
+                  <path d="M19 9l-7 7-7-7" />
+                </svg></button>
+              <div class="drawer-subcat-body">
+                <a href="shop.html?cat=android" class="drawer-subcat-link">اندروید</a>
+                <a href="shop.html?cat=iphone" class="drawer-subcat-link">آیفون</a>
+                <a href="shop.html?cat=foldable" class="drawer-subcat-link">تاشو</a>
+              </div>
+            </div>
+            <div class="drawer-subcat-item" data-parent="0" data-child="1">
+              <button class="drawer-subcat-trigger" type="button" data-action="toggle-drawer-subcat" data-parent="0"
+                data-child="1">لپتاپ و کامپیوتر<svg class="drawer-cat-chevron" viewBox="0 0 24 24" fill="none"
+                  stroke="currentColor" stroke-width="2">
+                  <path d="M19 9l-7 7-7-7" />
+                </svg></button>
+              <div class="drawer-subcat-body">
+                <a href="shop.html?cat=gaming-laptops" class="drawer-subcat-link">لپتاپ گیمینگ</a>
+                <a href="shop.html?cat=ultrabooks" class="drawer-subcat-link">اولترابوک</a>
+                <a href="shop.html?cat=desktops" class="drawer-subcat-link">کامپیوتر رومیزی</a>
+              </div>
+            </div>
+            <a href="shop.html?cat=audio" class="drawer-cats-panel__link">هدفون و اسپیکر</a>
+            <a href="shop.html?cat=smart-watches" class="drawer-cats-panel__link">ساعت هوشمند</a>
+            <a href="shop.html?cat=tablets" class="drawer-cats-panel__link">تبلت</a>
+            <a href="shop.html?cat=cameras" class="drawer-cats-panel__link">دوربین عکاسی</a>
+            <a href="shop.html?cat=smart-home" class="drawer-cats-panel__link">خانه هوشمند</a>
+          </div>
+
+          <!-- Panel 1: Fashion -->
+          <div class="drawer-cats-panel" data-dcat-panel="1">
+            <a href="shop.html?cat=fashion" class="drawer-cats-panel__viewall">مشاهده همه مد و پوشاک</a>
+            <a href="shop.html?cat=womens-clothing" class="drawer-cats-panel__link">پوشاک زنانه</a>
+            <a href="shop.html?cat=mens-clothing" class="drawer-cats-panel__link">پوشاک مردانه</a>
+            <a href="shop.html?cat=shoes" class="drawer-cats-panel__link">کفش</a>
+            <a href="shop.html?cat=bags" class="drawer-cats-panel__link">کیف و چرم</a>
+            <a href="shop.html?cat=accessories" class="drawer-cats-panel__link">اکسسوری</a>
+          </div>
+
+          <!-- Panel 2: Home -->
+          <div class="drawer-cats-panel" data-dcat-panel="2">
+            <a href="shop.html?cat=home" class="drawer-cats-panel__viewall">مشاهده همه خانه و آشپزخانه</a>
+            <a href="shop.html?cat=kitchen" class="drawer-cats-panel__link">لوازم آشپزخانه</a>
+            <a href="shop.html?cat=decor" class="drawer-cats-panel__link">دکوراسیون</a>
+            <a href="shop.html?cat=furniture" class="drawer-cats-panel__link">مبلمان</a>
+            <a href="shop.html?cat=bedroom" class="drawer-cats-panel__link">لوازم خواب</a>
+            <a href="shop.html?cat=appliances" class="drawer-cats-panel__link">لوازم برقی</a>
+          </div>
+
+          <!-- Panel 3: Beauty -->
+          <div class="drawer-cats-panel" data-dcat-panel="3">
+            <a href="shop.html?cat=beauty" class="drawer-cats-panel__viewall">مشاهده همه زیبایی و سلامت</a>
+            <a href="shop.html?cat=skincare" class="drawer-cats-panel__link">مراقبت از پوست</a>
+            <a href="shop.html?cat=cosmetics" class="drawer-cats-panel__link">آرایشی</a>
+            <a href="shop.html?cat=perfume" class="drawer-cats-panel__link">عطر و ادکلن</a>
+            <a href="shop.html?cat=hair-nails" class="drawer-cats-panel__link">مو و ناخن</a>
+          </div>
+        </div><!-- /.drawer-cats-content -->
+      </div><!-- /.drawer-cats-2col -->
+    </div>
+
+    <!-- Footer CTAs -->
+    <div class="drawer-divider"></div>
+    <div class="drawer-footer">
+      <button data-action="open-auth-modal" data-tab="login" class="btn btn--primary btn--wide">
+        <i class="fa-regular fa-user" aria-hidden="true"></i>
+        ورود / ثبت‌نام
+      </button>
+      <button data-action="open-cart" class="btn btn--outline-dark btn--wide">مشاهده سبد خرید (۳)</button>
+    </div>
+
+  </div>
+
+  <main id="main-content">
+
+    <!-- ─── HERO ─── -->
+    <!-- ─── HERO SLIDER ─── -->
+    <!-- Full-width: intentionally NO .cx wrapper so the slider bleeds edge-to-edge -->
+    <section class="hero-slider-section">
+      <div class="hero-slider-wrap">
+
+        <div class="swiper hero-swiper">
+          <div class="swiper-wrapper">
+
+            <div class="swiper-slide">
+              <a href="shop.html" class="hero-slide__link">
+                <img src="img/s3.jpg" alt="اسلاید ۱" class="hero-slide__img" width="2000" height="600" loading="eager"
+                  fetchpriority="high">
+              </a>
+            </div>
+
+            <div class="swiper-slide">
+              <a href="shop.html" class="hero-slide__link">
+                <img src="img/s3.jpg" alt="اسلاید ۲" class="hero-slide__img" width="2000" height="600" loading="lazy">
+              </a>
+            </div>
+
+            <div class="swiper-slide">
+              <a href="shop.html" class="hero-slide__link">
+                <img src="img/s3.jpg" alt="اسلاید ۳" class="hero-slide__img" width="2000" height="600" loading="lazy">
+              </a>
+            </div>
+
+          </div>
+        </div>
+
+        <!-- Controls: absolute bottom-right on desktop, centered below on mobile -->
+        <div class="hero-slider-controls">
+          <div class="hero-slider-pagination"></div>
+          <div class="hero-slider-btns">
+            <button class="hero-slider-btn hero-slider-prev" type="button" aria-label="اسلاید قبلی">
+              <i class="fa-solid fa-chevron-left" aria-hidden="true"></i>
+            </button>
+            <button class="hero-slider-btn hero-slider-next" type="button" aria-label="اسلاید بعدی">
+              <i class="fa-solid fa-chevron-right" aria-hidden="true"></i>
+            </button>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+
+
+
+
+    <!-- ─── CATEGORIES ─── -->
+    <section class="cat-section">
+      <div class="cx">
+        <h2 class="cat-section__title">خرید بر اساس دسته‌بندی</h2>
+
+        <div class="cat-swiper-outer">
+
+          <!-- Nav buttons: absolutely positioned on sides (mobile only) -->
+          <button class="cat-nav-btn cat-nav-prev" type="button" aria-label="قبلی">
+            <i class="fa-solid fa-chevron-right" aria-hidden="true"></i>
+          </button>
+          <button class="cat-nav-btn cat-nav-next" type="button" aria-label="بعدی">
+            <i class="fa-solid fa-chevron-left" aria-hidden="true"></i>
+          </button>
+
+          <!-- Swiper: 2-row carousel on mobile, CSS-grid on desktop -->
+          <div class="swiper cat-swiper">
+            <div class="swiper-wrapper">
+
+              <div class="swiper-slide">
+                <a href="shop.html?cat=mobile" class="cat-item">
+                  <div class="cat-item__img-wrap"><img src="img/catimg.jpg" alt="موبایل" class="cat-item__img"
+                      loading="lazy"></div>
+                  <span class="cat-item__name">موبایل</span>
+                </a>
+              </div>
+
+              <div class="swiper-slide">
+                <a href="shop.html?cat=laptop" class="cat-item">
+                  <div class="cat-item__img-wrap"><img src="img/catimg.jpg" alt="لپ‌تاپ" class="cat-item__img"
+                      loading="lazy"></div>
+                  <span class="cat-item__name">لپ‌تاپ</span>
+                </a>
+              </div>
+
+              <div class="swiper-slide">
+                <a href="shop.html?cat=digital" class="cat-item">
+                  <div class="cat-item__img-wrap"><img src="img/catimg.jpg" alt="کالای دیجیتال" class="cat-item__img"
+                      loading="lazy"></div>
+                  <span class="cat-item__name">کالای دیجیتال</span>
+                </a>
+              </div>
+
+              <div class="swiper-slide">
+                <a href="shop.html?cat=fashion" class="cat-item">
+                  <div class="cat-item__img-wrap"><img src="img/catimg.jpg" alt="مد و پوشاک" class="cat-item__img"
+                      loading="lazy"></div>
+                  <span class="cat-item__name">مد و پوشاک</span>
+                </a>
+              </div>
+
+              <div class="swiper-slide">
+                <a href="shop.html?cat=home" class="cat-item">
+                  <div class="cat-item__img-wrap"><img src="img/catimg.jpg" alt="خانه و آشپزخانه" class="cat-item__img"
+                      loading="lazy"></div>
+                  <span class="cat-item__name">خانه و آشپزخانه</span>
+                </a>
+              </div>
+
+              <div class="swiper-slide">
+                <a href="shop.html?cat=beauty" class="cat-item">
+                  <div class="cat-item__img-wrap"><img src="img/catimg.jpg" alt="آرایشی بهداشتی" class="cat-item__img"
+                      loading="lazy"></div>
+                  <span class="cat-item__name">آرایشی بهداشتی</span>
+                </a>
+              </div>
+
+              <div class="swiper-slide">
+                <a href="shop.html?cat=appliances" class="cat-item">
+                  <div class="cat-item__img-wrap"><img src="img/catimg.jpg" alt="لوازم خانگی" class="cat-item__img"
+                      loading="lazy"></div>
+                  <span class="cat-item__name">لوازم خانگی</span>
+                </a>
+              </div>
+
+              <div class="swiper-slide">
+                <a href="shop.html?cat=sports" class="cat-item">
+                  <div class="cat-item__img-wrap"><img src="img/catimg.jpg" alt="ورزش و سفر" class="cat-item__img"
+                      loading="lazy"></div>
+                  <span class="cat-item__name">ورزش و سفر</span>
+                </a>
+              </div>
+
+              <div class="swiper-slide">
+                <a href="shop.html?cat=toys" class="cat-item">
+                  <div class="cat-item__img-wrap"><img src="img/catimg.jpg" alt="اسباب‌بازی و کودک"
+                      class="cat-item__img" loading="lazy"></div>
+                  <span class="cat-item__name">اسباب‌بازی و کودک</span>
+                </a>
+              </div>
+
+              <div class="swiper-slide">
+                <a href="shop.html?cat=books" class="cat-item">
+                  <div class="cat-item__img-wrap"><img src="img/catimg.jpg" alt="کتاب و هنر" class="cat-item__img"
+                      loading="lazy"></div>
+                  <span class="cat-item__name">کتاب و هنر</span>
+                </a>
+              </div>
+
+              <div class="swiper-slide">
+                <a href="shop.html?cat=auto" class="cat-item">
+                  <div class="cat-item__img-wrap"><img src="img/catimg.jpg" alt="خودرو و موتور" class="cat-item__img"
+                      loading="lazy"></div>
+                  <span class="cat-item__name">خودرو و موتور</span>
+                </a>
+              </div>
+
+              <div class="swiper-slide">
+                <a href="shop.html?cat=health" class="cat-item">
+                  <div class="cat-item__img-wrap"><img src="img/catimg.jpg" alt="سلامت و پزشکی" class="cat-item__img"
+                      loading="lazy"></div>
+                  <span class="cat-item__name">سلامت و پزشکی</span>
+                </a>
+              </div>
+
+            </div>
+          </div><!-- /.cat-swiper -->
+
+        </div><!-- /.cat-swiper-outer -->
+      </div>
+    </section>
+
+    <!-- ─── FLASH SALE ─── -->
+    <section class="amazing-sec cx" aria-label="پیشنهاد شگفت‌انگیز">
+
+      <div class="amazing-sidebar">
+        <img src="img/Amazing.svg" class="amazing-icon" alt="" aria-hidden="true" width="80" height="80">
+        <div class="amazing-text-group">
+          <p class="amazing-title">پیشنهاد شگفت‌انگیز</p>
+          <div class="amazing-countdown" role="timer" aria-label="زمان باقی‌مانده">
+            <span class="cd-num" id="cd-h">08</span>
+            <span class="cd-sep">:</span>
+            <span class="cd-num" id="cd-m">34</span>
+            <span class="cd-sep">:</span>
+            <span class="cd-num" id="cd-s">52</span>
+          </div>
+        </div>
+        <a href="shop.html" class="amazing-see-all">مشاهده همه</a>
+      </div>
+
+      <div class="amazing-swiper-wrap">
+        <button class="amazing-btn amazing-btn-prev swiper-button-disabled" type="button" aria-label="اسلاید قبلی">
+          <i class="fa-solid fa-chevron-right" aria-hidden="true"></i>
+        </button>
+        <button class="amazing-btn amazing-btn-next" type="button" aria-label="اسلاید بعدی">
+          <i class="fa-solid fa-chevron-left" aria-hidden="true"></i>
+        </button>
+
+        <div class="swiper amazing-swiper">
+          <ul class="swiper-wrapper products" role="list">
+
+            <li class="swiper-slide product">
+              <a href="product.html">
+                <div class="product-image-wrap">
+                  <div class="inner-image">
+                    <img width="300" height="300" src="./img/iphone.webp" alt="اتومایزر یوفورس ایکس ووپو" loading="lazy"
+                      decoding="async">
+                    <span class="loop-rating" aria-label="امتیاز 5 از 5">
+                      <i class="fa-solid fa-star" aria-hidden="true"></i>
+                      <span aria-hidden="true">5.00</span>
+                    </span>
+                    <span class="archive-pack-text">ویژه</span>
+                  </div>
+                </div>
+                <h3 class="product-title">اتومایزر یوفورس ایکس ووپو VOOPOO UFORCE-X TANK</h3>
+                <div class="product-footer">
+                  <p class="price">
+                    <span class="price-current"><span class="screen-reader-text">قیمت:</span>3,210,000 تومان</span>
+                  </p>
+                </div>
+              </a>
+              <button class="product-wishlist" aria-label="افزودن به علاقه‌مندی‌ها" type="button"
+                data-action="toggle-wishlist">
+                <i class="fa-regular fa-heart" aria-hidden="true"></i>
+              </button>
+              <button class="product-cta" type="button" data-action="add-to-cart" data-name="اتومایزر یوفورس ایکس ووپو"
+                data-price="3210000">
+                <i class="fa-solid fa-cart-shopping" aria-hidden="true"></i> افزودن به سبد
+              </button>
+            </li>
+
+            <li class="swiper-slide product">
+              <a href="#">
+                <div class="product-image-wrap">
+                  <div class="inner-image">
+                    <img width="300" height="300" src="./img/p2.webp"
+                      alt="اتومایزر سنتاروس لاست ویپ" loading="lazy" decoding="async">
+                  </div>
+                </div>
+                <h3 class="product-title">اتومایزر سنتاروس آر بی ای لاست ویپ LOST VAPE CENTAURUS</h3>
+                <div class="product-footer">
+                  <p class="price">
+                    <span class="price-current"><span class="screen-reader-text">قیمت فعلی:</span>2,500,000 تومان</span>
+                    <del class="price-old"><span class="screen-reader-text">قیمت قبل:</span>4,500,000 تومان</del>
+                  </p>
+                  <span class="product-badge" aria-label="45 درصد تخفیف">45%</span>
+                </div>
+              </a>
+              <button class="product-wishlist" aria-label="افزودن به علاقه‌مندی‌ها" type="button"
+                data-action="toggle-wishlist">
+                <i class="fa-regular fa-heart" aria-hidden="true"></i>
+              </button>
+              <button class="product-cta" type="button" data-action="add-to-cart" data-name="اتومایزر سنتاروس لاست ویپ"
+                data-price="2500000">
+                <i class="fa-solid fa-cart-shopping" aria-hidden="true"></i> افزودن به سبد
+              </button>
+            </li>
+
+            <li class="swiper-slide product">
+              <a href="#">
+                <div class="product-image-wrap">
+                  <div class="inner-image">
+                    <img width="300" height="300" src="./img/p2.webp"
+                      alt="اتومایزر ویپر جاینت وی ۶ ام" loading="lazy" decoding="async">
+                  </div>
+                </div>
+                <h3 class="product-title">اتومایزر ویپر جاینت وی 6 ام VAPOR GIANT V6 M RTA</h3>
+                <div class="product-footer">
+                  <p class="price">
+                    <span class="price-current"><span class="screen-reader-text">قیمت فعلی:</span>19,900,000
+                      تومان</span>
+                    <del class="price-old"><span class="screen-reader-text">قیمت قبل:</span>22,050,000 تومان</del>
+                  </p>
+                  <span class="product-badge" aria-label="10 درصد تخفیف">10%</span>
+                </div>
+              </a>
+              <button class="product-wishlist" aria-label="افزودن به علاقه‌مندی‌ها" type="button"
+                data-action="toggle-wishlist">
+                <i class="fa-regular fa-heart" aria-hidden="true"></i>
+              </button>
+              <button class="product-cta" type="button" data-action="add-to-cart" data-name="اتومایزر ویپر جاینت V6 M"
+                data-price="19900000">
+                <i class="fa-solid fa-cart-shopping" aria-hidden="true"></i> افزودن به سبد
+              </button>
+            </li>
+
+            <li class="swiper-slide product">
+              <a href="#">
+                <div class="product-image-wrap">
+                  <div class="inner-image">
+                    <img width="300" height="300" src="./img/p2.webp"
+                      alt="اتومایزر یوفورس ال ووپو" loading="lazy" decoding="async">
+                  </div>
+                </div>
+                <h3 class="product-title">اتومایزر یوفورس ال ووپو VOOPOO UFORCE-L TANK</h3>
+                <div class="product-footer">
+                  <p class="price">
+                    <span class="price-current"><span class="screen-reader-text">قیمت فعلی:</span>3,420,000 تومان</span>
+                    <del class="price-old"><span class="screen-reader-text">قیمت قبل:</span>6,000,000 تومان</del>
+                  </p>
+                  <span class="product-badge" aria-label="43 درصد تخفیف">43%</span>
+                </div>
+              </a>
+              <button class="product-wishlist" aria-label="افزودن به علاقه‌مندی‌ها" type="button"
+                data-action="toggle-wishlist">
+                <i class="fa-regular fa-heart" aria-hidden="true"></i>
+              </button>
+              <button class="product-cta" type="button" data-action="add-to-cart" data-name="اتومایزر یوفورس ال ووپو"
+                data-price="3420000">
+                <i class="fa-solid fa-cart-shopping" aria-hidden="true"></i> افزودن به سبد
+              </button>
+            </li>
+
+            <li class="swiper-slide product">
+              <a href="#">
+                <div class="product-image-wrap">
+                  <div class="inner-image">
+                    <img width="300" height="300" src="./img/p2.webp"
+                      alt="باتری 21700 لیشن" loading="lazy" decoding="async">
+                  </div>
+                </div>
+                <h3 class="product-title">باتری 21700 لیشن LISHEN 4000mAh</h3>
+                <div class="product-footer">
+                  <p class="price">
+                    <span class="price-current"><span class="screen-reader-text">قیمت فعلی:</span>1,430,000 تومان</span>
+                    <del class="price-old"><span class="screen-reader-text">قیمت قبل:</span>2,520,000 تومان</del>
+                  </p>
+                  <span class="product-badge" aria-label="43 درصد تخفیف">43%</span>
+                </div>
+              </a>
+              <button class="product-wishlist" aria-label="افزودن به علاقه‌مندی‌ها" type="button"
+                data-action="toggle-wishlist">
+                <i class="fa-regular fa-heart" aria-hidden="true"></i>
+              </button>
+              <button class="product-cta" type="button" data-action="add-to-cart" data-name="باتری 21700 لیشن"
+                data-price="1430000">
+                <i class="fa-solid fa-cart-shopping" aria-hidden="true"></i> افزودن به سبد
+              </button>
+            </li>
+
+            <li class="swiper-slide product">
+              <a href="#">
+                <div class="product-image-wrap">
+                  <div class="inner-image">
+                    <img width="300" height="300" src="./img/p2.webp"
+                      alt="باتری سیلید 18650" loading="lazy" decoding="async">
+                  </div>
+                </div>
+                <h3 class="product-title">باتری شارژی لیتیوم یون 18650 سیلید CYLAID 3100mAh</h3>
+                <div class="product-footer">
+                  <p class="price">
+                    <span class="price-current"><span class="screen-reader-text">قیمت فعلی:</span>1,560,000 تومان</span>
+                    <del class="price-old"><span class="screen-reader-text">قیمت قبل:</span>2,180,000 تومان</del>
+                  </p>
+                  <span class="product-badge" aria-label="28 درصد تخفیف">28%</span>
+                </div>
+              </a>
+              <button class="product-wishlist" aria-label="افزودن به علاقه‌مندی‌ها" type="button"
+                data-action="toggle-wishlist">
+                <i class="fa-regular fa-heart" aria-hidden="true"></i>
+              </button>
+              <button class="product-cta" type="button" data-action="add-to-cart" data-name="باتری سیلید 18650"
+                data-price="1560000">
+                <i class="fa-solid fa-cart-shopping" aria-hidden="true"></i> افزودن به سبد
+              </button>
+            </li>
+
+            <li class="swiper-slide product">
+              <a href="#">
+                <div class="product-image-wrap">
+                  <div class="inner-image">
+                    <img width="300" height="300" src="./img/p2.webp"
+                      alt="پک کارتریج گیک ویپ" loading="lazy" decoding="async">
+                  </div>
+                </div>
+                <h3 class="product-title">پک کارتریج و فیلتر ونکس ام وان گیک ویپ GEEKVAPE WENAX M1</h3>
+                <div class="product-footer">
+                  <p class="price">
+                    <span class="price-current"><span class="screen-reader-text">قیمت فعلی:</span>289,000 تومان</span>
+                    <del class="price-old"><span class="screen-reader-text">قیمت قبل:</span>360,000 تومان</del>
+                  </p>
+                  <span class="product-badge" aria-label="20 درصد تخفیف">20%</span>
+                </div>
+              </a>
+              <button class="product-wishlist" aria-label="افزودن به علاقه‌مندی‌ها" type="button"
+                data-action="toggle-wishlist">
+                <i class="fa-regular fa-heart" aria-hidden="true"></i>
+              </button>
+              <button class="product-cta" type="button" data-action="add-to-cart"
+                data-name="پک کارتریج گیک ویپ WENAX M1" data-price="289000">
+                <i class="fa-solid fa-cart-shopping" aria-hidden="true"></i> افزودن به سبد
+              </button>
+            </li>
+
+            <li class="swiper-slide product">
+              <a href="#">
+                <div class="product-image-wrap">
+                  <div class="inner-image">
+                    <img width="300" height="300" src="./img/p2.webp"
+                      alt="شیشه حبابی یوفورس ایکس" loading="lazy" decoding="async">
+                  </div>
+                </div>
+                <h3 class="product-title">شیشه حبابی اتومایزر یوفورس ایکس ووپو VOOPOO UFORCE-X BUBBLE GLASS</h3>
+                <div class="product-footer">
+                  <p class="price">
+                    <span class="price-current"><span class="screen-reader-text">قیمت فعلی:</span>470,000 تومان</span>
+                    <del class="price-old"><span class="screen-reader-text">قیمت قبل:</span>550,000 تومان</del>
+                  </p>
+                  <span class="product-badge" aria-label="15 درصد تخفیف">15%</span>
+                </div>
+              </a>
+              <button class="product-wishlist" aria-label="افزودن به علاقه‌مندی‌ها" type="button"
+                data-action="toggle-wishlist">
+                <i class="fa-regular fa-heart" aria-hidden="true"></i>
+              </button>
+              <button class="product-cta" type="button" data-action="add-to-cart" data-name="شیشه حبابی یوفورس ایکس"
+                data-price="470000">
+                <i class="fa-solid fa-cart-shopping" aria-hidden="true"></i> افزودن به سبد
+              </button>
+            </li>
+
+          </ul>
+        </div>
+      </div>
+
+    </section>
+
+    <!-- ─── PROMO BANNERS ─── -->
+    <section class="section section--sm">
+      <div class="cx">
+        <div class="promo-banners">
+          <a href="shop.html" class="promo-banner">
+            <img src="img/baner1.jpeg" class="promo-banner__img" alt="بنر تبلیغاتی" loading="lazy">
+          </a>
+          <a href="shop.html" class="promo-banner">
+            <img src="img/baner2.jpeg" class="promo-banner__img" alt="بنر تبلیغاتی" loading="lazy">
+          </a>
+        </div>
+      </div>
+    </section>
+
+
+
+
+
+    <!-- ─── TRENDING PRODUCTS ─── -->
+    <section class="swiper-sec swiper-sec--alt" aria-label="پر تکرارترین محصولات">
+      <div class="cx">
+      <div class="swiper-sec-header">
+        <h2 class="swiper-sec-title">پر تکرارترین محصولات</h2>
+        <div class="swiper-nav-btns" role="group" aria-label="ناوبری اسلایدر">
+          <button class="swiper-btn swiper-btn-prev" aria-label="اسلاید قبلی" type="button">
+            <i class="fa-solid fa-chevron-right" aria-hidden="true"></i>
+          </button>
+          <button class="swiper-btn swiper-btn-next" aria-label="اسلاید بعدی" type="button">
+            <i class="fa-solid fa-chevron-left" aria-hidden="true"></i>
+          </button>
+        </div>
+      </div>
+
+      <div class="swiper product-swiper">
+        <ul class="swiper-wrapper products" role="list">
+
+          <li class="swiper-slide product">
+            <a href="product.html">
+              <div class="product-image-wrap">
+                <div class="inner-image">
+                  <img width="300" height="300" src="./img/p2.webp"
+                    alt="اتومایزر یوفورس ال ووپو" loading="lazy" decoding="async">
+                  <span class="loop-rating" aria-label="امتیاز 4.8 از 5">
+                    <i class="fa-solid fa-star" aria-hidden="true"></i>
+                    <span aria-hidden="true">4.80</span>
+                  </span>
+                </div>
+              </div>
+              <h3 class="product-title">اتومایزر یوفورس ال ووپو VOOPOO UFORCE-L TANK</h3>
+              <div class="product-footer">
+                <p class="price">
+                  <span class="price-current"><span class="screen-reader-text">قیمت:</span>3,420,000 تومان</span>
+                </p>
+              </div>
+            </a>
+            <button class="product-wishlist" aria-label="افزودن به علاقه‌مندی‌ها" type="button"
+              data-action="toggle-wishlist">
+              <i class="fa-regular fa-heart" aria-hidden="true"></i>
+            </button>
+            <button class="product-cta" type="button" data-action="add-to-cart" data-name="اتومایزر یوفورس ال ووپو"
+              data-price="3420000">
+              <i class="fa-solid fa-cart-shopping" aria-hidden="true"></i> افزودن به سبد
+            </button>
+          </li>
+
+          <li class="swiper-slide product">
+            <a href="product.html">
+              <div class="product-image-wrap">
+                <div class="inner-image">
+                  <img width="300" height="300" src="./img/p2.webp"
+                    alt="اتومایزر یوفورس ایکس ووپو" loading="lazy" decoding="async">
+                  <span class="loop-rating" aria-label="امتیاز 5 از 5">
+                    <i class="fa-solid fa-star" aria-hidden="true"></i>
+                    <span aria-hidden="true">5.00</span>
+                  </span>
+                  <span class="archive-pack-text">ویژه</span>
+                </div>
+              </div>
+              <h3 class="product-title">اتومایزر یوفورس ایکس ووپو VOOPOO UFORCE-X TANK</h3>
+              <div class="product-footer">
+                <p class="price">
+                  <span class="price-current"><span class="screen-reader-text">قیمت:</span>3,210,000 تومان</span>
+                </p>
+              </div>
+            </a>
+            <button class="product-wishlist" aria-label="افزودن به علاقه‌مندی‌ها" type="button"
+              data-action="toggle-wishlist">
+              <i class="fa-regular fa-heart" aria-hidden="true"></i>
+            </button>
+            <button class="product-cta" type="button" data-action="add-to-cart" data-name="اتومایزر یوفورس ایکس ووپو"
+              data-price="3210000">
+              <i class="fa-solid fa-cart-shopping" aria-hidden="true"></i> افزودن به سبد
+            </button>
+          </li>
+
+          <li class="swiper-slide product">
+            <a href="product.html">
+              <div class="product-image-wrap">
+                <div class="inner-image">
+                  <img width="300" height="300" src="./img/p2.webp"
+                    alt="اتومایزر سنتاروس لاست ویپ" loading="lazy" decoding="async">
+                </div>
+              </div>
+              <h3 class="product-title">اتومایزر سنتاروس آر بی ای لاست ویپ LOST VAPE CENTAURUS</h3>
+              <div class="product-footer">
+                <p class="price">
+                  <span class="price-current"><span class="screen-reader-text">قیمت:</span>2,500,000 تومان</span>
+                </p>
+              </div>
+            </a>
+            <button class="product-wishlist" aria-label="افزودن به علاقه‌مندی‌ها" type="button"
+              data-action="toggle-wishlist">
+              <i class="fa-regular fa-heart" aria-hidden="true"></i>
+            </button>
+            <button class="product-cta" type="button" data-action="add-to-cart" data-name="اتومایزر سنتاروس لاست ویپ"
+              data-price="2500000">
+              <i class="fa-solid fa-cart-shopping" aria-hidden="true"></i> افزودن به سبد
+            </button>
+          </li>
+
+          <li class="swiper-slide product">
+            <a href="product.html">
+              <div class="product-image-wrap">
+                <div class="inner-image">
+                  <img width="300" height="300" src="./img/p2.webp"
+                    alt="باتری سیلید 18650" loading="lazy" decoding="async">
+                  <span class="loop-rating" aria-label="امتیاز 4 از 5">
+                    <i class="fa-solid fa-star" aria-hidden="true"></i>
+                    <span aria-hidden="true">4.00</span>
+                  </span>
+                </div>
+              </div>
+              <h3 class="product-title">باتری شارژی لیتیوم یون 18650 سیلید CYLAID 3100mAh</h3>
+              <div class="product-footer">
+                <p class="price">
+                  <span class="price-current"><span class="screen-reader-text">قیمت فعلی:</span>1,560,000 تومان</span>
+                  <del class="price-old"><span class="screen-reader-text">قیمت قبل:</span>2,180,000 تومان</del>
+                </p>
+                <span class="product-badge" aria-label="28 درصد تخفیف">28%</span>
+              </div>
+            </a>
+            <button class="product-wishlist" aria-label="افزودن به علاقه‌مندی‌ها" type="button"
+              data-action="toggle-wishlist">
+              <i class="fa-regular fa-heart" aria-hidden="true"></i>
+            </button>
+            <button class="product-cta" type="button" data-action="add-to-cart" data-name="باتری سیلید 18650"
+              data-price="1560000">
+              <i class="fa-solid fa-cart-shopping" aria-hidden="true"></i> افزودن به سبد
+            </button>
+          </li>
+
+          <li class="swiper-slide product">
+            <a href="product.html">
+              <div class="product-image-wrap">
+                <div class="inner-image">
+                  <img width="300" height="300" src="./img/p2.webp"
+                    alt="پک کارتریج گیک ویپ" loading="lazy" decoding="async">
+                  <span class="loop-rating" aria-label="امتیاز 4 از 5">
+                    <i class="fa-solid fa-star" aria-hidden="true"></i>
+                    <span aria-hidden="true">4.00</span>
+                  </span>
+                </div>
+              </div>
+              <h3 class="product-title">پک کارتریج و فیلتر ونکس ام وان گیک ویپ GEEKVAPE WENAX M1</h3>
+              <div class="product-footer">
+                <p class="price">
+                  <span class="price-current"><span class="screen-reader-text">قیمت:</span>289,000 تومان</span>
+                </p>
+              </div>
+            </a>
+            <button class="product-wishlist" aria-label="افزودن به علاقه‌مندی‌ها" type="button"
+              data-action="toggle-wishlist">
+              <i class="fa-regular fa-heart" aria-hidden="true"></i>
+            </button>
+            <button class="product-cta" type="button" data-action="add-to-cart" data-name="پک کارتریج گیک ویپ WENAX M1"
+              data-price="289000">
+              <i class="fa-solid fa-cart-shopping" aria-hidden="true"></i> افزودن به سبد
+            </button>
+          </li>
+
+          <li class="swiper-slide product">
+            <a href="product.html">
+              <div class="product-image-wrap">
+                <div class="inner-image">
+                  <img width="300" height="300" src="./img/p2.webp"
+                    alt="شیشه حبابی یوفورس ایکس" loading="lazy" decoding="async">
+                  <span class="loop-rating" aria-label="امتیاز 5 از 5">
+                    <i class="fa-solid fa-star" aria-hidden="true"></i>
+                    <span aria-hidden="true">5.00</span>
+                  </span>
+                </div>
+              </div>
+              <h3 class="product-title">شیشه حبابی اتومایزر یوفورس ایکس ووپو VOOPOO UFORCE-X BUBBLE GLASS</h3>
+              <div class="product-footer">
+                <p class="price">
+                  <span class="price-current"><span class="screen-reader-text">قیمت:</span>470,000 تومان</span>
+                </p>
+              </div>
+            </a>
+            <button class="product-wishlist" aria-label="افزودن به علاقه‌مندی‌ها" type="button"
+              data-action="toggle-wishlist">
+              <i class="fa-regular fa-heart" aria-hidden="true"></i>
+            </button>
+            <button class="product-cta" type="button" data-action="add-to-cart" data-name="شیشه حبابی یوفورس ایکس"
+              data-price="470000">
+              <i class="fa-solid fa-cart-shopping" aria-hidden="true"></i> افزودن به سبد
+            </button>
+          </li>
+
+          <li class="swiper-slide product">
+            <a href="product.html">
+              <div class="product-image-wrap">
+                <div class="inner-image">
+                  <img width="300" height="300" src="./img/p2.webp"
+                    alt="باتری 21700 لیشن" loading="lazy" decoding="async">
+                  <span class="loop-rating" aria-label="امتیاز 4.31 از 5">
+                    <i class="fa-solid fa-star" aria-hidden="true"></i>
+                    <span aria-hidden="true">4.31</span>
+                  </span>
+                </div>
+              </div>
+              <h3 class="product-title">باتری 21700 لیشن LISHEN 4000mAh</h3>
+              <div class="product-footer">
+                <p class="price">
+                  <span class="price-current"><span class="screen-reader-text">قیمت فعلی:</span>1,430,000 تومان</span>
+                  <del class="price-old"><span class="screen-reader-text">قیمت قبل:</span>2,520,000 تومان</del>
+                </p>
+                <span class="product-badge" aria-label="43 درصد تخفیف">43%</span>
+              </div>
+            </a>
+            <button class="product-wishlist" aria-label="افزودن به علاقه‌مندی‌ها" type="button"
+              data-action="toggle-wishlist">
+              <i class="fa-regular fa-heart" aria-hidden="true"></i>
+            </button>
+            <button class="product-cta" type="button" data-action="add-to-cart" data-name="باتری 21700 لیشن"
+              data-price="1430000">
+              <i class="fa-solid fa-cart-shopping" aria-hidden="true"></i> افزودن به سبد
+            </button>
+          </li>
+
+        </ul>
+      </div>
+      </div><!-- /.cx -->
+    </section>
+
+
+
+
+    <!-- Section 3: horizontal cards, 3 per row, desktop & mobile -->
+    <section class="carts-horiz cx" aria-label="پیشنهاد ویژه">
+      <h2 class="section-label">پیشنهاد ویژه</h2>
+      <ul class="products" role="list">
+
+        <li class="product">
+          <a href="product.html">
+            <div class="product-image-wrap">
+              <div class="inner-image">
+                <img width="300" height="300" src="./img/iphone.webp" alt="اتومایزر یوفورس ایکس" loading="lazy"
+                  decoding="async">
+                <span class="archive-pack-text">ویژه</span>
+              </div>
+            </div>
+            <h3 class="product-title">اتومایزر یوفورس ایکس ووپو VOOPOO UFORCE-X TANK</h3>
+            <div class="product-footer">
+              <p class="price"><span class="price-current"><span class="screen-reader-text">قیمت:</span>3,210,000
+                  تومان</span></p>
+            </div>
+          </a>
+        </li>
+
+        <li class="product">
+          <a href="product.html">
+            <div class="product-image-wrap">
+              <div class="inner-image">
+                <img width="300" height="300" src="./img/iphone.webp" alt="اتومایزر سنتاروس" loading="lazy"
+                  decoding="async">
+                <span class="loop-rating" aria-label="امتیاز 4.5 از 5"><i class="fa-solid fa-star"
+                    aria-hidden="true"></i><span aria-hidden="true">4.50</span></span>
+              </div>
+            </div>
+            <h3 class="product-title">اتومایزر سنتاروس آر بی ای لاست ویپ LOST VAPE CENTAURUS</h3>
+            <div class="product-footer">
+              <p class="price">
+                <span class="price-current"><span class="screen-reader-text">قیمت فعلی:</span>2,500,000 تومان</span>
+                <del class="price-old"><span class="screen-reader-text">قیمت قبل:</span>4,500,000 تومان</del>
+              </p>
+              <span class="product-badge" aria-label="45 درصد تخفیف">45%</span>
+            </div>
+          </a>
+        </li>
+
+        <li class="product">
+          <a href="product.html">
+            <div class="product-image-wrap">
+              <div class="inner-image">
+                <img width="300" height="300" src="./img/iphone.webp" alt="اتومایزر ویپر جاینت" loading="lazy"
+                  decoding="async">
+              </div>
+            </div>
+            <h3 class="product-title">اتومایزر ویپر جاینت وی ۶ ام VAPOR GIANT V6 M RTA</h3>
+            <div class="product-footer">
+              <p class="price">
+                <span class="price-current"><span class="screen-reader-text">قیمت فعلی:</span>19,900,000 تومان</span>
+                <del class="price-old"><span class="screen-reader-text">قیمت قبل:</span>22,050,000 تومان</del>
+              </p>
+              <span class="product-badge" aria-label="10 درصد تخفیف">10%</span>
+            </div>
+          </a>
+        </li>
+
+        <li class="product">
+          <a href="product.html">
+            <div class="product-image-wrap">
+              <div class="inner-image">
+                <img width="300" height="300" src="./img/iphone.webp" alt="باتری لیشن" loading="lazy" decoding="async">
+                <span class="loop-rating" aria-label="امتیاز 4.3 از 5"><i class="fa-solid fa-star"
+                    aria-hidden="true"></i><span aria-hidden="true">4.30</span></span>
+              </div>
+            </div>
+            <h3 class="product-title">باتری 21700 لیشن LISHEN 4000mAh</h3>
+            <div class="product-footer">
+              <p class="price">
+                <span class="price-current"><span class="screen-reader-text">قیمت فعلی:</span>1,430,000 تومان</span>
+                <del class="price-old"><span class="screen-reader-text">قیمت قبل:</span>2,520,000 تومان</del>
+              </p>
+              <span class="product-badge" aria-label="43 درصد تخفیف">43%</span>
+            </div>
+          </a>
+        </li>
+
+        <li class="product">
+          <a href="product.html">
+            <div class="product-image-wrap">
+              <div class="inner-image">
+                <img width="300" height="300" src="./img/iphone.webp" alt="پک گیک ویپ" loading="lazy" decoding="async">
+                <span class="loop-rating" aria-label="امتیاز 4 از 5"><i class="fa-solid fa-star"
+                    aria-hidden="true"></i><span aria-hidden="true">4.00</span></span>
+              </div>
+            </div>
+            <h3 class="product-title">پک کارتریج و فیلتر ونکس ام وان گیک ویپ GEEKVAPE WENAX M1</h3>
+            <div class="product-footer">
+              <p class="price"><span class="price-current"><span class="screen-reader-text">قیمت:</span>289,000
+                  تومان</span></p>
+            </div>
+          </a>
+        </li>
+
+        <li class="product">
+          <a href="product.html">
+            <div class="product-image-wrap">
+              <div class="inner-image">
+                <img width="300" height="300" src="./img/iphone.webp" alt="شیشه حبابی یوفورس" loading="lazy"
+                  decoding="async">
+                <span class="archive-pack-text">جدید</span>
+              </div>
+            </div>
+            <h3 class="product-title">شیشه حبابی اتومایزر یوفورس ایکس ووپو BUBBLE GLASS</h3>
+            <div class="product-footer">
+              <p class="price">
+                <span class="price-current"><span class="screen-reader-text">قیمت فعلی:</span>450,000 تومان</span>
+                <del class="price-old"><span class="screen-reader-text">قیمت قبل:</span>600,000 تومان</del>
+              </p>
+              <span class="product-badge" aria-label="25 درصد تخفیف">25%</span>
+            </div>
+          </a>
+        </li>
+
+      </ul>
+    </section>
+
+
+
+
+
+
+
+    <!-- ─── PRODUCT GRIDS ─── -->
+
+    <!-- Section 1: 5-col vertical grid | mobile 2-col vertical -->
+    <section class="carts-sec carts-grid" aria-label="محصولات پرفروش">
+      <div class="cx">
+      <h2 class="section-label">محصولات پرفروش</h2>
+      <ul class="products" role="list">
+
+        <li class="product">
+          <a href="product.html">
+            <div class="product-image-wrap">
+              <div class="inner-image">
+                <img width="300" height="300" src="./img/iphone.webp" alt="اتومایزر یوفورس ایکس ووپو" loading="lazy"
+                  decoding="async">
+                <span class="loop-rating" aria-label="امتیاز 5 از 5"><i class="fa-solid fa-star"
+                    aria-hidden="true"></i><span aria-hidden="true">5.00</span></span>
+                <span class="archive-pack-text">ویژه</span>
+              </div>
+            </div>
+            <h3 class="product-title">اتومایزر یوفورس ایکس ووپو VOOPOO UFORCE-X TANK</h3>
+            <div class="product-footer">
+              <p class="price"><span class="price-current"><span class="screen-reader-text">قیمت:</span>3,210,000
+                  تومان</span></p>
+            </div>
+          </a>
+          <button class="product-wishlist" aria-label="افزودن به علاقه‌مندی‌ها" type="button"
+            data-action="toggle-wishlist"><i class="fa-regular fa-heart" aria-hidden="true"></i></button>
+          <button class="product-cta" type="button" data-action="add-to-cart" data-name="اتومایزر یوفورس ایکس ووپو"
+            data-price="3210000"><i class="fa-solid fa-cart-shopping" aria-hidden="true"></i> افزودن به سبد</button>
+        </li>
+
+        <li class="product">
+          <a href="product.html">
+            <div class="product-image-wrap">
+              <div class="inner-image">
+                <img width="300" height="300" src="./img/iphone.webp" alt="اتومایزر سنتاروس لاست ویپ" loading="lazy"
+                  decoding="async">
+                <span class="loop-rating" aria-label="امتیاز 4.5 از 5"><i class="fa-solid fa-star"
+                    aria-hidden="true"></i><span aria-hidden="true">4.50</span></span>
+              </div>
+            </div>
+            <h3 class="product-title">اتومایزر سنتاروس آر بی ای لاست ویپ LOST VAPE CENTAURUS</h3>
+            <div class="product-footer">
+              <p class="price">
+                <span class="price-current"><span class="screen-reader-text">قیمت فعلی:</span>2,500,000 تومان</span>
+                <del class="price-old"><span class="screen-reader-text">قیمت قبل:</span>4,500,000 تومان</del>
+              </p>
+              <span class="product-badge" aria-label="45 درصد تخفیف">45%</span>
+            </div>
+          </a>
+          <button class="product-wishlist" aria-label="افزودن به علاقه‌مندی‌ها" type="button"
+            data-action="toggle-wishlist"><i class="fa-regular fa-heart" aria-hidden="true"></i></button>
+          <button class="product-cta" type="button" data-action="add-to-cart" data-name="اتومایزر سنتاروس"
+            data-price="2500000"><i class="fa-solid fa-cart-shopping" aria-hidden="true"></i> افزودن به سبد</button>
+        </li>
+
+        <li class="product">
+          <a href="product.html">
+            <div class="product-image-wrap">
+              <div class="inner-image">
+                <img width="300" height="300" src="./img/iphone.webp" alt="اتومایزر ویپر جاینت" loading="lazy"
+                  decoding="async">
+                <span class="archive-pack-text">جدید</span>
+              </div>
+            </div>
+            <h3 class="product-title">اتومایزر ویپر جاینت وی ۶ ام VAPOR GIANT V6 M RTA</h3>
+            <div class="product-footer">
+              <p class="price">
+                <span class="price-current"><span class="screen-reader-text">قیمت فعلی:</span>19,900,000 تومان</span>
+                <del class="price-old"><span class="screen-reader-text">قیمت قبل:</span>22,050,000 تومان</del>
+              </p>
+              <span class="product-badge" aria-label="10 درصد تخفیف">10%</span>
+            </div>
+          </a>
+          <button class="product-wishlist" aria-label="افزودن به علاقه‌مندی‌ها" type="button"
+            data-action="toggle-wishlist"><i class="fa-regular fa-heart" aria-hidden="true"></i></button>
+          <button class="product-cta" type="button" data-action="add-to-cart" data-name="اتومایزر ویپر جاینت"
+            data-price="19900000"><i class="fa-solid fa-cart-shopping" aria-hidden="true"></i> افزودن به سبد</button>
+        </li>
+
+        <li class="product">
+          <a href="product.html">
+            <div class="product-image-wrap">
+              <div class="inner-image">
+                <img width="300" height="300" src="./img/iphone.webp" alt="باتری 21700 لیشن" loading="lazy"
+                  decoding="async">
+                <span class="loop-rating" aria-label="امتیاز 4.3 از 5"><i class="fa-solid fa-star"
+                    aria-hidden="true"></i><span aria-hidden="true">4.30</span></span>
+              </div>
+            </div>
+            <h3 class="product-title">باتری 21700 لیشن LISHEN 4000mAh</h3>
+            <div class="product-footer">
+              <p class="price">
+                <span class="price-current"><span class="screen-reader-text">قیمت فعلی:</span>1,430,000 تومان</span>
+                <del class="price-old"><span class="screen-reader-text">قیمت قبل:</span>2,520,000 تومان</del>
+              </p>
+              <span class="product-badge" aria-label="43 درصد تخفیف">43%</span>
+            </div>
+          </a>
+          <button class="product-wishlist" aria-label="افزودن به علاقه‌مندی‌ها" type="button"
+            data-action="toggle-wishlist"><i class="fa-regular fa-heart" aria-hidden="true"></i></button>
+          <button class="product-cta" type="button" data-action="add-to-cart" data-name="باتری لیشن"
+            data-price="1430000"><i class="fa-solid fa-cart-shopping" aria-hidden="true"></i> افزودن به سبد</button>
+        </li>
+
+        <li class="product">
+          <a href="product.html">
+            <div class="product-image-wrap">
+              <div class="inner-image">
+                <img width="300" height="300" src="./img/iphone.webp" alt="پک کارتریج گیک ویپ" loading="lazy"
+                  decoding="async">
+                <span class="loop-rating" aria-label="امتیاز 4 از 5"><i class="fa-solid fa-star"
+                    aria-hidden="true"></i><span aria-hidden="true">4.00</span></span>
+              </div>
+            </div>
+            <h3 class="product-title">پک کارتریج و فیلتر ونکس ام وان گیک ویپ GEEKVAPE WENAX M1</h3>
+            <div class="product-footer">
+              <p class="price"><span class="price-current"><span class="screen-reader-text">قیمت:</span>289,000
+                  تومان</span></p>
+            </div>
+          </a>
+          <button class="product-wishlist" aria-label="افزودن به علاقه‌مندی‌ها" type="button"
+            data-action="toggle-wishlist"><i class="fa-regular fa-heart" aria-hidden="true"></i></button>
+          <button class="product-cta" type="button" data-action="add-to-cart" data-name="پک گیک ویپ"
+            data-price="289000"><i class="fa-solid fa-cart-shopping" aria-hidden="true"></i> افزودن به سبد</button>
+        </li>
+
+        <li class="product">
+          <a href="product.html">
+            <div class="product-image-wrap">
+              <div class="inner-image">
+                <img width="300" height="300" src="./img/iphone.webp" alt="شیشه حبابی یوفورس" loading="lazy"
+                  decoding="async">
+                <span class="archive-pack-text">جدید</span>
+              </div>
+            </div>
+            <h3 class="product-title">شیشه حبابی اتومایزر یوفورس ایکس ووپو BUBBLE GLASS</h3>
+            <div class="product-footer">
+              <p class="price">
+                <span class="price-current"><span class="screen-reader-text">قیمت فعلی:</span>450,000 تومان</span>
+                <del class="price-old"><span class="screen-reader-text">قیمت قبل:</span>600,000 تومان</del>
+              </p>
+              <span class="product-badge" aria-label="25 درصد تخفیف">25%</span>
+            </div>
+          </a>
+          <button class="product-wishlist" aria-label="افزودن به علاقه‌مندی‌ها" type="button"
+            data-action="toggle-wishlist"><i class="fa-regular fa-heart" aria-hidden="true"></i></button>
+          <button class="product-cta" type="button" data-action="add-to-cart" data-name="شیشه حبابی یوفورس"
+            data-price="450000"><i class="fa-solid fa-cart-shopping" aria-hidden="true"></i> افزودن به سبد</button>
+        </li>
+
+      </ul>
+      </div><!-- /.cx -->
+    </section>
+
+    <!-- Section 2: 5-col vertical desktop | horizontal on mobile -->
+    <section class="carts-sec carts-list" aria-label="جدیدترین محصولات">
+      <div class="cx">
+      <h2 class="section-label">جدیدترین محصولات</h2>
+      <ul class="products" role="list">
+
+        <li class="product">
+          <a href="product.html">
+            <div class="product-image-wrap">
+              <div class="inner-image">
+                <img width="300" height="300" src="./img/iphone.webp" alt="اتومایزر یوفورس ال ووپو" loading="lazy"
+                  decoding="async">
+                <span class="loop-rating" aria-label="امتیاز 4.8 از 5"><i class="fa-solid fa-star"
+                    aria-hidden="true"></i><span aria-hidden="true">4.80</span></span>
+              </div>
+            </div>
+            <h3 class="product-title">اتومایزر یوفورس ال ووپو VOOPOO UFORCE-L TANK</h3>
+            <div class="product-footer">
+              <p class="price"><span class="price-current"><span class="screen-reader-text">قیمت:</span>3,420,000
+                  تومان</span></p>
+            </div>
+          </a>
+          <button class="product-wishlist" aria-label="افزودن به علاقه‌مندی‌ها" type="button"
+            data-action="toggle-wishlist"><i class="fa-regular fa-heart" aria-hidden="true"></i></button>
+          <button class="product-cta" type="button" data-action="add-to-cart" data-name="اتومایزر یوفورس ال"
+            data-price="3420000"><i class="fa-solid fa-cart-shopping" aria-hidden="true"></i> افزودن به سبد</button>
+        </li>
+
+        <li class="product">
+          <a href="product.html">
+            <div class="product-image-wrap">
+              <div class="inner-image">
+                <img width="300" height="300" src="./img/iphone.webp" alt="اتومایزر یوفورس ایکس ووپو" loading="lazy"
+                  decoding="async">
+                <span class="loop-rating" aria-label="امتیاز 5 از 5"><i class="fa-solid fa-star"
+                    aria-hidden="true"></i><span aria-hidden="true">5.00</span></span>
+                <span class="archive-pack-text">ویژه</span>
+              </div>
+            </div>
+            <h3 class="product-title">اتومایزر یوفورس ایکس ووپو VOOPOO UFORCE-X TANK</h3>
+            <div class="product-footer">
+              <p class="price"><span class="price-current"><span class="screen-reader-text">قیمت:</span>3,210,000
+                  تومان</span></p>
+            </div>
+          </a>
+          <button class="product-wishlist" aria-label="افزودن به علاقه‌مندی‌ها" type="button"
+            data-action="toggle-wishlist"><i class="fa-regular fa-heart" aria-hidden="true"></i></button>
+          <button class="product-cta" type="button" data-action="add-to-cart" data-name="اتومایزر یوفورس ایکس"
+            data-price="3210000"><i class="fa-solid fa-cart-shopping" aria-hidden="true"></i> افزودن به سبد</button>
+        </li>
+
+        <li class="product">
+          <a href="product.html">
+            <div class="product-image-wrap">
+              <div class="inner-image">
+                <img width="300" height="300" src="./img/iphone.webp" alt="اتومایزر سنتاروس" loading="lazy"
+                  decoding="async">
+              </div>
+            </div>
+            <h3 class="product-title">اتومایزر سنتاروس آر بی ای لاست ویپ LOST VAPE CENTAURUS</h3>
+            <div class="product-footer">
+              <p class="price">
+                <span class="price-current"><span class="screen-reader-text">قیمت فعلی:</span>2,500,000 تومان</span>
+                <del class="price-old"><span class="screen-reader-text">قیمت قبل:</span>4,500,000 تومان</del>
+              </p>
+              <span class="product-badge" aria-label="45 درصد تخفیف">45%</span>
+            </div>
+          </a>
+          <button class="product-wishlist" aria-label="افزودن به علاقه‌مندی‌ها" type="button"
+            data-action="toggle-wishlist"><i class="fa-regular fa-heart" aria-hidden="true"></i></button>
+          <button class="product-cta" type="button" data-action="add-to-cart" data-name="سنتاروس"
+            data-price="2500000"><i class="fa-solid fa-cart-shopping" aria-hidden="true"></i> افزودن به سبد</button>
+        </li>
+
+        <li class="product">
+          <a href="product.html">
+            <div class="product-image-wrap">
+              <div class="inner-image">
+                <img width="300" height="300" src="./img/iphone.webp" alt="باتری سیلید" loading="lazy" decoding="async">
+                <span class="loop-rating" aria-label="امتیاز 4.2 از 5"><i class="fa-solid fa-star"
+                    aria-hidden="true"></i><span aria-hidden="true">4.20</span></span>
+              </div>
+            </div>
+            <h3 class="product-title">باتری شارژی لیتیوم یون 18650 سیلید CYLAID 3100mAh</h3>
+            <div class="product-footer">
+              <p class="price"><span class="price-current"><span class="screen-reader-text">قیمت:</span>980,000
+                  تومان</span></p>
+            </div>
+          </a>
+          <button class="product-wishlist" aria-label="افزودن به علاقه‌مندی‌ها" type="button"
+            data-action="toggle-wishlist"><i class="fa-regular fa-heart" aria-hidden="true"></i></button>
+          <button class="product-cta" type="button" data-action="add-to-cart" data-name="باتری سیلید"
+            data-price="980000"><i class="fa-solid fa-cart-shopping" aria-hidden="true"></i> افزودن به سبد</button>
+        </li>
+
+        <li class="product">
+          <a href="product.html">
+            <div class="product-image-wrap">
+              <div class="inner-image">
+                <img width="300" height="300" src="./img/iphone.webp" alt="پک گیک ویپ" loading="lazy" decoding="async">
+              </div>
+            </div>
+            <h3 class="product-title">پک کارتریج و فیلتر ونکس ام وان گیک ویپ GEEKVAPE WENAX M1</h3>
+            <div class="product-footer">
+              <p class="price"><span class="price-current"><span class="screen-reader-text">قیمت:</span>289,000
+                  تومان</span></p>
+            </div>
+          </a>
+          <button class="product-wishlist" aria-label="افزودن به علاقه‌مندی‌ها" type="button"
+            data-action="toggle-wishlist"><i class="fa-regular fa-heart" aria-hidden="true"></i></button>
+          <button class="product-cta" type="button" data-action="add-to-cart" data-name="گیک ویپ" data-price="289000"><i
+              class="fa-solid fa-cart-shopping" aria-hidden="true"></i> افزودن به سبد</button>
+        </li>
+
+
+
+      </ul>
+      </div><!-- /.cx -->
+    </section>
+
+
+
+
+    <!-- ─── TESTIMONIALS ─── -->
+    <section class="section section--sm testi-sec">
+      <div class="cx">
+        <div class="testi-header">
+          <div>
+            <p class="testi-header__eyebrow">تجربه مشتریان</p>
+            <h2 class="testi-header__title">نظرات مشتریان</h2>
+          </div>
+          <div class="testi-nav">
+            <button class="testi-btn testi-btn-prev" type="button" aria-label="قبلی"><i
+                class="fa-solid fa-chevron-right" aria-hidden="true"></i></button>
+            <button class="testi-btn testi-btn-next" type="button" aria-label="بعدی"><i class="fa-solid fa-chevron-left"
+                aria-hidden="true"></i></button>
+          </div>
+        </div>
+        <div class="swiper testi-swiper">
+          <div class="swiper-wrapper">
+
+            <div class="swiper-slide">
+              <div class="testi-card">
+                <div class="testi-card__header">
+                  <img src="img/user-img.jpg" class="testi-card__avatar" alt="کیان دولت‌آبادی" width="56" height="56">
+                  <div class="testi-card__info">
+                    <strong class="testi-card__name">کیان دولت‌آبادی</strong>
+                    <span class="testi-card__role">کمپین دیرکتور کافه بازار</span>
+                  </div>
+                  <i class="fa-solid fa-quote-right testi-card__icon" aria-hidden="true"></i>
+                </div>
+                <p class="testi-card__text">به فراخور نیازمون کمپین‌های مختلفی رو ران می‌کنیم که در بخش تبلیغات همکاری
+                  خوبی با یکتانت داریم. کمپین‌های متعددی رو اجرا کردیم که یکتانت در کنار ما بوده. یکتانت در بین شرکت‌های
+                  ایرانی فعال در حوزه تبلیغات بیشتر از همه تونسته در زمینهٔ تارگتینگ مخاطب مناسب را برای مارکترها فراهم
+                  بده.</p>
+              </div>
+            </div>
+
+            <div class="swiper-slide">
+              <div class="testi-card">
+                <div class="testi-card__header">
+                  <img src="img/user-img.jpg" class="testi-card__avatar" alt="مجتبی سادات" width="56" height="56">
+                  <div class="testi-card__info">
+                    <strong class="testi-card__name">مجتبی سادات</strong>
+                    <span class="testi-card__role">مدیر مارکتینگ اکسکوینو</span>
+                  </div>
+                  <i class="fa-solid fa-quote-right testi-card__icon" aria-hidden="true"></i>
+                </div>
+                <p class="testi-card__text">به عنوان یک مارکتر اینکه بین کلی سرویس و آژانس تبلیغاتی سر و کله بزنی تایم
+                  زیادی رو هدر می‌دی. یکتانت تونسته این مشکل رو با چند سرویس مختلف برطرف کنه. از همه مهمتر سرویس‌هاشو با
+                  تکنولوژی‌های روز آپدیت نگه داره.</p>
+              </div>
+            </div>
+
+            <div class="swiper-slide">
+              <div class="testi-card">
+                <div class="testi-card__header">
+                  <img src="img/user-img.jpg" class="testi-card__avatar" alt="سارا محمدی" width="56" height="56">
+                  <div class="testi-card__info">
+                    <strong class="testi-card__name">سارا محمدی</strong>
+                    <span class="testi-card__role">مدیر فروش ولا</span>
+                  </div>
+                  <i class="fa-solid fa-quote-right testi-card__icon" aria-hidden="true"></i>
+                </div>
+                <p class="testi-card__text">تجربه خرید از ولا برام بسیار راحت و سریع بود. پشتیبانی فوق‌العاده‌ای داشتن و
+                  کالاها دقیقاً همونطور که توضیح داده شده بود رسیدن. قطعاً دوباره از اینجا خرید می‌کنم و به دوستانم هم
+                  معرفی کردم.</p>
+              </div>
+            </div>
+
+            <div class="swiper-slide">
+              <div class="testi-card">
+                <div class="testi-card__header">
+                  <img src="img/user-img.jpg" class="testi-card__avatar" alt="امیر حسینی" width="56" height="56">
+                  <div class="testi-card__info">
+                    <strong class="testi-card__name">امیر حسینی</strong>
+                    <span class="testi-card__role">توسعه‌دهنده نرم‌افزار</span>
+                  </div>
+                  <i class="fa-solid fa-quote-right testi-card__icon" aria-hidden="true"></i>
+                </div>
+                <p class="testi-card__text">ارسال سریع و بسته‌بندی مناسب از نکات مثبت خرید از ولا بود. قیمت‌ها هم نسبت
+                  به سایر فروشگاه‌ها رقابتی‌تر بود. اپلیکیشن هم خیلی راحته و پیگیری سفارش توش آسانه.</p>
+              </div>
+            </div>
+
+            <div class="swiper-slide">
+              <div class="testi-card">
+                <div class="testi-card__header">
+                  <img src="img/user-img.jpg" class="testi-card__avatar" alt="نازنین کریمی" width="56" height="56">
+                  <div class="testi-card__info">
+                    <strong class="testi-card__name">نازنین کریمی</strong>
+                    <span class="testi-card__role">طراح گرافیک</span>
+                  </div>
+                  <i class="fa-solid fa-quote-right testi-card__icon" aria-hidden="true"></i>
+                </div>
+                <p class="testi-card__text">تنوع محصولات ولا واقعاً شگفت‌زده‌ام کرد. همه چیز از لوازم دیجیتال تا پوشاک
+                  رو می‌شه پیدا کرد. خرید اول خیلی خوب بود و ضمانت بازگشت کالا هم اطمینان بخشه.</p>
+              </div>
+            </div>
+
+          </div>
+          <div class="swiper-pagination testi-pagination"></div>
+        </div>
+      </div>
+    </section>
+
+
+
+    <!-- ─── BLOG / ARTICLES ─── -->
+    <section class="section section--sm post-sec">
+      <div class="cx">
+        <div class="post-header">
+          <div>
+            <p class="post-header__eyebrow">محتوا و آموزش</p>
+            <h2 class="post-header__title">آخرین مقالات</h2>
+          </div>
+          <div class="post-sec-actions">
+            <a href="blog.html" class="post-see-all">همه<i class="fa-solid fa-arrow-left"
+                aria-hidden="true"></i></a>
+            <div class="post-nav">
+              <button class="post-nav-btn post-nav-prev" type="button" aria-label="قبلی"><i
+                  class="fa-solid fa-chevron-right" aria-hidden="true"></i></button>
+              <button class="post-nav-btn post-nav-next" type="button" aria-label="بعدی"><i
+                  class="fa-solid fa-chevron-left" aria-hidden="true"></i></button>
+            </div>
+          </div>
+        </div>
+        <div class="swiper post-swiper">
+          <div class="swiper-wrapper">
+
+            <div class="swiper-slide">
+              <a href="post.html" class="post-card">
+                <div class="post-card__media">
+                  <img src="img/post-blog.webp" class="post-card__img" alt="بهترین لپتاپ‌های ۲۰۲۵" loading="lazy">
+                  <div class="post-card__dots" aria-hidden="true"><span></span><span></span><span></span></div>
+                  <span class="post-card__cat"><i class="fa-solid fa-circle" aria-hidden="true"></i>فناوری</span>
+                </div>
+                <div class="post-card__body">
+                  <h3 class="post-card__title">بهترین لپتاپ‌های ۲۰۲۵ برای هر بودجه — راهنمای جامع خرید</h3>
+                  <p class="post-card__desc">از لپتاپ‌های دانشجویی تا حرفه‌ای‌ترین ماشین‌های گیمینگ، ما همه گزینه‌ها را
+                    بررسی کردیم تا خرید درستی داشته باشید.</p>
+                  <div class="post-card__meta">
+                    <div class="post-card__author-wrap"><img src="img/user-img.jpg" class="post-card__author-img" alt=""
+                        width="26" height="26"><span class="post-card__author">علی رضایی</span></div>
+                    <span class="post-card__date"><i class="fa-regular fa-calendar" aria-hidden="true"></i>۱۵ خرداد
+                      ۱۴۰۴</span>
+                  </div>
+                </div>
+              </a>
+            </div>
+
+            <div class="swiper-slide">
+              <a href="post.html" class="post-card">
+                <div class="post-card__media">
+                  <img src="img/post-blog.webp" class="post-card__img" alt="آیفون ۱۶ پرو" loading="lazy">
+                  <div class="post-card__dots" aria-hidden="true"><span></span><span></span><span></span></div>
+                  <span class="post-card__cat"><i class="fa-solid fa-circle" aria-hidden="true"></i>فناوری</span>
+                </div>
+                <div class="post-card__body">
+                  <h3 class="post-card__title">آیفون ۱۶ پرو در مقابل سامسونگ S24 اولترا</h3>
+                  <p class="post-card__desc">مقایسه دقیق دوربین، باتری، عملکرد و طراحی دو پرچمدار ۲۰۲۵ که هر کدام ادعای
+                    بهترین بودن دارند.</p>
+                  <div class="post-card__meta">
+                    <div class="post-card__author-wrap"><img src="img/user-img.jpg" class="post-card__author-img" alt=""
+                        width="26" height="26"><span class="post-card__author">مریم احمدی</span></div>
+                    <span class="post-card__date"><i class="fa-regular fa-calendar" aria-hidden="true"></i>۱۰ خرداد
+                      ۱۴۰۴</span>
+                  </div>
+                </div>
+              </a>
+            </div>
+
+            <div class="swiper-slide">
+              <a href="post.html" class="post-card">
+                <div class="post-card__media">
+                  <img src="img/post-blog.webp" class="post-card__img" alt="ترندهای مد" loading="lazy">
+                  <div class="post-card__dots" aria-hidden="true"><span></span><span></span><span></span></div>
+                  <span class="post-card__cat"><i class="fa-solid fa-circle" aria-hidden="true"></i>مد</span>
+                </div>
+                <div class="post-card__body">
+                  <h3 class="post-card__title">ترندهای مد تابستان ۱۴۰۴ که باید بدانید</h3>
+                  <p class="post-card__desc">از رنگ‌های روز تا سبک‌های محبوب فصل، همه چیز را اینجا پیدا کنید و استایل
+                    تابستانی خود را به‌روز کنید.</p>
+                  <div class="post-card__meta">
+                    <div class="post-card__author-wrap"><img src="img/user-img.jpg" class="post-card__author-img" alt=""
+                        width="26" height="26"><span class="post-card__author">سارا محمدی</span></div>
+                    <span class="post-card__date"><i class="fa-regular fa-calendar" aria-hidden="true"></i>۸ خرداد
+                      ۱۴۰۴</span>
+                  </div>
+                </div>
+              </a>
+            </div>
+
+            <div class="swiper-slide">
+              <a href="post.html" class="post-card">
+                <div class="post-card__media">
+                  <img src="img/post-blog.webp" class="post-card__img" alt="دکوراسیون آپارتمان" loading="lazy">
+                  <div class="post-card__dots" aria-hidden="true"><span></span><span></span><span></span></div>
+                  <span class="post-card__cat"><i class="fa-solid fa-circle" aria-hidden="true"></i>خانه</span>
+                </div>
+                <div class="post-card__body">
+                  <h3 class="post-card__title">۱۰ ایده برای دکوراسیون آپارتمان کوچک</h3>
+                  <p class="post-card__desc">با این ایده‌های خلاقانه فضای کوچک را به خانه رویایی تبدیل کنید بدون اینکه
+                    هزینه زیادی صرف کنید.</p>
+                  <div class="post-card__meta">
+                    <div class="post-card__author-wrap"><img src="img/user-img.jpg" class="post-card__author-img" alt=""
+                        width="26" height="26"><span class="post-card__author">نازنین کریمی</span></div>
+                    <span class="post-card__date"><i class="fa-regular fa-calendar" aria-hidden="true"></i>۵ خرداد
+                      ۱۴۰۴</span>
+                  </div>
+                </div>
+              </a>
+            </div>
+
+            <div class="swiper-slide">
+              <a href="post.html" class="post-card">
+                <div class="post-card__media">
+                  <img src="img/post-blog.webp" class="post-card__img" alt="راهنمای خرید هدفون" loading="lazy">
+                  <div class="post-card__dots" aria-hidden="true"><span></span><span></span><span></span></div>
+                  <span class="post-card__cat"><i class="fa-solid fa-circle" aria-hidden="true"></i>راهنمای خرید</span>
+                </div>
+                <div class="post-card__body">
+                  <h3 class="post-card__title">راهنمای خرید هدفون بیسیم: نوایز کنسلینگ یا صدای ناب؟</h3>
+                  <p class="post-card__desc">بررسی کامل بهترین مدل‌های بازار و راهنمای انتخاب مناسب برای هر نوع استفاده
+                    و بودجه.</p>
+                  <div class="post-card__meta">
+                    <div class="post-card__author-wrap"><img src="img/user-img.jpg" class="post-card__author-img" alt=""
+                        width="26" height="26"><span class="post-card__author">رضا نوری</span></div>
+                    <span class="post-card__date"><i class="fa-regular fa-calendar" aria-hidden="true"></i>۳ خرداد
+                      ۱۴۰۴</span>
+                  </div>
+                </div>
+              </a>
+            </div>
+
+            <div class="swiper-slide">
+              <a href="post.html" class="post-card">
+                <div class="post-card__media">
+                  <img src="img/post-blog.webp" class="post-card__img" alt="خانه‌کاری" loading="lazy">
+                  <div class="post-card__dots" aria-hidden="true"><span></span><span></span><span></span></div>
+                  <span class="post-card__cat"><i class="fa-solid fa-circle" aria-hidden="true"></i>سبک زندگی</span>
+                </div>
+                <div class="post-card__body">
+                  <h3 class="post-card__title">تجهیزات ضروری برای لذت‌بخش‌تر کردن خانه‌کاری</h3>
+                  <p class="post-card__desc">دورکاری می‌تواند بهره‌وری بالایی داشته باشد اگر محیط درست داشته باشید. این
+                    تجهیزات کمک می‌کنند.</p>
+                  <div class="post-card__meta">
+                    <div class="post-card__author-wrap"><img src="img/user-img.jpg" class="post-card__author-img" alt=""
+                        width="26" height="26"><span class="post-card__author">امیر حسینی</span></div>
+                    <span class="post-card__date"><i class="fa-regular fa-calendar" aria-hidden="true"></i>۱ خرداد
+                      ۱۴۰۴</span>
+                  </div>
+                </div>
+              </a>
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ─── STATS STRIP ─── -->
+    <div class="stats-strip">
+      <div class="cx">
+        <div class="stats-strip__inner">
+          <div class="stats-strip__item">
+            <div class="stats-strip__num">۲.۱<span>K+</span></div>
+            <div class="stats-strip__label">محصول</div>
+          </div>
+          <div class="stats-strip__divider"></div>
+          <div class="stats-strip__item">
+            <div class="stats-strip__num">۱۴۰<span>+</span></div>
+            <div class="stats-strip__label">فروشنده</div>
+          </div>
+          <div class="stats-strip__divider"></div>
+          <div class="stats-strip__item">
+            <div class="stats-strip__num">۹۸<span>%</span></div>
+            <div class="stats-strip__label">رضایت مشتری</div>
+          </div>
+          <div class="stats-strip__divider"></div>
+          <div class="stats-strip__item">
+            <div class="stats-strip__num">۴.۹<span>★</span></div>
+            <div class="stats-strip__label">نظرات شما</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+
+
+        <!-- ─── BRAND STRIP ─── -->
+    <div class="brand-strip">
+      <div class="cx">
+        <h2 class="brand-strip__title">برند های ما</h2>
+        <div class="brand-strip__track">
+          <div class="swiper brand-swiper">
+            <div class="swiper-wrapper">
+              <div class="swiper-slide brand-slide"><img src="img/brand.png" class="brand-logo__img" alt="برند معتبر">
+              </div>
+              <div class="swiper-slide brand-slide"><img src="img/brand.png" class="brand-logo__img" alt="برند معتبر">
+              </div>
+              <div class="swiper-slide brand-slide"><img src="img/brand.png" class="brand-logo__img" alt="برند معتبر">
+              </div>
+              <div class="swiper-slide brand-slide"><img src="img/brand.png" class="brand-logo__img" alt="برند معتبر">
+              </div>
+              <div class="swiper-slide brand-slide"><img src="img/brand.png" class="brand-logo__img" alt="برند معتبر">
+              </div>
+              <div class="swiper-slide brand-slide"><img src="img/brand.png" class="brand-logo__img" alt="برند معتبر">
+              </div>
+              <div class="swiper-slide brand-slide"><img src="img/brand.png" class="brand-logo__img" alt="برند معتبر">
+              </div>
+              <div class="swiper-slide brand-slide"><img src="img/brand.png" class="brand-logo__img" alt="برند معتبر">
+              </div>
+              <div class="swiper-slide brand-slide"><img src="img/brand.png" class="brand-logo__img" alt="برند معتبر">
+              </div>
+              <div class="swiper-slide brand-slide"><img src="img/brand.png" class="brand-logo__img" alt="برند معتبر">
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+        <!-- TRUST BADGES (desktop only) -->
+    <div class="ftr-trust">
+      <div class="cx">
+        <ul class="ftr-trust__list" role="list">
+          <li class="ftr-trust__item">
+            <img src="img/original-products.svg" class="ftr-trust__img" alt="" aria-hidden="true" width="48"
+              height="48">
+            <span>ضمانت اصل بودن کالا</span>
+          </li>
+          <li class="ftr-trust__item">
+            <img src="img/days-return.svg" class="ftr-trust__img" alt="" aria-hidden="true" width="48" height="48">
+            <span>هفت روز ضمانت بازگشت کالا</span>
+          </li>
+          <li class="ftr-trust__item">
+            <img src="img/support.svg" class="ftr-trust__img" alt="" aria-hidden="true" width="48" height="48">
+            <span>پشتیبانی ۲۴ ساعته، ۷ روز هفته</span>
+          </li>
+          <li class="ftr-trust__item">
+            <img src="img/cash-on-delivery.svg" class="ftr-trust__img" alt="" aria-hidden="true" width="48" height="48">
+            <span>امکان پرداخت در محل</span>
+          </li>
+          <li class="ftr-trust__item">
+            <img src="img/express-delivery.svg" class="ftr-trust__img" alt="" aria-hidden="true" width="48" height="48">
+            <span>امکان تحویل اکسپرس</span>
+          </li>
+        </ul>
+      </div>
+    </div>
+
+  </main>
+
+  <!-- ─── FOOTER ─── -->
+  <footer class="ftr" id="siteFooter">
+
+    <!-- SUPPORT BAR -->
+    <div class="ftr-support">
+      <div class="cx">
+        <div class="ftr-support__inner">
+          <div class="ftr-support__brand-group">
+            <a href="index.html" class="nav-logo">V<span>E</span>LA<span class="nav-logo__dot"></span></a>
+            <div class="ftr-support__contact">
+              <a href="tel:02161930000" class="ftr-support__phone">
+                <i class="fa-solid fa-phone" aria-hidden="true"></i>
+                <span dir="ltr">۰۲۱–۶۱۹۳–۰۰۰۰</span>
+              </a>
+              <span class="ftr-support__sep" aria-hidden="true">|</span>
+              <a href="tel:02191000100" class="ftr-support__phone">
+                <span dir="ltr">۰۲۱–۹۱۰۰–۰۱۰۰</span>
+              </a>
+              <span class="ftr-support__sep" aria-hidden="true">|</span>
+              <span class="ftr-support__hours">
+                <i class="fa-solid fa-headset" aria-hidden="true"></i>
+                ۷ روز هفته، ۲۴ ساعته پاسخگوی شما هستیم
+              </span>
+            </div>
+          </div>
+          <button class="ftr-scroll-top" data-action="scroll-to-top" aria-label="برگشت به بالا" type="button">
+            <i class="fa-solid fa-chevron-up" aria-hidden="true"></i>
+            <span>برگشت به بالا</span>
+          </button>
+        </div>
+      </div>
+    </div>
+
+
+
+    <!-- MAIN COLUMNS -->
+    <div class="ftr-main">
+      <div class="cx">
+        <div class="ftr-main__grid">
+
+          <!-- با ولا -->
+          <div class="ftr-col">
+            <h3 class="ftr-col__title" data-action="toggle-footer-col">
+              با ولا
+              <i class="fa-solid fa-chevron-down ftr-col__chevron" aria-hidden="true"></i>
+            </h3>
+            <ul class="ftr-col__links" role="list">
+              <li><a href="#" class="ftr-col__link">درباره ولا</a></li>
+              <li><a href="#" class="ftr-col__link">فروش در ولا</a></li>
+              <li><a href="#" class="ftr-col__link">فرصت‌های شغلی</a></li>
+              <li><a href="#" class="ftr-col__link">اتاق خبر</a></li>
+              <li><a href="#" class="ftr-col__link">گزارش تخلف</a></li>
+              <li><a href="#" class="ftr-col__link">تماس با ما</a></li>
+              <li><a href="#" class="ftr-col__link">درباره ما</a></li>
+            </ul>
+          </div>
+
+          <!-- خدمات مشتریان -->
+          <div class="ftr-col">
+            <h3 class="ftr-col__title" data-action="toggle-footer-col">
+              خدمات مشتریان
+              <i class="fa-solid fa-chevron-down ftr-col__chevron" aria-hidden="true"></i>
+            </h3>
+            <ul class="ftr-col__links" role="list">
+              <li><a href="#" class="ftr-col__link">پاسخ به پرسش‌های متداول</a></li>
+              <li><a href="#" class="ftr-col__link">رویه‌های بازگرداندن کالا</a></li>
+              <li><a href="#" class="ftr-col__link">شرایط استفاده از ولا</a></li>
+              <li><a href="#" class="ftr-col__link">حریم خصوصی</a></li>
+              <li><a href="#" class="ftr-col__link">گزارش باگ</a></li>
+            </ul>
+          </div>
+
+          <!-- راهنمای خرید -->
+          <div class="ftr-col">
+            <h3 class="ftr-col__title" data-action="toggle-footer-col">
+              راهنمای خرید از ولا
+              <i class="fa-solid fa-chevron-down ftr-col__chevron" aria-hidden="true"></i>
+            </h3>
+            <ul class="ftr-col__links" role="list">
+              <li><a href="#" class="ftr-col__link">نحوه ثبت سفارش</a></li>
+              <li><a href="#" class="ftr-col__link">رویه ارسال سفارش</a></li>
+              <li><a href="#" class="ftr-col__link">شیوه‌های پرداخت</a></li>
+              <li><a href="#" class="ftr-col__link">پیگیری سفارش</a></li>
+            </ul>
+          </div>
+
+          <!-- همراه ما + Social + Newsletter -->
+          <div class="ftr-col ftr-col--social">
+            <h3 class="ftr-col__title">همراه ما باشید!</h3>
+            <div class="ftr-socials">
+              <a href="#" class="ftr-social" aria-label="اینستاگرام"><i class="fa-brands fa-instagram"
+                  aria-hidden="true"></i></a>
+              <a href="#" class="ftr-social" aria-label="لینکدین"><i class="fa-brands fa-linkedin-in"
+                  aria-hidden="true"></i></a>
+              <a href="#" class="ftr-social" aria-label="توییتر"><i class="fa-brands fa-x-twitter"
+                  aria-hidden="true"></i></a>
+              <a href="#" class="ftr-social" aria-label="تلگرام"><i class="fa-brands fa-telegram"
+                  aria-hidden="true"></i></a>
+              <a href="#" class="ftr-social" aria-label="یوتیوب"><i class="fa-brands fa-youtube"
+                  aria-hidden="true"></i></a>
+            </div>
+            <p class="ftr-newsletter__label">با ثبت ایمیل، از جدیدترین تخفیف‌ها باخبر شوید</p>
+            <form class="ftr-newsletter__form" data-form="newsletter">
+              <input type="email" class="ftr-newsletter__input" placeholder="ایمیل شما" aria-label="آدرس ایمیل">
+              <button type="submit" class="ftr-newsletter__btn">ثبت</button>
+            </form>
+          </div>
+
+        </div>
+      </div>
+    </div>
+
+    <!-- APP DOWNLOAD BAR (boxed) -->
+    <div class="ftr-apps">
+      <div class="cx">
+        <div class="ftr-apps__box">
+          <div class="ftr-apps__label">
+            <i class="fa-solid fa-mobile-screen" aria-hidden="true"></i>
+            <span>دانلود اپلیکیشن ولا</span>
+          </div>
+          <div class="ftr-apps__badges">
+            <a href="#" class="ftr-app-badge" aria-label="دریافت از بازار">
+              <i class="fa-brands fa-google-play ftr-app-badge__icon" aria-hidden="true"></i>
+              <span class="ftr-app-badge__text"><small>دریافت از</small><strong>بازار</strong></span>
+            </a>
+            <a href="#" class="ftr-app-badge" aria-label="دریافت از سیب‌اپ">
+              <i class="fa-brands fa-app-store-ios ftr-app-badge__icon" aria-hidden="true"></i>
+              <span class="ftr-app-badge__text"><small>دریافت از</small><strong>سیب‌اپ</strong></span>
+            </a>
+            <a href="#" class="ftr-app-badge" aria-label="دریافت از کافه‌بازار">
+              <i class="fa-solid fa-mug-hot ftr-app-badge__icon" aria-hidden="true"></i>
+              <span class="ftr-app-badge__text"><small>دریافت از</small><strong>کافه‌بازار</strong></span>
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- CERTS + ABOUT in same row -->
+    <div class="ftr-row-ca">
+      <div class="cx">
+        <div class="ftr-row-ca__grid">
+
+          <!-- About text (right in RTL) -->
+          <div class="ftr-about" id="ftrAbout">
+            <p class="ftr-about__title">ولا؛ بزرگ‌ترین فروشگاه اینترنتی ایران</p>
+            <div class="ftr-about__body" id="ftrAboutBody">
+              <p class="ftr-about__text">ولا سال‌هاست که به انتخاب اول بسیاری از خریداران ایرانی تبدیل شده و به عنوان
+                شناخته‌شده‌ترین فروشگاه آنلاین، استاندارد جدیدی در خرید اینترنتی تعریف کرده است. این فروشگاه با ارائه
+                خدماتی نظیر ضمانت اصل بودن کالا، ارسال سریع، پشتیبانی ۲۴ ساعته و سیستم بازگشت آسان کالا، تجربه‌ای متفاوت
+                از خرید آنلاین را برای میلیون‌ها ایرانی فراهم کرده است.</p>
+              <p class="ftr-about__text">در ولا می‌توانید از بین میلیون‌ها کالا در دسته‌بندی‌های مختلف از جمله دیجیتال،
+                پوشاک، خانه و آشپزخانه، زیبایی و بهداشت، کتاب و لوازم‌التحریر و ده‌ها دسته دیگر انتخاب کنید. ولا با
+                همکاری هزاران فروشنده معتبر در سراسر کشور، کالاهای متنوع و باکیفیت را با قیمت مناسب به دست شما می‌رساند.
+              </p>
+            </div>
+            <button class="ftr-about__toggle" data-action="toggle-footer-about" aria-expanded="false" type="button">
+              <span>مشاهده بیشتر</span>
+              <i class="fa-solid fa-chevron-left" aria-hidden="true"></i>
+            </button>
+          </div>
+
+          <!-- Trust certificates (left in RTL) -->
+          <div class="ftr-certs">
+            <div class="ftr-certs__inner">
+              <a href="#" class="ftr-cert" aria-label="نماد اعتماد الکترونیکی">
+                <div class="ftr-cert__box">
+                  <i class="fa-solid fa-certificate ftr-cert__icon" aria-hidden="true"></i>
+                  <span class="ftr-cert__label">اینماد</span>
+                  <span class="ftr-cert__sub">نماد اعتماد</span>
+                </div>
+              </a>
+              <a href="#" class="ftr-cert" aria-label="ساماندهی رسانه‌های دیجیتال">
+                <div class="ftr-cert__box">
+                  <i class="fa-solid fa-award ftr-cert__icon" aria-hidden="true"></i>
+                  <span class="ftr-cert__label">ساماندهی</span>
+                  <span class="ftr-cert__sub">رسانه دیجیتال</span>
+                </div>
+              </a>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+
+    <!-- COPYRIGHT -->
+    <div class="ftr-copy">
+      <div class="cx">
+        <p class="ftr-copy__text">
+          استفاده از مطالب ولا برای مقاصد غیرتجاری با ذکر منبع بلامانع است.
+          تمام حقوق این وب‌سایت متعلق به شرکت ولا (فروشگاه آنلاین ولا) می‌باشد.
+        </p>
+      </div>
+    </div>
+
+  </footer>
+
+  <!-- Toast Container -->
+  <div class="toast-container" id="toastContainer"></div>
+
+  <!-- ─── SEARCH MODAL ─── -->
+  <div class="search-modal" id="searchModal" role="dialog" aria-modal="true" aria-label="جستجو">
+    <div class="search-modal__backdrop" id="searchModalBackdrop"></div>
+    <div class="search-modal__box">
+      <div class="search-modal__header">
+        <div class="search-modal__field">
+          <i class="fa-solid fa-magnifying-glass" aria-hidden="true"></i>
+          <input type="text" id="searchModalInput" class="search-modal__input" placeholder="جستجو در ۲ میلیون محصول…"
+            autocomplete="off" aria-label="جستجو">
+          <button class="search-modal__clear" id="searchModalClear" aria-label="پاک کردن">×</button>
+        </div>
+        <button class="search-modal__cancel" id="searchModalCancel">انصراف</button>
+      </div>
+      <div class="search-modal__body" id="searchModalBody"></div>
+    </div>
+  </div>
+
+
+  <!-- ─── STICKY BOTTOM NAV — 4 items + FAB ─── -->
+  <!-- Structure: [خانه] [سبد خرید] [●FAB●] [پشتیبانی] [دسته‌بندی] -->
+  <nav class="bottom-nav" id="bottomNav" aria-label="ناوبری موبایل">
+    <div class="bottom-nav__inner">
+      <!-- خانه -->
+      <a href="index.html" class="bottom-nav__btn is-active" data-page="index.html" aria-label="خانه">
+        <i class="fa-regular fa-house" aria-hidden="true"></i>
+        <span>خانه</span>
+      </a>
+      <!-- سبد خرید -->
+      <button data-action="open-cart" class="bottom-nav__btn" aria-label="سبد خرید">
+        <div class="bottom-nav__cart-wrap">
+          <i class="fa-solid fa-cart-shopping" aria-hidden="true"></i>
+          <span class="bottom-nav__badge">۳</span>
+        </div>
+        <span>سبد خرید</span>
+      </button>
+      <!-- ● FAB Center ● -->
+      <div class="bottom-nav__fab-slot">
+        <button class="bottom-fab" id="bottomFab" aria-label="جستجو" aria-expanded="false">
+          <i class="fa-solid fa-magnifying-glass bottom-fab__icon-search" aria-hidden="true"></i>
+          <i class="fa-solid fa-xmark bottom-fab__icon-close" aria-hidden="true"></i>
+        </button>
+      </div>
+      <!-- پشتیبانی -->
+      <button class="bottom-nav__btn" id="bottomSupportBtn" data-action="open-support" aria-label="پشتیبانی">
+        <i class="fa-solid fa-headset" aria-hidden="true"></i>
+        <span>پشتیبانی</span>
+      </button>
+      <!-- دسته‌بندی -->
+      <button class="bottom-nav__btn" id="bottomCatBtn" aria-label="دسته‌بندی‌ها">
+        <i class="fa-solid fa-layer-group" aria-hidden="true"></i>
+        <span>دسته‌بندی</span>
+      </button>
+    </div>
+  </nav>
+
+  <!-- ─── AUTH MODAL ─── -->
+  <div class="auth-modal" id="authModal" aria-hidden="true" role="dialog" aria-modal="true"
+    aria-label="ورود یا ثبت‌نام">
+    <div class="auth-modal__backdrop" data-action="close-auth-modal"></div>
+    <div class="auth-modal__box">
+      <div class="auth-modal__header">
+        <div class="auth-modal__logo">
+          <span class="auth-modal__logo-dot"></span>VEL<span>A</span>
+        </div>
+        <button class="auth-modal__close" data-action="close-auth-modal" aria-label="بستن">
+          <i class="fa-solid fa-xmark" aria-hidden="true"></i>
+        </button>
+      </div>
+      <!-- Tabs -->
+      <div class="auth-tabs" role="tablist">
+        <button class="auth-tab is-active" data-tab="login" role="tab" aria-selected="true"
+          data-action="switch-auth-tab">ورود</button>
+        <button class="auth-tab" data-tab="register" role="tab" aria-selected="false"
+          data-action="switch-auth-tab">ثبت‌نام</button>
+      </div>
+      <!-- Login Panel -->
+      <div class="auth-panel is-active" id="auth-panel-login" role="tabpanel">
+        <form data-form="login" novalidate>
+          <div class="auth-field">
+            <label for="loginPhone">شماره موبایل یا ایمیل</label>
+            <input type="text" id="loginPhone" placeholder="09123456789" autocomplete="username" required>
+          </div>
+          <div class="auth-field">
+            <label for="loginPass">رمز عبور</label>
+            <div class="auth-field__pass-wrap">
+              <input type="password" id="loginPass" placeholder="••••••••" autocomplete="current-password" required>
+              <button type="button" class="auth-field__pass-toggle" data-action="toggle-auth-pass"
+                aria-label="نمایش رمز">
+                <i class="fa-regular fa-eye icon-eye" aria-hidden="true"></i>
+                <i class="fa-regular fa-eye-slash icon-eye-off" style="display:none" aria-hidden="true"></i>
+              </button>
+            </div>
+          </div>
+          <div class="auth-row">
+            <label class="auth-check">
+              <input type="checkbox"> مرا به خاطر بسپار
+            </label>
+            <button type="button" class="auth-row__forgot">فراموشی رمز؟</button>
+          </div>
+          <button type="submit" class="auth-submit">
+            <i class="fa-solid fa-right-to-bracket" aria-hidden="true"></i>
+            ورود به حساب کاربری
+          </button>
+        </form>
+        <div class="auth-divider">یا وارد شوید با</div>
+        <div class="auth-socials">
+          <button class="auth-social-btn" data-action="social-login" data-provider="google">
+            <svg viewBox="0 0 24 24" width="18" height="18">
+              <path fill="#4285F4"
+                d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z" />
+              <path fill="#34A853"
+                d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z" />
+              <path fill="#FBBC05"
+                d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z" />
+              <path fill="#EA4335"
+                d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z" />
+            </svg>
+            Google
+          </button>
+          <button class="auth-social-btn" data-action="social-login" data-provider="facebook">
+            <svg viewBox="0 0 24 24" width="18" height="18" fill="#1877F2">
+              <path
+                d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z" />
+            </svg>
+            Facebook
+          </button>
+        </div>
+      </div>
+      <!-- Register Panel -->
+      <div class="auth-panel" id="auth-panel-register" role="tabpanel">
+        <form data-form="register" novalidate>
+          <div class="auth-field">
+            <label for="regName">نام و نام خانوادگی</label>
+            <input type="text" id="regName" placeholder="علی محمدی" autocomplete="name" required>
+          </div>
+          <div class="auth-field">
+            <label for="regPhone">شماره موبایل</label>
+            <input type="tel" id="regPhone" placeholder="09123456789" autocomplete="tel" required>
+          </div>
+          <div class="auth-field">
+            <label for="regPass">رمز عبور</label>
+            <div class="auth-field__pass-wrap">
+              <input type="password" id="regPass" placeholder="حداقل ۶ کاراکتر" autocomplete="new-password" required>
+              <button type="button" class="auth-field__pass-toggle" data-action="toggle-auth-pass"
+                aria-label="نمایش رمز">
+                <i class="fa-regular fa-eye icon-eye" aria-hidden="true"></i>
+                <i class="fa-regular fa-eye-slash icon-eye-off" style="display:none" aria-hidden="true"></i>
+              </button>
+            </div>
+          </div>
+          <div class="auth-field">
+            <label for="regPass2">تکرار رمز عبور</label>
+            <input type="password" id="regPass2" placeholder="••••••••" autocomplete="new-password" required>
+          </div>
+          <button type="submit" class="auth-submit">
+            <i class="fa-solid fa-user-plus" aria-hidden="true"></i>
+            ایجاد حساب کاربری
+          </button>
+          <p class="auth-terms">با ثبت‌نام، <a href="#">قوانین و مقررات</a> و <a href="#">سیاست حریم خصوصی</a> ولا را
+            می‌پذیرید.</p>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <!-- ─── MINI CART MODAL ─── -->
+  <div class="mini-panel" id="miniCart" aria-hidden="true" role="dialog" aria-modal="true" aria-label="سبد خرید">
+    <div class="mini-panel__overlay" data-action="close-cart"></div>
+    <div class="mini-panel__box">
+      <div class="mini-panel__header">
+        <div class="mini-panel__title-wrap">
+          <h2 class="mini-panel__title">سبد خرید</h2>
+          <span class="mini-panel__count" id="miniCartCount">۳ محصول</span>
+        </div>
+        <button class="mini-panel__close" data-action="close-cart" aria-label="بستن">
+          <i class="fa-solid fa-xmark" aria-hidden="true"></i>
+        </button>
+      </div>
+      <div class="mini-panel__body" id="miniCartBody"></div>
+      <div class="mini-panel__footer">
+        <div class="mini-panel__total">
+          <span class="mini-panel__total-label">جمع کل</span>
+          <span class="mini-panel__total-val" id="miniCartTotal">$1,298</span>
+        </div>
+        <div class="mini-panel__actions">
+          <a href="cart.html" class="btn btn--outline" data-action="close-cart">مشاهده سبد</a>
+          <a href="cart.html" class="btn btn--primary" data-action="close-cart">تسویه حساب</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ─── MINI WISHLIST MODAL ─── -->
+  <div class="mini-panel mini-panel--wishlist" id="miniWishlist" aria-hidden="true" role="dialog" aria-modal="true"
+    aria-label="علاقه‌مندی‌ها">
+    <div class="mini-panel__overlay" data-action="close-wishlist"></div>
+    <div class="mini-panel__box">
+      <div class="mini-panel__header">
+        <div class="mini-panel__title-wrap">
+          <h2 class="mini-panel__title">علاقه‌مندی‌ها</h2>
+          <span class="mini-panel__count" id="miniWishlistCount">۰ محصول</span>
+        </div>
+        <button class="mini-panel__close" data-action="close-wishlist" aria-label="بستن">
+          <i class="fa-solid fa-xmark" aria-hidden="true"></i>
+        </button>
+      </div>
+      <div class="mini-panel__body" id="miniWishlistBody"></div>
+      <div class="mini-panel__footer">
+        <div class="mini-panel__actions">
+          <a href="shop.html" class="btn btn--outline btn--wide" data-action="close-wishlist">ادامه خرید</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ─── SUPPORT SHEET ─── -->
+  <div class="support-sheet" id="supportSheet" aria-hidden="true" role="dialog" aria-modal="true"
+    aria-label="ارتباط با پشتیبانی">
+    <div class="support-sheet__backdrop" id="supportBackdrop"></div>
+    <div class="support-sheet__panel">
+      <div class="support-sheet__handle" aria-hidden="true"></div>
+      <h2 class="support-sheet__title">ارتباط با پشتیبانی</h2>
+      <div class="support-sheet__actions">
+        <a href="tel:+989000000000" class="support-sheet__btn">
+          <span class="support-sheet__icon support-sheet__icon--phone">
+            <i class="fa-solid fa-phone" aria-hidden="true"></i>
+          </span>
+          <span class="support-sheet__label">تماس تلفنی</span>
+          <i class="fa-solid fa-chevron-left support-sheet__arrow" aria-hidden="true"></i>
+        </a>
+        <a href="https://wa.me/989000000000" class="support-sheet__btn" target="_blank" rel="noopener noreferrer">
+          <span class="support-sheet__icon support-sheet__icon--whatsapp">
+            <i class="fa-brands fa-whatsapp" aria-hidden="true"></i>
+          </span>
+          <span class="support-sheet__label">واتس‌اپ</span>
+          <i class="fa-solid fa-chevron-left support-sheet__arrow" aria-hidden="true"></i>
+        </a>
+        <a href="https://t.me/velastore" class="support-sheet__btn" target="_blank" rel="noopener noreferrer">
+          <span class="support-sheet__icon support-sheet__icon--telegram">
+            <i class="fa-brands fa-telegram" aria-hidden="true"></i>
+          </span>
+          <span class="support-sheet__label">تلگرام</span>
+          <i class="fa-solid fa-chevron-left support-sheet__arrow" aria-hidden="true"></i>
+        </a>
+        <a href="https://instagram.com/velastore" class="support-sheet__btn" target="_blank" rel="noopener noreferrer">
+          <span class="support-sheet__icon support-sheet__icon--instagram">
+            <i class="fa-brands fa-instagram" aria-hidden="true"></i>
+          </span>
+          <span class="support-sheet__label">اینستاگرام</span>
+          <i class="fa-solid fa-chevron-left support-sheet__arrow" aria-hidden="true"></i>
+        </a>
+      </div>
+      <button class="support-sheet__close" data-action="close-support" aria-label="بستن">انصراف</button>
+    </div>
+  </div>
+
+  <!-- ─── STICKY SCROLL TO TOP ─── -->
+  <div class="scroll-top-wrap" id="scrollTopBtn">
+    <svg class="scroll-top-svg" viewBox="0 0 52 52" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+      <circle class="scroll-top-svg__track" cx="26" cy="26" r="22"/>
+      <circle class="scroll-top-svg__bar" id="scrollProgressBar" cx="26" cy="26" r="22"/>
+    </svg>
+    <button class="scroll-top-btn" type="button" aria-label="برگشت به بالا">
+      <i class="fa-solid fa-chevron-up" aria-hidden="true"></i>
+    </button>
+  </div>
+
+  <script src="js/swiper-bundle.min.js"></script>
+  <script src="js/hero-slider.js?v=2"></script>
+  <script src="js/swipers.js"></script>
+  <script src="js/header.js?v=2"></script>
+  <script defer src="js/mega-menu.js"></script>
+  <script defer src="js/mobile-nav.js"></script>
+  <script src="js/ui.js"></script>
+  <script src="js/search.js"></script>
+  <script src="js/shop.js"></script>
+  <script src="js/product.js"></script>
+  <script src="js/cart.js"></script>
+  <script src="js/auth.js"></script>
+  <script src="js/app.js"></script>
+</body>
+
+</html>
