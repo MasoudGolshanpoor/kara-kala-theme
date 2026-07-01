@@ -46,7 +46,7 @@
 
 .cat-item__name {
   font-family: var(--font-persian);
-  font-size: 0.72rem;
+  font-size: var(--text-xs);
   font-weight: var(--fw-medium);
   text-align: center;
   line-height: 1.55;
@@ -126,7 +126,6 @@
   }
 
   .cat-item__name {
-    font-size: var(--text-xs);
     max-width: 90px;
   }
 }
@@ -146,7 +145,4 @@
     height: 68px;
   }
 
-  .cat-item__name {
-    font-size: 0.65rem;
-  }
 }

@@ -5,23 +5,6 @@
    ============================================================ */
 
 
-/* ─── UTILITIES ─── */
-.hidden { display: none !important; }
-
-
-/* ─── RESPONSIVE ─── */
-@media (max-width: 1200px) {
-}
-@media (max-width: 1024px) {
-}
-@media (max-width: 900px) {
-}
-@media (max-width: 768px) {
-}
-@media (max-width: 480px) {
-  
-}
-
 /* ─── TOAST NOTIFICATION ─── */
 .toast-container { position: fixed; bottom: var(--s-6); left: var(--s-6); z-index: var(--z-toast); display: flex; flex-direction: column; gap: var(--s-3); pointer-events: none; }
 .toast {
