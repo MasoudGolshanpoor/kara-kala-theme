@@ -293,7 +293,7 @@ li.product:focus-within .product-wishlist {
 	gap: var(--s-1);
 	width: max-content;
 	max-width: 80%;
-	background: var(--primary);
+	background: var(--bg-red);
 	color: var(--white);
 	font-size: var(--text-xs);
 	font-weight: var(--fw-semibold);
@@ -321,12 +321,12 @@ li.product:focus-within .product-wishlist {
 
 .product-cta::before {
 	right: calc(var(--s-2) * -1);
-	background: radial-gradient(var(--s-2) at 100% 0%, transparent 98%, var(--primary) 98%) 0 0 / 100% 100% no-repeat;
+	background: radial-gradient(var(--s-2) at 100% 0%, transparent 98%, var(--bg-red) 98%) 0 0 / 100% 100% no-repeat;
 }
 
 .product-cta::after {
 	left: calc(var(--s-2) * -1);
-	background: radial-gradient(var(--s-2) at 0% 0%, transparent 98%, var(--primary) 98%) 0 0 / 100% 100% no-repeat;
+	background: radial-gradient(var(--s-2) at 0% 0%, transparent 98%, var(--bg-red) 98%) 0 0 / 100% 100% no-repeat;
 }
 
 li.product:hover .product-cta,

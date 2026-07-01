@@ -122,7 +122,7 @@
     align-items: center;
     gap: var(--s-3);
     position: fixed;
-    bottom: calc(var(--s-3) + var(--bottom-nav-h));
+    bottom: calc(var(--s-4) + var(--bottom-nav-h));
     left: 0;
     right: 0;
     background: #fff;
@@ -130,7 +130,7 @@
     padding-bottom: calc(var(--s-3) + env(safe-area-inset-bottom));
     border-top: var(--border);
     box-shadow: 0 -2px 12px rgba(0,0,0,0.08);
-    z-index: 300;
+    z-index: var(--z-modal);
   }
   
 }
