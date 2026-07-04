@@ -1,5 +1,5 @@
 /* ============================================================
-   VELA — Page Sections
+   Kara — Page Sections
    Section Header · Hero · Stats Strip · Flash Sale ·
    Promo Banners · Brand Strip · Newsletter · Trust Bar · Footer
    ============================================================ */
@@ -297,6 +297,11 @@
   display: block;
   border-radius: var(--r-2xl);
 }
+@media (max-width: 768px) {
+    .promo-banners {
+        grid-template-columns: 1fr !important;
+    }
+  }
 
 .btn--white { background: white; color: var(--primary); font-weight: var(--fw-bold); }
 .btn--white:hover { background: var(--n-100); }

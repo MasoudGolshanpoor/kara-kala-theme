@@ -1,5 +1,5 @@
 /* ============================================================
-   VELA — Footer 
+   Kara — Footer 
    ============================================================ */
 
 /* ─── BASE — Boxed, centered, rounded top ─── */
@@ -289,7 +289,6 @@
 }
 
 /* About text */
-.ftr-about { }
 .ftr-about__title {
   font-size: var(--text-sm);
   font-weight: var(--fw-bold);
@@ -341,7 +340,6 @@
 .ftr-about.is-expanded .ftr-about__toggle i { transform: rotate(-90deg); }
 
 /* Trust certificates */
-.ftr-certs { }
 .ftr-certs__inner {
   display: grid;
   grid-template-columns: 1fr 1fr;

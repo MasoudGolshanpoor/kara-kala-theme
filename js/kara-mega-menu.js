@@ -1,5 +1,5 @@
 /* ============================================================
-   VELA — Mega Menu Module  (vela-mega-menu.js)
+   VELA — Mega Menu Module  (kara-mega-menu.js)
    مستقل · بدون coordinator
    شامل: Open/close · Tab switching (debounced) · Body backdrop
    ============================================================
@@ -12,12 +12,12 @@
 (function () {
   'use strict';
 
-  var Vela = (window.Vela = window.Vela || {});
+  var Kara = (window.Kara = window.Kara || {});
 
   /* index دسته‌بندی فعال — برای debounce روی hover */
   var activeCatIndex = 0;
 
-  function velaInitMegaMenu() {
+  function karaInitMegaMenu() {
     var trigger  = document.getElementById('categoriesMenu');
     var panel    = document.getElementById('megaMenu');
     var backdrop = document.getElementById('megaBackdrop');
@@ -97,8 +97,8 @@
   /* ══════════════════════════════════════════════════════════
      EXPOSE  +  compat aliases
   ═══════════════════════════════════════════════════════════ */
-  Vela.initMegaMenu = Vela.initMegaMenu || velaInitMegaMenu;
-  if (!window.initMegaMenu) window.initMegaMenu = velaInitMegaMenu;
+  Kara.initMegaMenu = Kara.initMegaMenu || karaInitMegaMenu;
+  if (!window.initMegaMenu) window.initMegaMenu = karaInitMegaMenu;
 
-  document.addEventListener('DOMContentLoaded', velaInitMegaMenu);
+  document.addEventListener('DOMContentLoaded', karaInitMegaMenu);
 })();

@@ -1,11 +1,11 @@
 /* ============================================================
-   VELA — Hero Slider Module  (vela-hero-slider.js)
+   VELA — Hero Slider Module  (kara-hero-slider.js)
    مستقل · بدون coordinator
    شامل: Hero banner slider · Category swiper
    ============================================================
    وابستگی‌ها:
      - کتابخانه‌ی Swiper باید قبل از این فایل لود شود (swiper-bundle).
-     - هیچ وابستگی به ماژول Vela ندارد.
+     - هیچ وابستگی به ماژول Kara ندارد.
    ────────────────────────────────────────────────────────────
    ⚠️  نکته‌ی WordPress:
      - slides ها در وردپرس از یک WP_Query (مثلاً اسلایدر اصلی یا
@@ -16,9 +16,9 @@
 (function () {
   'use strict';
 
-  var Vela = (window.Vela = window.Vela || {});
+  var Kara = (window.Kara = window.Kara || {});
 
-  function velaInitHeroSlider() {
+  function karaInitHeroSlider() {
     if (typeof Swiper === 'undefined') return;
 
     /* ── Hero banner slider ──
@@ -66,7 +66,7 @@
   /* ══════════════════════════════════════════════════════════
      EXPOSE
   ═══════════════════════════════════════════════════════════ */
-  Vela.initHeroSlider = Vela.initHeroSlider || velaInitHeroSlider;
+  Kara.initHeroSlider = Kara.initHeroSlider || karaInitHeroSlider;
 
-  document.addEventListener('DOMContentLoaded', velaInitHeroSlider);
+  document.addEventListener('DOMContentLoaded', karaInitHeroSlider);
 })();

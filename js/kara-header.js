@@ -1,38 +1,38 @@
 /* ============================================================
-   VELA — Header Module  (vela-header.js)
+   VELA — Header Module  (kara-header.js)
    مستقل · بدون coordinator
    شامل: Sticky offset · Scroll behavior · Nav underline
           · Nav auto-hide · Header actions (data-action delegate)
    ============================================================
    وابستگی‌ها (همه از طریق namespace و با fallback):
-     - Vela.showToast       (از vela-ui.js) — اختیاری، فقط برای اخطار
-     - Vela.openSearchModal (از vela-search.js) — هنگام کلیک روی سرچ
-     - Vela.openAuthModal / openCartModal / openWishlistModal /
+     - Kara.showToast       (از kara-ui.js) — اختیاری، فقط برای اخطار
+     - Kara.openSearchModal (از kara-search.js) — هنگام کلیک روی سرچ
+     - Kara.openAuthModal / openCartModal / openWishlistModal /
        openSupportSheet / closeSupportSheet (ماژول‌های مربوطه) — همگی
        با typeof check فراخوانی می‌شوند تا نبود ماژول خطا ندهد.
    ============================================================ */
 (function () {
   'use strict';
 
-  var Vela = (window.Vela = window.Vela || {});
+  var Kara = (window.Kara = window.Kara || {});
 
   /* ══════════════════════════════════════════════════════════
      INIT HEADER  —  نقطه‌ی ورود اصلی
   ═══════════════════════════════════════════════════════════ */
-  function velaInitHeader() {
+  function karaInitHeader() {
     var header = document.getElementById('siteHeader');
     if (!header) return;
 
-    velaInitStickyOffset(header);
-    velaInitScrollBehavior(header);
-    velaInitNavSearchTrigger();
-    velaInitNavUnderline();
-    velaInitHeaderActions();
-    velaInitNavAutoHide(header);
+    karaInitStickyOffset(header);
+    karaInitScrollBehavior(header);
+    karaInitNavSearchTrigger();
+    karaInitNavUnderline();
+    karaInitHeaderActions();
+    karaInitNavAutoHide(header);
   }
 
   /* ── Sticky offset: header را به اندازه announce-bar بالا می‌برد ── */
-  function velaInitStickyOffset(header) {
+  function karaInitStickyOffset(header) {
     var announceBar = document.getElementById('announceBar');
     if (!announceBar) return;
 
@@ -50,7 +50,7 @@
   }
 
   /* ── کلاس scrolled را هنگام عبور از announce-bar اضافه می‌کند ── */
-  function velaInitScrollBehavior(header) {
+  function karaInitScrollBehavior(header) {
     var ticking = false;
     window.addEventListener('scroll', function () {
       if (ticking) return;
@@ -65,17 +65,17 @@
   }
 
   /* ─ـ باز کردن مودال سرچ با کلیک روی input یا دکمه‌ی سرچ ── */
-  function velaInitNavSearchTrigger() {
+  function karaInitNavSearchTrigger() {
     document.querySelectorAll('.nav-search__input, .nav-search__btn').forEach(function (el) {
       el.addEventListener('click', function (e) {
         e.preventDefault();
-        if (typeof Vela.openSearchModal === 'function') Vela.openSearchModal();
+        if (typeof Kara.openSearchModal === 'function') Kara.openSearchModal();
       });
     });
   }
 
   /* ── انیمیشن underline زیر لینک‌های nav ── */
-  function velaInitNavUnderline() {
+  function karaInitNavUnderline() {
     var nav = document.querySelector('.dnav');
     if (!nav) return;
     var list = nav.querySelector('.dnav__list');
@@ -123,7 +123,7 @@
      نکته: هر data-action ای که مربوط به ماژول دیگری باشد با typeof
      check فراخوانی می‌شود تا نبود آن ماژول باعث خطا نشود.
   ═══════════════════════════════════════════════════════════ */
-  function velaInitHeaderActions() {
+  function karaInitHeaderActions() {
     document.addEventListener('click', function (e) {
       var el = e.target.closest('[data-action]');
       if (!el) return;
@@ -135,19 +135,19 @@
           break;
         }
         case 'open-auth-modal':
-          if (typeof Vela.openAuthModal === 'function') Vela.openAuthModal(el.dataset.tab || 'login');
+          if (typeof Kara.openAuthModal === 'function') Kara.openAuthModal(el.dataset.tab || 'login');
           break;
         case 'open-cart':
-          if (typeof Vela.openCartModal === 'function') Vela.openCartModal();
+          if (typeof Kara.openCartModal === 'function') Kara.openCartModal();
           break;
         case 'open-wishlist':
-          if (typeof Vela.openWishlistModal === 'function') Vela.openWishlistModal();
+          if (typeof Kara.openWishlistModal === 'function') Kara.openWishlistModal();
           break;
         case 'open-support':
-          if (typeof Vela.openSupportSheet === 'function') Vela.openSupportSheet();
+          if (typeof Kara.openSupportSheet === 'function') Kara.openSupportSheet();
           break;
         case 'close-support':
-          if (typeof Vela.closeSupportSheet === 'function') Vela.closeSupportSheet();
+          if (typeof Kara.closeSupportSheet === 'function') Kara.closeSupportSheet();
           break;
         case 'toggle-footer-col': {
           var col = el.closest('.ftr-col');
@@ -178,7 +178,7 @@
      با transform + margin-bottom ناوبری را جمع می‌کند تا جهش ناگهانی
      layout نباشد، و بعد از هر toggle به مدت 400ms قفل می‌شود تا
      جابجایی محتوا مجدداً handler را فعال نکند. */
-  function velaInitNavAutoHide(header) {
+  function karaInitNavAutoHide(header) {
     var prevY     = window.scrollY;
     var hidden    = false;
     var locked    = false;
@@ -237,9 +237,9 @@
   /* ══════════════════════════════════════════════════════════
      EXPOSE  +  compat aliases
   ═══════════════════════════════════════════════════════════ */
-  Vela.initHeader = Vela.initHeader || velaInitHeader;
+  Kara.initHeader = Kara.initHeader || karaInitHeader;
   /* کد قدیمی initHeader را global صدا می‌زد */
-  if (!window.initHeader) window.initHeader = velaInitHeader;
+  if (!window.initHeader) window.initHeader = karaInitHeader;
 
-  document.addEventListener('DOMContentLoaded', velaInitHeader);
+  document.addEventListener('DOMContentLoaded', karaInitHeader);
 })();

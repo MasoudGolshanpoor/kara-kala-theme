@@ -1,11 +1,11 @@
 /* ============================================================
-   VELA — Shop Module  (vela-shop.js)
+   VELA — Shop Module  (kara-shop.js)
    مستقل · بدون coordinator
    شامل: Filter sidebar (mobile) · Sort dropdown · Filter chips
           · Cat-tree accordion · Price range · Shop about toggle
    ============================================================
    وابستگی‌ها (همه از طریق namespace با fallback):
-     - Vela.showToast  (از vela-ui.js) — اختیاری، فقط پیام
+     - Kara.showToast  (از kara-ui.js) — اختیاری، فقط پیام
    ────────────────────────────────────────────────────────────
    ⚠️  بخش‌های WordPress / WooCommerce:
      - فیلترها فعلاً فقط روی DOM عمل می‌کنند (افکت بصری). در وردپرس
@@ -13,22 +13,22 @@
          · دسته‌بندی/برند/سایز → WP_Query tax_query
          · محدوده قیمت → meta_query روی '_price'
          · مرتب‌سازی → 'orderby' / 'order'  (price, date, popularity)
-       راه ساده: ارسال پارامترها به admin-ajax.php?action=vela_shop_filter
+       راه ساده: ارسال پارامترها به admin-ajax.php?action=kara_shop_filter
        و رندر مجدد حلقه‌ی محصولات (مثلاً در #shopResults).
    ============================================================ */
 (function () {
   'use strict';
 
-  var Vela = (window.Vela = window.Vela || {});
-  /* اگر vela-ui.js لود نشد، showToast خالی بساز تا خطا ندهد */
+  var Kara = (window.Kara = window.Kara || {});
+  /* اگر kara-ui.js لود نشد، showToast خالی بساز تا خطا ندهد */
   var toast = function (msg, type) {
-    if (typeof Vela.showToast === 'function') Vela.showToast(msg, type);
+    if (typeof Kara.showToast === 'function') Kara.showToast(msg, type);
   };
 
   /* ══════════════════════════════════════════════════════════
      SHOP FILTER SIDEBAR  (موبایل)
   ═══════════════════════════════════════════════════════════ */
-  function velaOpenMobileFilters() {
+  function karaOpenMobileFilters() {
     var sb = document.getElementById('filtersSidebar');
     var ov = document.getElementById('filtersSidebarOverlay');
     if (sb) sb.classList.add('is-open');
@@ -36,7 +36,7 @@
     document.body.style.overflow = 'hidden';
   }
 
-  function velaCloseMobileFilters() {
+  function karaCloseMobileFilters() {
     var sb = document.getElementById('filtersSidebar');
     var ov = document.getElementById('filtersSidebarOverlay');
     if (sb) sb.classList.remove('is-open');
@@ -44,12 +44,12 @@
     document.body.style.overflow = '';
   }
 
-  function velaToggleFilterGroup(titleEl) {
+  function karaToggleFilterGroup(titleEl) {
     var group = titleEl.closest('.filter-group');
     if (group) group.classList.toggle('collapsed');
   }
 
-  function velaRemoveFilter(chip) {
+  function karaRemoveFilter(chip) {
     chip.style.transition = 'all 200ms ease';
     chip.style.transform = 'scale(0)';
     chip.style.opacity = '0';
@@ -57,7 +57,7 @@
     toast('فیلتر حذف شد', 'info');
   }
 
-  function velaClearFilters() {
+  function karaClearFilters() {
     document.querySelectorAll('#activeFilters .filter-chip').forEach(function (c) {
       c.style.transition = 'all 200ms ease';
       c.style.transform = 'scale(0)';
@@ -70,7 +70,7 @@
   /* ══════════════════════════════════════════════════════════
      SORT DROPDOWN
   ═══════════════════════════════════════════════════════════ */
-  function velaToggleSortDropdown() {
+  function karaToggleSortDropdown() {
     var dd = document.getElementById('sortDropdown');
     if (!dd) return;
     var isOpen = dd.classList.toggle('is-open');
@@ -78,7 +78,7 @@
     if (btn) btn.setAttribute('aria-expanded', String(isOpen));
   }
 
-  function velaCloseSortDropdown() {
+  function karaCloseSortDropdown() {
     var dd = document.getElementById('sortDropdown');
     if (!dd || !dd.classList.contains('is-open')) return;
     dd.classList.remove('is-open');
@@ -86,7 +86,7 @@
     if (btn) btn.setAttribute('aria-expanded', 'false');
   }
 
-  function velaSetSortOption(el) {
+  function karaSetSortOption(el) {
     var val = el.dataset.value;
     if (!val) return;
     var valEl = document.getElementById('sortVal');
@@ -96,17 +96,17 @@
       i.classList.toggle('is-active', active);
       i.setAttribute('aria-selected', String(active));
     });
-    velaCloseSortDropdown();
+    karaCloseSortDropdown();
     toast('مرتب‌سازی: ' + val, 'info');
 
     /* ── WP: مقدار انتخاب‌شده را برای query ذخیره کنید ──
-       مثال: Vela.shopState.sort = val;  velaApplyShopQuery(); */
+       مثال: Kara.shopState.sort = val;  karaApplyShopQuery(); */
   }
 
   /* ══════════════════════════════════════════════════════════
      CATEGORY TREE ACCORDION
   ═══════════════════════════════════════════════════════════ */
-  function velaToggleCatTree(btn) {
+  function karaToggleCatTree(btn) {
     var parent = btn.closest('.cat-tree__parent');
     if (!parent) return;
     var isOpen = parent.classList.toggle('is-open');
@@ -114,7 +114,7 @@
     parent.setAttribute('aria-expanded', String(isOpen));
   }
 
-  function velaToggleShopAbout() {
+  function karaToggleShopAbout() {
     var el = document.getElementById('shopAbout');
     if (!el) return;
     var isOpen = el.classList.toggle('is-open');
@@ -130,7 +130,7 @@
      PRICE RANGE  —  دو اسلایدر + دو باکس ورودی فارسی
      تبدیل ارقام فارسی/عربی ↔ انگلیسی و سینک دو طرفه.
   ═══════════════════════════════════════════════════════════ */
-  function velaInitPriceRange() {
+  function karaInitPriceRange() {
     var minInput = document.getElementById('priceMinInput');
     var maxInput = document.getElementById('priceMaxInput');
     var fill     = document.getElementById('priceRangeFill');
@@ -211,59 +211,59 @@
   /* ══════════════════════════════════════════════════════════
      SHOP INIT  —  راه‌اندازی کلیک‌های data-action مخصوص shop
   ═══════════════════════════════════════════════════════════ */
-  function velaInitShop() {
+  function karaInitShop() {
     /* کلیک‌های data-action مربوط به shop را delegate کن */
     document.addEventListener('click', function (e) {
       /* بستن sort dropdown هنگام کلیک بیرون از آن */
-      if (!e.target.closest('#sortDropdown')) velaCloseSortDropdown();
+      if (!e.target.closest('#sortDropdown')) karaCloseSortDropdown();
 
       var el = e.target.closest('[data-action]');
       if (!el) return;
       var action = el.dataset.action;
 
-      if (action === 'open-mobile-filters')  { velaOpenMobileFilters(); }
-      if (action === 'close-mobile-filters') { velaCloseMobileFilters(); }
-      if (action === 'remove-filter')        { velaRemoveFilter(el); }
-      if (action === 'clear-filters')        { velaClearFilters(); }
-      if (action === 'toggle-filter-group')  { velaToggleFilterGroup(el); }
-      if (action === 'toggle-sort-dropdown') { velaToggleSortDropdown(); e.stopPropagation(); }
-      if (action === 'set-sort-option')      { velaSetSortOption(el); }
-      if (action === 'toggle-cat-tree')      { velaToggleCatTree(el); }
-      if (action === 'toggle-shop-about')    { velaToggleShopAbout(); }
+      if (action === 'open-mobile-filters')  { karaOpenMobileFilters(); }
+      if (action === 'close-mobile-filters') { karaCloseMobileFilters(); }
+      if (action === 'remove-filter')        { karaRemoveFilter(el); }
+      if (action === 'clear-filters')        { karaClearFilters(); }
+      if (action === 'toggle-filter-group')  { karaToggleFilterGroup(el); }
+      if (action === 'toggle-sort-dropdown') { karaToggleSortDropdown(); e.stopPropagation(); }
+      if (action === 'set-sort-option')      { karaSetSortOption(el); }
+      if (action === 'toggle-cat-tree')      { karaToggleCatTree(el); }
+      if (action === 'toggle-shop-about')    { karaToggleShopAbout(); }
     });
 
-    velaInitPriceRange();
+    karaInitPriceRange();
   }
 
   /* ══════════════════════════════════════════════════════════
      EXPOSE  +  compat aliases
   ═══════════════════════════════════════════════════════════ */
-  Vela.openMobileFilters   = Vela.openMobileFilters   || velaOpenMobileFilters;
-  Vela.closeMobileFilters  = Vela.closeMobileFilters  || velaCloseMobileFilters;
-  Vela.toggleFilterGroup   = Vela.toggleFilterGroup   || velaToggleFilterGroup;
-  Vela.removeFilter        = Vela.removeFilter        || velaRemoveFilter;
-  Vela.clearFilters        = Vela.clearFilters        || velaClearFilters;
-  Vela.toggleSortDropdown  = Vela.toggleSortDropdown  || velaToggleSortDropdown;
-  Vela.closeSortDropdown   = Vela.closeSortDropdown   || velaCloseSortDropdown;
-  Vela.setSortOption       = Vela.setSortOption       || velaSetSortOption;
-  Vela.toggleCatTree       = Vela.toggleCatTree       || velaToggleCatTree;
-  Vela.toggleShopAbout     = Vela.toggleShopAbout     || velaToggleShopAbout;
-  Vela.initPriceRange      = Vela.initPriceRange      || velaInitPriceRange;
-  Vela.initShop            = Vela.initShop            || velaInitShop;
+  Kara.openMobileFilters   = Kara.openMobileFilters   || karaOpenMobileFilters;
+  Kara.closeMobileFilters  = Kara.closeMobileFilters  || karaCloseMobileFilters;
+  Kara.toggleFilterGroup   = Kara.toggleFilterGroup   || karaToggleFilterGroup;
+  Kara.removeFilter        = Kara.removeFilter        || karaRemoveFilter;
+  Kara.clearFilters        = Kara.clearFilters        || karaClearFilters;
+  Kara.toggleSortDropdown  = Kara.toggleSortDropdown  || karaToggleSortDropdown;
+  Kara.closeSortDropdown   = Kara.closeSortDropdown   || karaCloseSortDropdown;
+  Kara.setSortOption       = Kara.setSortOption       || karaSetSortOption;
+  Kara.toggleCatTree       = Kara.toggleCatTree       || karaToggleCatTree;
+  Kara.toggleShopAbout     = Kara.toggleShopAbout     || karaToggleShopAbout;
+  Kara.initPriceRange      = Kara.initPriceRange      || karaInitPriceRange;
+  Kara.initShop            = Kara.initShop            || karaInitShop;
 
   /* compat با کد قدیمی (global‌های نام‌دار) */
-  if (!window.openMobileFilters)   window.openMobileFilters   = velaOpenMobileFilters;
-  if (!window.closeMobileFilters)  window.closeMobileFilters  = velaCloseMobileFilters;
-  if (!window.closeFilterSheet)    window.closeFilterSheet    = velaCloseMobileFilters;
-  if (!window.toggleFilterGroup)   window.toggleFilterGroup   = velaToggleFilterGroup;
-  if (!window.removeFilter)        window.removeFilter        = velaRemoveFilter;
-  if (!window.clearFilters)        window.clearFilters        = velaClearFilters;
-  if (!window.toggleSortDropdown)  window.toggleSortDropdown  = velaToggleSortDropdown;
-  if (!window.closeSortDropdown)   window.closeSortDropdown   = velaCloseSortDropdown;
-  if (!window.setSortOption)       window.setSortOption       = velaSetSortOption;
-  if (!window.toggleCatTree)       window.toggleCatTree       = velaToggleCatTree;
-  if (!window.toggleShopAbout)     window.toggleShopAbout     = velaToggleShopAbout;
-  if (!window.initPriceRange)      window.initPriceRange      = velaInitPriceRange;
+  if (!window.openMobileFilters)   window.openMobileFilters   = karaOpenMobileFilters;
+  if (!window.closeMobileFilters)  window.closeMobileFilters  = karaCloseMobileFilters;
+  if (!window.closeFilterSheet)    window.closeFilterSheet    = karaCloseMobileFilters;
+  if (!window.toggleFilterGroup)   window.toggleFilterGroup   = karaToggleFilterGroup;
+  if (!window.removeFilter)        window.removeFilter        = karaRemoveFilter;
+  if (!window.clearFilters)        window.clearFilters        = karaClearFilters;
+  if (!window.toggleSortDropdown)  window.toggleSortDropdown  = karaToggleSortDropdown;
+  if (!window.closeSortDropdown)   window.closeSortDropdown   = karaCloseSortDropdown;
+  if (!window.setSortOption)       window.setSortOption       = karaSetSortOption;
+  if (!window.toggleCatTree)       window.toggleCatTree       = karaToggleCatTree;
+  if (!window.toggleShopAbout)     window.toggleShopAbout     = karaToggleShopAbout;
+  if (!window.initPriceRange)      window.initPriceRange      = karaInitPriceRange;
 
-  document.addEventListener('DOMContentLoaded', velaInitShop);
+  document.addEventListener('DOMContentLoaded', karaInitShop);
 })();

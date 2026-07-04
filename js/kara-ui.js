@@ -1,29 +1,29 @@
 /* ============================================================
-   VELA — UI Core Module  (vela-ui.js)
+   VELA — UI Core Module  (kara-ui.js)
    مستقل · بدون coordinator
    شامل: Shared State · Panel Manager · Toast · Countdown
           · Page Transitions · Scroll-top · Global Animations
    ============================================================
    این فایل هسته‌ی رابط کاربری است. سایر ماژول‌ها از طریق
-   window.Vela به state و showToast دسترسی دارند. هر فایل به‌صورت
-   defensive با namespace کار می‌کند (Vela = Vela || {}) پس اگر این
+   window.Kara به state و showToast دسترسی دارند. هر فایل به‌صورت
+   defensive با namespace کار می‌کند (Kara = Kara || {}) پس اگر این
    فایل لود نشد، بقیه ماژول‌ها خطا نمی‌دهند — فقط feature مربوطه غیرفعال می‌ماند.
    ============================================================ */
 (function () {
   'use strict';
 
   /* ─── NAMESPACE (defensive — همه فایل‌ها همین را می‌نویسند) ─── */
-  /** @type {Window.Vela} */
-  var Vela = (window.Vela = window.Vela || {});
+  /** @type {Window.Kara} */
+  var Kara = (window.Kara = window.Kara || {});
 
   /* ══════════════════════════════════════════════════════════
      SHARED STATE  —  اولین ماژولی که اجرا شود این را می‌سازد
-     بقیه فایل‌ها با `Vela.state = Vela.state || {...}` فقط در صورت
+     بقیه فایل‌ها با `Kara.state = Kara.state || {...}` فقط در صورت
      نبودن آن را می‌سازند.
   ═══════════════════════════════════════════════════════════ */
-  Vela.state = Vela.state || {
-    cartCount:     parseInt(localStorage.getItem('vela_cart')     || '3', 10),
-    wishlistCount: parseInt(localStorage.getItem('vela_wishlist') || '0', 10),
+  Kara.state = Kara.state || {
+    cartCount:     parseInt(localStorage.getItem('kara_cart')     || '3', 10),
+    wishlistCount: parseInt(localStorage.getItem('kara_wishlist') || '0', 10),
     qty: 1,
     activePanel: null,   /* 'cat' | 'search' | 'filter' | 'support' | null */
   };
@@ -33,22 +33,22 @@
      در وردپرس این منطق برای هماهنگی modal ها (search / cart /
      filter موبایل / support) استفاده می‌شود.
   ═══════════════════════════════════════════════════════════ */
-  function velaOpenPanel(name) {
-    if (Vela.state.activePanel && Vela.state.activePanel !== name) {
-      velaClosePanel(Vela.state.activePanel);
+  function karaOpenPanel(name) {
+    if (Kara.state.activePanel && Kara.state.activePanel !== name) {
+      karaClosePanel(Kara.state.activePanel);
     }
-    Vela.state.activePanel = name;
-    velaSetFabOpen(true);
+    Kara.state.activePanel = name;
+    karaSetFabOpen(true);
   }
 
-  function velaClosePanel(name) {
-    if (Vela.state.activePanel === name || !name) {
-      Vela.state.activePanel = null;
-      velaSetFabOpen(false);
+  function karaClosePanel(name) {
+    if (Kara.state.activePanel === name || !name) {
+      Kara.state.activePanel = null;
+      karaSetFabOpen(false);
     }
   }
 
-  function velaSetFabOpen(isOpen) {
+  function karaSetFabOpen(isOpen) {
     var fab = document.getElementById('bottomFab');
     if (fab) fab.classList.toggle('is-open', isOpen);
   }
@@ -56,9 +56,9 @@
   /* ══════════════════════════════════════════════════════════
      TOAST  —  پیام‌های موقت (موفقیت/خطا/اطلاع)
      روی namespace به‌عنوان رابط مشترک expose می‌شود تا سایر
-     ماژول‌ها به جای global مستقیم، از Vela.showToast استفاده کنند.
+     ماژول‌ها به جای global مستقیم، از Kara.showToast استفاده کنند.
   ═══════════════════════════════════════════════════════════ */
-  function velaShowToast(message, type) {
+  function karaShowToast(message, type) {
     type = type || 'success';
     var container = document.getElementById('toastContainer');
     if (!container) return;
@@ -82,7 +82,7 @@
   /* ══════════════════════════════════════════════════════════
      FLASH SALE COUNTDOWN
   ═══════════════════════════════════════════════════════════ */
-  function velaInitCountdown() {
+  function karaInitCountdown() {
     var hEl = document.getElementById('cd-h');
     var mEl = document.getElementById('cd-m');
     var sEl = document.getElementById('cd-s');
@@ -112,7 +112,7 @@
      می‌شود. توجه: بعد از AJAX load محصول جدید، observer فقط برای
      عناصر اولیه فعال است — برای آیتم‌های lazy باید دوباره صدا زده شود.
   ═══════════════════════════════════════════════════════════ */
-  function velaInitPageTransitions() {
+  function karaInitPageTransitions() {
     var cards = document.querySelectorAll('.product-card, .category-card, .blog-card');
     var io = new IntersectionObserver(function (entries) {
       entries.forEach(function (e, i) {
@@ -148,7 +148,7 @@
   /* ══════════════════════════════════════════════════════════
      STICKY SCROLL-TO-TOP BUTTON WITH PROGRESS RING
   ═══════════════════════════════════════════════════════════ */
-  function velaInitScrollTopBtn() {
+  function karaInitScrollTopBtn() {
     var btn = document.getElementById('scrollTopBtn');
     var bar = document.getElementById('scrollProgressBar');
     if (!btn || !bar) return;
@@ -180,7 +180,7 @@
      در وردپرس ترجیحاً این keyframe‌ها را به style.css منتقل کنید؛
      اینجا فقط برای حفظ رفتار تزریق می‌شوند.
   ═══════════════════════════════════════════════════════════ */
-  function velaInjectGlobalAnimations() {
+  function karaInjectGlobalAnimations() {
     var s = document.createElement('style');
     s.textContent =
       '@keyframes fadeIn  { from{opacity:0;transform:translateY(8px)} to{opacity:1;transform:none} }' +
@@ -194,26 +194,26 @@
   /* ══════════════════════════════════════════════════════════
      EXPOSE  —  رابط عمومی روی namespace و aliases برای HTML
   ═══════════════════════════════════════════════════════════ */
-  Vela.openPanel  = Vela.openPanel  || velaOpenPanel;
-  Vela.closePanel = Vela.closePanel || velaClosePanel;
-  Vela.showToast  = Vela.showToast  || velaShowToast;
-  Vela.initCountdown        = Vela.initCountdown        || velaInitCountdown;
-  Vela.initPageTransitions  = Vela.initPageTransitions  || velaInitPageTransitions;
-  Vela.initScrollTopBtn     = Vela.initScrollTopBtn     || velaInitScrollTopBtn;
-  Vela.injectGlobalAnimations = Vela.injectGlobalAnimations || velaInjectGlobalAnimations;
+  Kara.openPanel  = Kara.openPanel  || karaOpenPanel;
+  Kara.closePanel = Kara.closePanel || karaClosePanel;
+  Kara.showToast  = Kara.showToast  || karaShowToast;
+  Kara.initCountdown        = Kara.initCountdown        || karaInitCountdown;
+  Kara.initPageTransitions  = Kara.initPageTransitions  || karaInitPageTransitions;
+  Kara.initScrollTopBtn     = Kara.initScrollTopBtn     || karaInitScrollTopBtn;
+  Kara.injectGlobalAnimations = Kara.injectGlobalAnimations || karaInjectGlobalAnimations;
 
   /* compat با کد قدیمی که showToast/openPanel را global صدا می‌زند */
-  if (!window.showToast)  window.showToast  = velaShowToast;
-  if (!window.openPanel)  window.openPanel  = velaOpenPanel;
-  if (!window.closePanel) window.closePanel = velaClosePanel;
+  if (!window.showToast)  window.showToast  = karaShowToast;
+  if (!window.openPanel)  window.openPanel  = karaOpenPanel;
+  if (!window.closePanel) window.closePanel = karaClosePanel;
 
   /* ══════════════════════════════════════════════════════════
      INIT  —  هر فایل DOMContentLoaded مخصوص خودش را دارد
   ═══════════════════════════════════════════════════════════ */
   document.addEventListener('DOMContentLoaded', function () {
-    velaInjectGlobalAnimations();
-    velaInitCountdown();
-    velaInitPageTransitions();
-    velaInitScrollTopBtn();
+    karaInjectGlobalAnimations();
+    karaInitCountdown();
+    karaInitPageTransitions();
+    karaInitScrollTopBtn();
   });
 })();

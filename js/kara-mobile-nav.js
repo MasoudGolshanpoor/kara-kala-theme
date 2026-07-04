@@ -1,31 +1,31 @@
 /* ============================================================
-   VELA — Mobile Nav Module  (vela-mobile-nav.js)
+   VELA — Mobile Nav Module  (kara-mobile-nav.js)
    مستقل · بدون coordinator
    شامل: Mobile drawer · Drawer tabs · Bottom nav · FAB
           · Support sheet · Category accordion
    ============================================================
    وابستگی‌ها (همه از طریق namespace با fallback):
-     - Vela.state / Vela.openPanel / Vela.closePanel  (vela-ui.js)
-     - Vela.openSearchModal / velaCloseSearchModal    (vela-search.js) — typeof-checked
+     - Kara.state / Kara.openPanel / Kara.closePanel  (kara-ui.js)
+     - Kara.openSearchModal / karaCloseSearchModal    (kara-search.js) — typeof-checked
    ============================================================ */
 (function () {
   'use strict';
 
-  var Vela = (window.Vela = window.Vela || {});
-  /* در صورت نبود vela-ui.js، یک state خالی بساز تا این ماژول کار کند */
-  Vela.state = Vela.state || { activePanel: null };
+  var Kara = (window.Kara = window.Kara || {});
+  /* در صورت نبود kara-ui.js، یک state خالی بساز تا این ماژول کار کند */
+  Kara.state = Kara.state || { activePanel: null };
 
   /* ══════════════════════════════════════════════════════════
      MOBILE DRAWER
   ═══════════════════════════════════════════════════════════ */
-  function velaInitMobileDrawer() {
+  function karaInitMobileDrawer() {
     var hamburger = document.getElementById('navHamburger');
-    if (hamburger) hamburger.addEventListener('click', velaOpenMobileDrawer);
-    velaInitDrawerTabs();
-    velaInitDrawerActions();
+    if (hamburger) hamburger.addEventListener('click', karaOpenMobileDrawer);
+    karaInitDrawerTabs();
+    karaInitDrawerActions();
   }
 
-  function velaInitDrawerTabs() {
+  function karaInitDrawerTabs() {
     document.querySelectorAll('.drawer-tab').forEach(function (tab) {
       tab.addEventListener('click', function () {
         var target = tab.dataset.tab;
@@ -42,29 +42,29 @@
     });
   }
 
-  function velaInitDrawerActions() {
+  function karaInitDrawerActions() {
     document.addEventListener('click', function (e) {
       var el = e.target.closest('[data-action]');
       if (!el) return;
       switch (el.dataset.action) {
         case 'close-mobile-drawer':
-          velaCloseMobileDrawer();
+          karaCloseMobileDrawer();
           break;
         case 'open-search':
-          velaCloseMobileDrawer();
-          if (typeof Vela.openSearchModal === 'function') Vela.openSearchModal();
+          karaCloseMobileDrawer();
+          if (typeof Kara.openSearchModal === 'function') Kara.openSearchModal();
           break;
         case 'switch-drawer-cat-tab':
-          velaSwitchDrawerCatTab(Number(el.dataset.dcat));
+          karaSwitchDrawerCatTab(Number(el.dataset.dcat));
           break;
         case 'toggle-drawer-subcat':
-          velaToggleDrawerSubCat(Number(el.dataset.parent), Number(el.dataset.child));
+          karaToggleDrawerSubCat(Number(el.dataset.parent), Number(el.dataset.child));
           break;
       }
     });
   }
 
-  function velaToggleDrawerCat(index) {
+  function karaToggleDrawerCat(index) {
     var items = document.querySelectorAll('.drawer-cat-item');
     var target = items[index];
     if (!target) return;
@@ -73,7 +73,7 @@
     if (!wasOpen) target.classList.add('is-open');
   }
 
-  function velaToggleDrawerSubCat(catIndex, childIndex) {
+  function karaToggleDrawerSubCat(catIndex, childIndex) {
     var items = document.querySelectorAll('.drawer-subcat-item[data-parent="' + catIndex + '"]');
     var target = Array.from(items).find(function (el) { return el.dataset.child === String(childIndex); });
     if (!target) return;
@@ -82,14 +82,14 @@
     if (!wasOpen) target.classList.add('is-open');
   }
 
-  function velaOpenMobileDrawer() {
+  function karaOpenMobileDrawer() {
     var d = document.getElementById('mobileDrawer');    if (d) d.classList.add('open');
     var o = document.getElementById('drawerOverlay');   if (o) o.classList.add('open');
     var h = document.getElementById('navHamburger');    if (h) h.classList.add('open');
     document.body.style.overflow = 'hidden';
   }
 
-  function velaCloseMobileDrawer() {
+  function karaCloseMobileDrawer() {
     var d = document.getElementById('mobileDrawer');    if (d) d.classList.remove('open');
     var o = document.getElementById('drawerOverlay');   if (o) o.classList.remove('open');
     var h = document.getElementById('navHamburger');    if (h) h.classList.remove('open');
@@ -99,17 +99,17 @@
   /* ══════════════════════════════════════════════════════════
      SUPPORT SHEET  (پنل پایین پشتیبانی)
   ═══════════════════════════════════════════════════════════ */
-  function velaOpenSupportSheet() {
+  function karaOpenSupportSheet() {
     var sheet = document.getElementById('supportSheet');
     if (!sheet) return;
     sheet.classList.remove('closing');
     sheet.classList.add('open');
     sheet.removeAttribute('aria-hidden');
     document.body.style.overflow = 'hidden';
-    if (typeof Vela.openPanel === 'function') Vela.openPanel('support');
+    if (typeof Kara.openPanel === 'function') Kara.openPanel('support');
   }
 
-  function velaCloseSupportSheet() {
+  function karaCloseSupportSheet() {
     var sheet = document.getElementById('supportSheet');
     if (!sheet) return;
     sheet.classList.add('closing');
@@ -117,33 +117,33 @@
       sheet.classList.remove('open', 'closing');
       sheet.setAttribute('aria-hidden', 'true');
       document.body.style.overflow = '';
-      if (typeof Vela.closePanel === 'function') Vela.closePanel('support');
+      if (typeof Kara.closePanel === 'function') Kara.closePanel('support');
     }, 240);
   }
 
   /* ══════════════════════════════════════════════════════════
      BOTTOM NAV + FAB
   ═══════════════════════════════════════════════════════════ */
-  function velaInitBottomNav() {
+  function karaInitBottomNav() {
     var fab    = document.getElementById('bottomFab');
     var catBtn = document.getElementById('bottomCatBtn');
     if (!fab) return;
 
     /* اگر پنلی باز است → همه را ببند؛ در غیر این صورت سرچ را باز کن */
     fab.addEventListener('click', function () {
-      if (Vela.state.activePanel) {
-        if (typeof Vela.closeMobileFilters === 'function') Vela.closeMobileFilters();
-        if (typeof Vela.closeSearchModal  === 'function') Vela.closeSearchModal();
-        velaCloseSupportSheet();
+      if (Kara.state.activePanel) {
+        if (typeof Kara.closeMobileFilters === 'function') Kara.closeMobileFilters();
+        if (typeof Kara.closeSearchModal  === 'function') Kara.closeSearchModal();
+        karaCloseSupportSheet();
       } else {
-        if (typeof Vela.openSearchModal === 'function') Vela.openSearchModal();
+        if (typeof Kara.openSearchModal === 'function') Kara.openSearchModal();
       }
     });
 
     /* دسته‌بندی: drawer را باز کن و مستقیماً تب cats را فعال کن */
     if (catBtn) {
       catBtn.addEventListener('click', function () {
-        velaOpenMobileDrawer();
+        karaOpenMobileDrawer();
         document.querySelectorAll('.drawer-tab').forEach(function (t) {
           var isCats = t.dataset.tab === 'cats';
           t.classList.toggle('is-active', isCats);
@@ -157,7 +157,7 @@
 
     /* Support sheet backdrop click */
     var supportBackdrop = document.getElementById('supportBackdrop');
-    if (supportBackdrop) supportBackdrop.addEventListener('click', velaCloseSupportSheet);
+    if (supportBackdrop) supportBackdrop.addEventListener('click', karaCloseSupportSheet);
 
     /* علامت‌گذاری دکمه‌ی فعال bottom-nav بر اساس صفحه‌ی جاری */
     var page = location.pathname.split('/').pop() || 'index.html';
@@ -166,7 +166,7 @@
     });
   }
 
-  function velaSwitchDrawerCatTab(index) {
+  function karaSwitchDrawerCatTab(index) {
     document.querySelectorAll('.drawer-cats-tab').forEach(function (t) {
       t.classList.toggle('is-active', Number(t.dataset.dcat) === index);
     });
@@ -178,29 +178,29 @@
   /* ══════════════════════════════════════════════════════════
      EXPOSE  +  compat aliases
   ═══════════════════════════════════════════════════════════ */
-  Vela.initMobileDrawer  = Vela.initMobileDrawer  || velaInitMobileDrawer;
-  Vela.initBottomNav     = Vela.initBottomNav     || velaInitBottomNav;
-  Vela.openMobileDrawer  = Vela.openMobileDrawer  || velaOpenMobileDrawer;
-  Vela.closeMobileDrawer = Vela.closeMobileDrawer || velaCloseMobileDrawer;
-  Vela.openSupportSheet  = Vela.openSupportSheet  || velaOpenSupportSheet;
-  Vela.closeSupportSheet = Vela.closeSupportSheet || velaCloseSupportSheet;
-  Vela.toggleDrawerCat    = Vela.toggleDrawerCat    || velaToggleDrawerCat;
-  Vela.toggleDrawerSubCat = Vela.toggleDrawerSubCat || velaToggleDrawerSubCat;
-  Vela.switchDrawerCatTab = Vela.switchDrawerCatTab || velaSwitchDrawerCatTab;
+  Kara.initMobileDrawer  = Kara.initMobileDrawer  || karaInitMobileDrawer;
+  Kara.initBottomNav     = Kara.initBottomNav     || karaInitBottomNav;
+  Kara.openMobileDrawer  = Kara.openMobileDrawer  || karaOpenMobileDrawer;
+  Kara.closeMobileDrawer = Kara.closeMobileDrawer || karaCloseMobileDrawer;
+  Kara.openSupportSheet  = Kara.openSupportSheet  || karaOpenSupportSheet;
+  Kara.closeSupportSheet = Kara.closeSupportSheet || karaCloseSupportSheet;
+  Kara.toggleDrawerCat    = Kara.toggleDrawerCat    || karaToggleDrawerCat;
+  Kara.toggleDrawerSubCat = Kara.toggleDrawerSubCat || karaToggleDrawerSubCat;
+  Kara.switchDrawerCatTab = Kara.switchDrawerCatTab || karaSwitchDrawerCatTab;
 
   /* compat با کد قدیمی (global‌های نام‌دار) */
-  if (!window.initMobileDrawer)    window.initMobileDrawer    = velaInitMobileDrawer;
-  if (!window.initBottomNav)       window.initBottomNav       = velaInitBottomNav;
-  if (!window.openMobileDrawer)    window.openMobileDrawer    = velaOpenMobileDrawer;
-  if (!window.closeMobileDrawer)   window.closeMobileDrawer   = velaCloseMobileDrawer;
-  if (!window.openSupportSheet)    window.openSupportSheet    = velaOpenSupportSheet;
-  if (!window.closeSupportSheet)   window.closeSupportSheet   = velaCloseSupportSheet;
-  if (!window.toggleDrawerCat)     window.toggleDrawerCat     = velaToggleDrawerCat;
-  if (!window.toggleDrawerSubCat)  window.toggleDrawerSubCat  = velaToggleDrawerSubCat;
-  if (!window.switchDrawerCatTab)  window.switchDrawerCatTab  = velaSwitchDrawerCatTab;
+  if (!window.initMobileDrawer)    window.initMobileDrawer    = karaInitMobileDrawer;
+  if (!window.initBottomNav)       window.initBottomNav       = karaInitBottomNav;
+  if (!window.openMobileDrawer)    window.openMobileDrawer    = karaOpenMobileDrawer;
+  if (!window.closeMobileDrawer)   window.closeMobileDrawer   = karaCloseMobileDrawer;
+  if (!window.openSupportSheet)    window.openSupportSheet    = karaOpenSupportSheet;
+  if (!window.closeSupportSheet)   window.closeSupportSheet   = karaCloseSupportSheet;
+  if (!window.toggleDrawerCat)     window.toggleDrawerCat     = karaToggleDrawerCat;
+  if (!window.toggleDrawerSubCat)  window.toggleDrawerSubCat  = karaToggleDrawerSubCat;
+  if (!window.switchDrawerCatTab)  window.switchDrawerCatTab  = karaSwitchDrawerCatTab;
 
   document.addEventListener('DOMContentLoaded', function () {
-    velaInitMobileDrawer();
-    velaInitBottomNav();
+    karaInitMobileDrawer();
+    karaInitBottomNav();
   });
 })();

@@ -1,23 +1,23 @@
 /* ============================================================
-   VELA — Search Modal Module  (vela-search.js)
+   VELA — Search Modal Module  (kara-search.js)
    مستقل · بدون coordinator
    شامل: Search modal open/close · Live results · Recent/trending
    ============================================================
    وابستگی‌ها (همه از طریق namespace با fallback):
-     - Vela.openPanel / Vela.closePanel / Vela.showToast  (vela-ui.js)
+     - Kara.openPanel / Kara.closePanel / Kara.showToast  (kara-ui.js)
    ────────────────────────────────────────────────────────────
    ⚠️  بخش‌های WordPress / AJAX:
      - SEARCH_DATA / RECENT_SEARCHES / TRENDING فعلاً demo هستند.
        در وردپرس این‌ها را از سرور بیاورید:
-         · نتایج زنده → admin-ajax.php?action=vela_live_search  (WP_Comment_Query یا WP_REST)
+         · نتایج زنده → admin-ajax.php?action=kara_live_search  (WP_Comment_Query یا WP_REST)
          · جستجوهای اخیر → localStorage کلاینت یا user meta
          · پرجستجوها → wp_options یا آمار سرچ سایت
-     - تابع velaSearchServer نمونه‌ای است برای جایگزینی renderSearchResults.
+     - تابع karaSearchServer نمونه‌ای است برای جایگزینی renderSearchResults.
    ============================================================ */
 (function () {
   'use strict';
 
-  var Vela = (window.Vela = window.Vela || {});
+  var Kara = (window.Kara = window.Kara || {});
 
   /* ══════════════════════════════════════════════════════════
      SEARCH DATA  —  دمو. در وردپرس از سرور REPLACE شود.
@@ -50,40 +50,40 @@
   /* ══════════════════════════════════════════════════════════
      SEARCH MODAL  —  راه‌اندازی event ها
   ═══════════════════════════════════════════════════════════ */
-  function velaInitSearchModal() {
+  function karaInitSearchModal() {
     var input     = document.getElementById('searchModalInput');
     var clearBtn  = document.getElementById('searchModalClear');
     var cancelBtn = document.getElementById('searchModalCancel');
     var backdrop  = document.getElementById('searchModalBackdrop');
     if (!input) return;
 
-    velaRenderSearchDefault();
+    karaRenderSearchDefault();
 
     input.addEventListener('input', function () {
       var q = input.value.trim();
       clearBtn && clearBtn.classList.toggle('visible', q.length > 0);
-      q.length >= 1 ? velaRenderSearchResults(q) : velaRenderSearchDefault();
+      q.length >= 1 ? karaRenderSearchResults(q) : karaRenderSearchDefault();
     });
 
     input.addEventListener('keydown', function (e) {
-      if (e.key === 'Escape') velaCloseSearchModal();
+      if (e.key === 'Escape') karaCloseSearchModal();
     });
 
     if (clearBtn) {
       clearBtn.addEventListener('click', function () {
         input.value = '';
         clearBtn.classList.remove('visible');
-        velaRenderSearchDefault();
+        karaRenderSearchDefault();
         input.focus();
       });
     }
 
-    if (cancelBtn) cancelBtn.addEventListener('click', velaCloseSearchModal);
-    if (backdrop)  backdrop.addEventListener('click', velaCloseSearchModal);
+    if (cancelBtn) cancelBtn.addEventListener('click', karaCloseSearchModal);
+    if (backdrop)  backdrop.addEventListener('click', karaCloseSearchModal);
   }
 
-  function velaOpenSearchModal() {
-    if (typeof Vela.openPanel === 'function') Vela.openPanel('search');
+  function karaOpenSearchModal() {
+    if (typeof Kara.openPanel === 'function') Kara.openPanel('search');
     var m = document.getElementById('searchModal');
     if (m) m.classList.add('open');
     document.body.style.overflow = 'hidden';
@@ -93,21 +93,21 @@
     }, 300);
   }
 
-  function velaCloseSearchModal() {
-    if (typeof Vela.closePanel === 'function') Vela.closePanel('search');
+  function karaCloseSearchModal() {
+    if (typeof Kara.closePanel === 'function') Kara.closePanel('search');
     var m = document.getElementById('searchModal');
     if (m) m.classList.remove('open');
     document.body.style.overflow = '';
   }
 
-  function velaRenderSearchDefault() {
+  function karaRenderSearchDefault() {
     var body = document.getElementById('searchModalBody');
     if (!body) return;
     body.innerHTML =
       '<p class="search-section-title">جستجوهای اخیر</p>' +
       '<div class="search-chips">' +
         RECENT_SEARCHES.map(function (s) {
-          return '<button class="search-chip" onclick="velaFillSearch(\'' + s + '\')">' +
+          return '<button class="search-chip" onclick="karaFillSearch(\'' + s + '\')">' +
             '<svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>' +
             s + '</button>';
         }).join('') +
@@ -115,7 +115,7 @@
       '<p class="search-section-title">پرجستجوها</p>' +
       '<div class="search-trending">' +
         TRENDING.map(function (t, i) {
-          return '<div class="search-trending__item" onclick="velaFillSearch(\'' + t.text + '\')">' +
+          return '<div class="search-trending__item" onclick="karaFillSearch(\'' + t.text + '\')">' +
             '<span class="search-trending__rank' + (t.hot ? ' search-trending__rank--hot' : '') + '">' + (i + 1) + '</span>' +
             '<span class="search-trending__text">' + t.text + '</span>' +
             (t.hot ? '<span>🔥</span>' : '') +
@@ -124,7 +124,7 @@
       '</div>';
   }
 
-  function velaRenderSearchResults(query) {
+  function karaRenderSearchResults(query) {
     var body = document.getElementById('searchModalBody');
     if (!body) return;
     var q = query.toLowerCase();
@@ -158,30 +158,30 @@
           '</a>';
         }).join('') +
       '</div>' +
-      '<button class="search-all-btn" onclick="Vela.showToast(\'در حال جستجو…\',\'info\')">' +
+      '<button class="search-all-btn" onclick="Kara.showToast(\'در حال جستجو…\',\'info\')">' +
         'مشاهده همه نتایج «' + query + '»' +
         '<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>' +
       '</button>';
   }
 
-  function velaFillSearch(text) {
+  function karaFillSearch(text) {
     var input    = document.getElementById('searchModalInput');
     var clearBtn = document.getElementById('searchModalClear');
     if (!input) return;
     input.value = text;
     clearBtn && clearBtn.classList.add('visible');
-    velaRenderSearchResults(text);
+    karaRenderSearchResults(text);
     input.focus();
   }
 
   /* ══════════════════════════════════════════════════════════
      WordPress / AJAX  —  نمونه‌ی سرچ از سرور (اختیاری)
-     برای فعال‌سازی، در velaInitSearchModal به جای velaRenderSearchResults
-     از velaSearchServer استفاده کنید و یک endpoint با wp_ajax تعریف کنید.
+     برای فعال‌سازی، در karaInitSearchModal به جای karaRenderSearchResults
+     از karaSearchServer استفاده کنید و یک endpoint با wp_ajax تعریف کنید.
   ═══════════════════════════════════════════════════════════ */
-  function velaSearchServer(query) {
-    /* var ajaxUrl = Vela.ajaxUrl || '/wp-admin/admin-ajax.php';
-    fetch(ajaxUrl + '?action=vela_live_search&q=' + encodeURIComponent(query))
+  function karaSearchServer(query) {
+    /* var ajaxUrl = Kara.ajaxUrl || '/wp-admin/admin-ajax.php';
+    fetch(ajaxUrl + '?action=kara_live_search&q=' + encodeURIComponent(query))
       .then(function (r) { return r.json(); })
       .then(function (items) { ...render... }); */
   }
@@ -189,19 +189,19 @@
   /* ══════════════════════════════════════════════════════════
      EXPOSE  +  compat aliases
   ═══════════════════════════════════════════════════════════ */
-  Vela.initSearchModal  = Vela.initSearchModal  || velaInitSearchModal;
-  Vela.openSearchModal  = Vela.openSearchModal  || velaOpenSearchModal;
-  Vela.closeSearchModal = Vela.closeSearchModal || velaCloseSearchModal;
-  Vela.fillSearch       = Vela.fillSearch       || velaFillSearch;
+  Kara.initSearchModal  = Kara.initSearchModal  || karaInitSearchModal;
+  Kara.openSearchModal  = Kara.openSearchModal  || karaOpenSearchModal;
+  Kara.closeSearchModal = Kara.closeSearchModal || karaCloseSearchModal;
+  Kara.fillSearch       = Kara.fillSearch       || karaFillSearch;
 
   /* compat با کد قدیمی + global‌های موردنیاز برای inline HTML */
-  if (!window.initSearchModal)  window.initSearchModal  = velaInitSearchModal;
-  if (!window.openSearchModal)  window.openSearchModal  = velaOpenSearchModal;
-  if (!window.closeSearchModal) window.closeSearchModal = velaCloseSearchModal;
-  /* velaFillSearch به‌خاطر inline onclick در دمو روی window لازم است */
-  if (!window.velaFillSearch)   window.velaFillSearch   = velaFillSearch;
+  if (!window.initSearchModal)  window.initSearchModal  = karaInitSearchModal;
+  if (!window.openSearchModal)  window.openSearchModal  = karaOpenSearchModal;
+  if (!window.closeSearchModal) window.closeSearchModal = karaCloseSearchModal;
+  /* karaFillSearch به‌خاطر inline onclick در دمو روی window لازم است */
+  if (!window.karaFillSearch)   window.karaFillSearch   = karaFillSearch;
   /* alias قدیمی fillSearch */
-  if (!window.fillSearch)       window.fillSearch       = velaFillSearch;
+  if (!window.fillSearch)       window.fillSearch       = karaFillSearch;
 
-  document.addEventListener('DOMContentLoaded', velaInitSearchModal);
+  document.addEventListener('DOMContentLoaded', karaInitSearchModal);
 })();

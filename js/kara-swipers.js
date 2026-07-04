@@ -1,12 +1,12 @@
 /* ============================================================
-   VELA — Product & Content Swipers  (vela-swipers.js)
+   VELA — Product & Content Swipers  (kara-swipers.js)
    مستقل · بدون coordinator
    شامل: Product swiper · Testimonials · Posts · Brand marquee
           · Amazing offers swiper
    ============================================================
    وابستگی‌ها:
      - کتابخانه‌ی Swiper باید قبل از این فایل لود شود.
-     - هیچ وابستگی به ماژول Vela ندارد.
+     - هیچ وابستگی به ماژول Kara ندارد.
    ────────────────────────────────────────────────────────────
    ⚠️  نکته‌ی WordPress:
      - هر بلوک (محصولات پرفروش، نظرات، پست‌ها، برندها) از یک
@@ -17,17 +17,17 @@
 (function () {
   'use strict';
 
-  var Vela = (window.Vela = window.Vela || {});
+  var Kara = (window.Kara = window.Kara || {});
 
   /* یکسان‌سازی ارتفاع اسلایدها برای جلوگیری از پرش ارتفاع */
-  function velaEqualizeSlideHeights(sw) {
+  function karaEqualizeSlideHeights(sw) {
     sw.slides.forEach(function (s) { s.style.height = 'auto'; });
     var maxH = 0;
     sw.slides.forEach(function (s) { maxH = Math.max(maxH, s.offsetHeight); });
     sw.slides.forEach(function (s) { s.style.height = maxH + 'px'; });
   }
 
-  function velaInitSwipers() {
+  function karaInitSwipers() {
     if (typeof Swiper === 'undefined') return;
 
     /* ── Product swiper (محصولات پرفروش) ── */
@@ -41,7 +41,7 @@
           768:  { slidesPerView: 3, spaceBetween: 16 },
           1024: { slidesPerView: 5, spaceBetween: 16 },
         },
-        on: { afterInit: velaEqualizeSlideHeights, resize: velaEqualizeSlideHeights },
+        on: { afterInit: karaEqualizeSlideHeights, resize: karaEqualizeSlideHeights },
       });
     }
 
@@ -56,7 +56,7 @@
         pagination: { el: '.testi-pagination', clickable: true },
         navigation: { nextEl: '.testi-btn-next', prevEl: '.testi-btn-prev' },
         breakpoints: { 768: { slidesPerView: 2, spaceBetween: 24 } },
-        on: { afterInit: velaEqualizeSlideHeights, resize: velaEqualizeSlideHeights },
+        on: { afterInit: karaEqualizeSlideHeights, resize: karaEqualizeSlideHeights },
       });
     }
 
@@ -100,7 +100,7 @@
           768:  { slidesPerView: 3,   spaceBetween: 14 },
           1024: { slidesPerView: 5,   spaceBetween: 16 },
         },
-        on: { afterInit: velaEqualizeSlideHeights, resize: velaEqualizeSlideHeights },
+        on: { afterInit: karaEqualizeSlideHeights, resize: karaEqualizeSlideHeights },
       });
     }
   }
@@ -108,7 +108,7 @@
   /* ══════════════════════════════════════════════════════════
      EXPOSE
   ═══════════════════════════════════════════════════════════ */
-  Vela.initSwipers = Vela.initSwipers || velaInitSwipers;
+  Kara.initSwipers = Kara.initSwipers || karaInitSwipers;
 
-  document.addEventListener('DOMContentLoaded', velaInitSwipers);
+  document.addEventListener('DOMContentLoaded', karaInitSwipers);
 })();

@@ -1,5 +1,5 @@
 /* ============================================================
-   VELA — Cart · Wishlist · Checkout · Newsletter  (vela-cart.js)
+   VELA — Cart · Wishlist · Checkout · Newsletter  (kara-cart.js)
    مستقل · بدون coordinator
    شامل: Add to cart · Wishlist toggle · Cart/Wishlist badges
           · Cart page (qty, remove, promo, totals)
@@ -7,8 +7,8 @@
           · Mini cart modal · Mini wishlist modal
    ============================================================
    وابستگی‌ها (همه از طریق namespace با fallback):
-     - Vela.state          (از vela-ui.js) — شمارش‌ها
-     - Vela.showToast      (از vela-ui.js) — پیام‌ها
+     - Kara.state          (از kara-ui.js) — شمارش‌ها
+     - Kara.showToast      (از kara-ui.js) — پیام‌ها
    ────────────────────────────────────────────────────────────
    ⚠️  بخش‌های WordPress / WooCommerce (مهم):
      - addToCart: فعلاً فقط شمارنده را زیاد می‌کند. در وردپرس باید
@@ -29,24 +29,24 @@
 (function () {
   'use strict';
 
-  var Vela = (window.Vela = window.Vela || {});
+  var Kara = (window.Kara = window.Kara || {});
 
-  /* در صورت نبود vela-ui.js، state و showToast حداقلی بساز */
-  Vela.state = Vela.state || {
-    cartCount:     parseInt(localStorage.getItem('vela_cart')     || '3', 10),
-    wishlistCount: parseInt(localStorage.getItem('vela_wishlist') || '0', 10),
+  /* در صورت نبود kara-ui.js، state و showToast حداقلی بساز */
+  Kara.state = Kara.state || {
+    cartCount:     parseInt(localStorage.getItem('kara_cart')     || '3', 10),
+    wishlistCount: parseInt(localStorage.getItem('kara_wishlist') || '0', 10),
   };
   var toast = function (msg, type) {
-    if (typeof Vela.showToast === 'function') Vela.showToast(msg, type);
+    if (typeof Kara.showToast === 'function') Kara.showToast(msg, type);
   };
 
   /* ══════════════════════════════════════════════════════════
      ADD TO CART  +  BADGES
   ═══════════════════════════════════════════════════════════ */
-  function velaAddToCart(name, price) {
-    Vela.state.cartCount = (Vela.state.cartCount || 0) + 1;
-    localStorage.setItem('vela_cart', Vela.state.cartCount);
-    velaUpdateCartBadge();
+  function karaAddToCart(name, price) {
+    Kara.state.cartCount = (Kara.state.cartCount || 0) + 1;
+    localStorage.setItem('kara_cart', Kara.state.cartCount);
+    karaUpdateCartBadge();
     toast('<strong>' + name + '</strong> به سبد خرید اضافه شد!', 'success');
 
     document.querySelectorAll('#cartCount, .bottom-nav__badge').forEach(function (b) {
@@ -61,24 +61,24 @@
        })}).then(… refresh mini-cart via fragments); */
   }
 
-  function velaUpdateCartBadge() {
+  function karaUpdateCartBadge() {
     document.querySelectorAll('#cartCount, .bottom-nav__badge').forEach(function (el) {
-      el.textContent = Vela.state.cartCount;
-      el.style.display = Vela.state.cartCount > 0 ? 'flex' : 'none';
+      el.textContent = Kara.state.cartCount;
+      el.style.display = Kara.state.cartCount > 0 ? 'flex' : 'none';
     });
   }
 
   /* ══════════════════════════════════════════════════════════
      WISHLIST
   ═══════════════════════════════════════════════════════════ */
-  function velaToggleWishlist(btn) {
+  function karaToggleWishlist(btn) {
     btn.classList.toggle('active');
     var active = btn.classList.contains('active');
-    Vela.state.wishlistCount = active
-      ? Vela.state.wishlistCount + 1
-      : Math.max(0, Vela.state.wishlistCount - 1);
-    localStorage.setItem('vela_wishlist', Vela.state.wishlistCount);
-    velaUpdateWishlistBadge();
+    Kara.state.wishlistCount = active
+      ? Kara.state.wishlistCount + 1
+      : Math.max(0, Kara.state.wishlistCount - 1);
+    localStorage.setItem('kara_wishlist', Kara.state.wishlistCount);
+    karaUpdateWishlistBadge();
     btn.style.transition = 'transform 300ms cubic-bezier(.34,1.56,.64,1)';
     btn.style.transform = 'scale(1.35)';
     setTimeout(function () { btn.style.transform = ''; }, 300);
@@ -87,45 +87,45 @@
     /* ── WP: افزودن/حذف از wishlist (YITH WC Wishlist یا user meta) ── */
   }
 
-  function velaUpdateWishlistBadge() {
+  function karaUpdateWishlistBadge() {
     document.querySelectorAll('#wishlistCount').forEach(function (el) {
-      el.textContent = Vela.state.wishlistCount;
-      el.style.display = Vela.state.wishlistCount > 0 ? 'flex' : 'none';
+      el.textContent = Kara.state.wishlistCount;
+      el.style.display = Kara.state.wishlistCount > 0 ? 'flex' : 'none';
     });
   }
 
   /* ══════════════════════════════════════════════════════════
      PRODUCT ACTIONS  —  delegate کلیک [data-action] سبد/علاقه‌مندی
   ═══════════════════════════════════════════════════════════ */
-  function velaInitProductActions() {
+  function karaInitProductActions() {
     document.addEventListener('click', function (e) {
       var el = e.target.closest('[data-action]');
       if (!el) return;
       switch (el.dataset.action) {
         case 'add-to-cart':
-          velaAddToCart(el.dataset.name, Number(el.dataset.price));
+          karaAddToCart(el.dataset.name, Number(el.dataset.price));
           break;
         case 'toggle-wishlist':
-          velaToggleWishlist(el);
+          karaToggleWishlist(el);
           break;
         case 'close-cart':
-          velaCloseCartModal();
+          karaCloseCartModal();
           break;
         case 'close-wishlist':
-          velaCloseWishlistModal();
+          karaCloseWishlistModal();
           break;
         case 'mc-qty':
-          velaChangeMiniCartQty(el.dataset.id, Number(el.dataset.delta));
+          karaChangeMiniCartQty(el.dataset.id, Number(el.dataset.delta));
           break;
         case 'mc-remove':
-          velaRemoveMiniCartItem(el.dataset.id);
+          karaRemoveMiniCartItem(el.dataset.id);
           break;
         case 'wl-add-to-cart':
-          velaAddToCart(el.dataset.name, 0);
-          velaCloseWishlistModal();
+          karaAddToCart(el.dataset.name, 0);
+          karaCloseWishlistModal();
           break;
         case 'wl-remove':
-          velaRemoveMiniWishlistItem(el.dataset.id);
+          karaRemoveMiniWishlistItem(el.dataset.id);
           break;
       }
     });
@@ -139,7 +139,7 @@
   var itemPrices = { 'cart-item-1': 249, 'cart-item-2': 150, 'cart-item-3': 899 };
   var itemQtys   = { 'cart-item-1': 1,   'cart-item-2': 1,   'cart-item-3': 1   };
 
-  function velaChangeQty(itemId, delta) {
+  function karaChangeQty(itemId, delta) {
     var n = itemId.split('-').pop();
     var qEl = document.getElementById('qty-' + n);
     if (!qEl) return;
@@ -148,10 +148,10 @@
     qEl.style.transition = 'transform 150ms ease';
     qEl.style.transform = delta > 0 ? 'translateY(-3px)' : 'translateY(3px)';
     setTimeout(function () { qEl.style.transform = ''; }, 150);
-    velaRecalcCart();
+    karaRecalcCart();
   }
 
-  function velaRemoveCartItem(id) {
+  function karaRemoveCartItem(id) {
     var item = document.getElementById(id);
     if (!item) return;
     item.style.transition = 'all 300ms ease';
@@ -161,15 +161,15 @@
       item.remove();
       delete itemPrices[id];
       delete itemQtys[id];
-      velaRecalcCart();
-      Vela.state.cartCount = Math.max(0, Vela.state.cartCount - 1);
-      localStorage.setItem('vela_cart', Vela.state.cartCount);
-      velaUpdateCartBadge();
+      karaRecalcCart();
+      Kara.state.cartCount = Math.max(0, Kara.state.cartCount - 1);
+      localStorage.setItem('kara_cart', Kara.state.cartCount);
+      karaUpdateCartBadge();
     }, 300);
     toast('محصول از سبد حذف شد', 'info');
   }
 
-  function velaRecalcCart() {
+  function karaRecalcCart() {
     var sub = Object.keys(itemPrices).reduce(function (s, id) {
       return s + itemPrices[id] * (itemQtys[id] || 1);
     }, 0);
@@ -184,7 +184,7 @@
     set('total', fmt(total));
   }
 
-  function velaApplyPromo() {
+  function karaApplyPromo() {
     var input = document.getElementById('promoInput');
     var msg   = document.getElementById('promoMsg');
     if (!input || !msg) return;
@@ -205,7 +205,7 @@
     }
   }
 
-  function velaSelectShipping(card, type) {
+  function karaSelectShipping(card, type) {
     document.querySelectorAll('.shipping-card').forEach(function (c) {
       c.classList.remove('selected');
     });
@@ -218,14 +218,14 @@
     }
   }
 
-  function velaSelectPayment(option) {
+  function karaSelectPayment(option) {
     document.querySelectorAll('.payment-option').forEach(function (o) {
       o.classList.remove('selected');
     });
     option.classList.add('selected');
   }
 
-  function velaFormatCard(input) {
+  function karaFormatCard(input) {
     var v = input.value.replace(/\D/g, '').substring(0, 16);
     input.value = v.replace(/(.{4})/g, '$1 ').trim();
   }
@@ -234,7 +234,7 @@
      CHECKOUT STEPS  (دموی چندمرحله‌ای)
      در وردپرس با صفحه‌ی Checkout ووکامرس جایگزین می‌شود.
   ═══════════════════════════════════════════════════════════ */
-  function velaGoToStep(step) {
+  function karaGoToStep(step) {
     var names = { 1: 'cart', 2: 'shipping', 3: 'payment', 4: 'confirm' };
     document.querySelectorAll('.checkout-section').forEach(function (s) {
       s.classList.remove('active');
@@ -259,17 +259,17 @@
     }
   }
 
-  function velaPlaceOrder() {
+  function karaPlaceOrder() {
     var btn = document.getElementById('placeOrderBtn');
     if (!btn) return;
     btn.disabled = true;
     btn.innerHTML = '<span style="display:inline-block;animation:spin 600ms linear infinite">⟳</span> در حال پردازش…';
     btn.style.opacity = '.8';
     setTimeout(function () {
-      velaGoToStep(4);
-      Vela.state.cartCount = 0;
-      localStorage.setItem('vela_cart', '0');
-      velaUpdateCartBadge();
+      karaGoToStep(4);
+      Kara.state.cartCount = 0;
+      localStorage.setItem('kara_cart', '0');
+      karaUpdateCartBadge();
       toast('سفارش با موفقیت ثبت شد! 🎉', 'success');
       btn.disabled = false;
       btn.innerHTML = 'ثبت سفارش';
@@ -280,7 +280,7 @@
   /* ══════════════════════════════════════════════════════════
      NEWSLETTER  —  فرم عضویت در خبرنامه
   ═══════════════════════════════════════════════════════════ */
-  function velaHandleNewsletterSubmit(e) {
+  function karaHandleNewsletterSubmit(e) {
     e.preventDefault();
     var input = e.target.querySelector('input');
     var btn   = e.target.querySelector('button');
@@ -298,8 +298,8 @@
     }, 4000);
 
     /* ── WP: ارسال به Mailchimp / افزونه خبرنامه ──
-       fetch(Vela.ajaxUrl, { method:'POST', body: new URLSearchParams({
-         action:'vela_newsletter_subscribe', email: input.value })}); */
+       fetch(Kara.ajaxUrl, { method:'POST', body: new URLSearchParams({
+         action:'kara_newsletter_subscribe', email: input.value })}); */
   }
 
   /* ══════════════════════════════════════════════════════════
@@ -312,8 +312,8 @@
     { id: 'mc3', emoji: '📱', brand: 'Apple', name: 'آیفون ۱۶ پرو ۲۵۶ گیگ',   variant: 'رنگ: تیتانیوم', price: '$899', qty: 1 },
   ];
 
-  function velaOpenCartModal() {
-    _velaRenderMiniCart();
+  function karaOpenCartModal() {
+    _karaRenderMiniCart();
     var panel = document.getElementById('miniCart');
     if (!panel) return;
     panel.removeAttribute('aria-hidden');
@@ -325,7 +325,7 @@
     }, 50);
   }
 
-  function velaCloseCartModal() {
+  function karaCloseCartModal() {
     var panel = document.getElementById('miniCart');
     if (!panel) return;
     if (panel.contains(document.activeElement)) document.activeElement.blur();
@@ -334,13 +334,13 @@
     document.body.style.overflow = '';
   }
 
-  function _velaRenderMiniCart() {
+  function _karaRenderMiniCart() {
     var body    = document.getElementById('miniCartBody');
     var countEl = document.getElementById('miniCartCount');
     var totalEl = document.getElementById('miniCartTotal');
     if (!body) return;
 
-    var visible = CART_DEMO_ITEMS.slice(0, Math.min(Vela.state.cartCount, CART_DEMO_ITEMS.length));
+    var visible = CART_DEMO_ITEMS.slice(0, Math.min(Kara.state.cartCount, CART_DEMO_ITEMS.length));
 
     if (!visible.length) {
       body.innerHTML =
@@ -384,14 +384,14 @@
     if (totalEl) totalEl.textContent = '$' + total.toLocaleString();
   }
 
-  function velaChangeMiniCartQty(id, delta) {
+  function karaChangeMiniCartQty(id, delta) {
     var el = document.getElementById('mc-qty-' + id);
     if (!el) return;
     el.textContent = Math.max(1, (parseInt(el.textContent, 10) || 1) + delta);
     /* ── WP: update cart item quantity via AJAX ── */
   }
 
-  function velaRemoveMiniCartItem(id) {
+  function karaRemoveMiniCartItem(id) {
     var row = document.getElementById('mc-row-' + id);
     if (!row) return;
     row.style.transition = 'all 240ms ease';
@@ -399,12 +399,12 @@
     row.style.transform = 'translateX(20px)';
     setTimeout(function () {
       row.remove();
-      Vela.state.cartCount = Math.max(0, Vela.state.cartCount - 1);
-      localStorage.setItem('vela_cart', Vela.state.cartCount);
-      velaUpdateCartBadge();
+      Kara.state.cartCount = Math.max(0, Kara.state.cartCount - 1);
+      localStorage.setItem('kara_cart', Kara.state.cartCount);
+      karaUpdateCartBadge();
       var countEl = document.getElementById('miniCartCount');
-      if (countEl) countEl.textContent = Vela.state.cartCount + ' محصول';
-      if (!Vela.state.cartCount) _velaRenderMiniCart();
+      if (countEl) countEl.textContent = Kara.state.cartCount + ' محصول';
+      if (!Kara.state.cartCount) _karaRenderMiniCart();
     }, 240);
     toast('محصول از سبد حذف شد', 'info');
   }
@@ -418,8 +418,8 @@
     { id: 'wl3', emoji: '🎮', brand: 'Sony',  name: 'پلی‌استیشن ۵',            variant: '',              price: '$499',   old: '$549' },
   ];
 
-  function velaOpenWishlistModal() {
-    _velaRenderMiniWishlist();
+  function karaOpenWishlistModal() {
+    _karaRenderMiniWishlist();
     var panel = document.getElementById('miniWishlist');
     if (!panel) return;
     panel.removeAttribute('aria-hidden');
@@ -431,7 +431,7 @@
     }, 50);
   }
 
-  function velaCloseWishlistModal() {
+  function karaCloseWishlistModal() {
     var panel = document.getElementById('miniWishlist');
     if (!panel) return;
     if (panel.contains(document.activeElement)) document.activeElement.blur();
@@ -440,12 +440,12 @@
     document.body.style.overflow = '';
   }
 
-  function _velaRenderMiniWishlist() {
+  function _karaRenderMiniWishlist() {
     var body    = document.getElementById('miniWishlistBody');
     var countEl = document.getElementById('miniWishlistCount');
     if (!body) return;
 
-    var visible = WISHLIST_DEMO_ITEMS.slice(0, Math.min(Vela.state.wishlistCount, WISHLIST_DEMO_ITEMS.length));
+    var visible = WISHLIST_DEMO_ITEMS.slice(0, Math.min(Kara.state.wishlistCount, WISHLIST_DEMO_ITEMS.length));
 
     if (!visible.length) {
       body.innerHTML =
@@ -484,7 +484,7 @@
     if (countEl) countEl.textContent = visible.length + ' محصول';
   }
 
-  function velaRemoveMiniWishlistItem(id) {
+  function karaRemoveMiniWishlistItem(id) {
     var row = document.getElementById('wl-row-' + id);
     if (!row) return;
     row.style.transition = 'all 240ms ease';
@@ -492,12 +492,12 @@
     row.style.transform = 'translateX(20px)';
     setTimeout(function () {
       row.remove();
-      Vela.state.wishlistCount = Math.max(0, Vela.state.wishlistCount - 1);
-      localStorage.setItem('vela_wishlist', Vela.state.wishlistCount);
-      velaUpdateWishlistBadge();
+      Kara.state.wishlistCount = Math.max(0, Kara.state.wishlistCount - 1);
+      localStorage.setItem('kara_wishlist', Kara.state.wishlistCount);
+      karaUpdateWishlistBadge();
       var countEl = document.getElementById('miniWishlistCount');
-      if (countEl) countEl.textContent = Vela.state.wishlistCount + ' محصول';
-      if (!Vela.state.wishlistCount) _velaRenderMiniWishlist();
+      if (countEl) countEl.textContent = Kara.state.wishlistCount + ' محصول';
+      if (!Kara.state.wishlistCount) _karaRenderMiniWishlist();
     }, 240);
     toast('از علاقه‌مندی‌ها حذف شد', 'info');
   }
@@ -505,61 +505,61 @@
   /* ══════════════════════════════════════════════════════════
      EXPOSE  +  compat aliases
   ═══════════════════════════════════════════════════════════ */
-  Vela.addToCart              = Vela.addToCart              || velaAddToCart;
-  Vela.updateCartBadge        = Vela.updateCartBadge        || velaUpdateCartBadge;
-  Vela.toggleWishlist         = Vela.toggleWishlist         || velaToggleWishlist;
-  Vela.updateWishlistBadge    = Vela.updateWishlistBadge    || velaUpdateWishlistBadge;
-  Vela.initProductActions     = Vela.initProductActions     || velaInitProductActions;
-  Vela.changeQty              = Vela.changeQty              || velaChangeQty;
-  Vela.removeCartItem         = Vela.removeCartItem         || velaRemoveCartItem;
-  Vela.recalcCart             = Vela.recalcCart             || velaRecalcCart;
-  Vela.applyPromo             = Vela.applyPromo             || velaApplyPromo;
-  Vela.selectShipping         = Vela.selectShipping         || velaSelectShipping;
-  Vela.selectPayment          = Vela.selectPayment          || velaSelectPayment;
-  Vela.formatCard             = Vela.formatCard             || velaFormatCard;
-  Vela.goToStep               = Vela.goToStep               || velaGoToStep;
-  Vela.placeOrder             = Vela.placeOrder             || velaPlaceOrder;
-  Vela.handleNewsletterSubmit = Vela.handleNewsletterSubmit || velaHandleNewsletterSubmit;
-  Vela.openCartModal          = Vela.openCartModal          || velaOpenCartModal;
-  Vela.closeCartModal         = Vela.closeCartModal         || velaCloseCartModal;
-  Vela.changeMiniCartQty      = Vela.changeMiniCartQty      || velaChangeMiniCartQty;
-  Vela.removeMiniCartItem     = Vela.removeMiniCartItem     || velaRemoveMiniCartItem;
-  Vela.openWishlistModal      = Vela.openWishlistModal      || velaOpenWishlistModal;
-  Vela.closeWishlistModal     = Vela.closeWishlistModal     || velaCloseWishlistModal;
-  Vela.removeMiniWishlistItem = Vela.removeMiniWishlistItem || velaRemoveMiniWishlistItem;
+  Kara.addToCart              = Kara.addToCart              || karaAddToCart;
+  Kara.updateCartBadge        = Kara.updateCartBadge        || karaUpdateCartBadge;
+  Kara.toggleWishlist         = Kara.toggleWishlist         || karaToggleWishlist;
+  Kara.updateWishlistBadge    = Kara.updateWishlistBadge    || karaUpdateWishlistBadge;
+  Kara.initProductActions     = Kara.initProductActions     || karaInitProductActions;
+  Kara.changeQty              = Kara.changeQty              || karaChangeQty;
+  Kara.removeCartItem         = Kara.removeCartItem         || karaRemoveCartItem;
+  Kara.recalcCart             = Kara.recalcCart             || karaRecalcCart;
+  Kara.applyPromo             = Kara.applyPromo             || karaApplyPromo;
+  Kara.selectShipping         = Kara.selectShipping         || karaSelectShipping;
+  Kara.selectPayment          = Kara.selectPayment          || karaSelectPayment;
+  Kara.formatCard             = Kara.formatCard             || karaFormatCard;
+  Kara.goToStep               = Kara.goToStep               || karaGoToStep;
+  Kara.placeOrder             = Kara.placeOrder             || karaPlaceOrder;
+  Kara.handleNewsletterSubmit = Kara.handleNewsletterSubmit || karaHandleNewsletterSubmit;
+  Kara.openCartModal          = Kara.openCartModal          || karaOpenCartModal;
+  Kara.closeCartModal         = Kara.closeCartModal         || karaCloseCartModal;
+  Kara.changeMiniCartQty      = Kara.changeMiniCartQty      || karaChangeMiniCartQty;
+  Kara.removeMiniCartItem     = Kara.removeMiniCartItem     || karaRemoveMiniCartItem;
+  Kara.openWishlistModal      = Kara.openWishlistModal      || karaOpenWishlistModal;
+  Kara.closeWishlistModal     = Kara.closeWishlistModal     || karaCloseWishlistModal;
+  Kara.removeMiniWishlistItem = Kara.removeMiniWishlistItem || karaRemoveMiniWishlistItem;
 
   /* compat با کد قدیمی (global‌های نام‌دار) */
-  if (!window.addToCart)              window.addToCart              = velaAddToCart;
-  if (!window.updateCartBadge)        window.updateCartBadge        = velaUpdateCartBadge;
-  if (!window.toggleWishlist)         window.toggleWishlist         = velaToggleWishlist;
-  if (!window.updateWishlistBadge)    window.updateWishlistBadge    = velaUpdateWishlistBadge;
-  if (!window.initProductActions)     window.initProductActions     = velaInitProductActions;
-  if (!window.changeQty)              window.changeQty              = velaChangeQty;
-  if (!window.removeCartItem)         window.removeCartItem         = velaRemoveCartItem;
-  if (!window.recalcCart)             window.recalcCart             = velaRecalcCart;
-  if (!window.applyPromo)             window.applyPromo             = velaApplyPromo;
-  if (!window.selectShipping)         window.selectShipping         = velaSelectShipping;
-  if (!window.selectPayment)          window.selectPayment          = velaSelectPayment;
-  if (!window.formatCard)             window.formatCard             = velaFormatCard;
-  if (!window.goToStep)               window.goToStep               = velaGoToStep;
-  if (!window.placeOrder)             window.placeOrder             = velaPlaceOrder;
-  if (!window.handleNewsletterSubmit) window.handleNewsletterSubmit = velaHandleNewsletterSubmit;
-  if (!window.openCartModal)          window.openCartModal          = velaOpenCartModal;
-  if (!window.closeCartModal)         window.closeCartModal         = velaCloseCartModal;
-  if (!window.changeMiniCartQty)      window.changeMiniCartQty      = velaChangeMiniCartQty;
-  if (!window.removeMiniCartItem)     window.removeMiniCartItem     = velaRemoveMiniCartItem;
-  if (!window.openWishlistModal)      window.openWishlistModal      = velaOpenWishlistModal;
-  if (!window.closeWishlistModal)     window.closeWishlistModal     = velaCloseWishlistModal;
-  if (!window.removeMiniWishlistItem) window.removeMiniWishlistItem = velaRemoveMiniWishlistItem;
+  if (!window.addToCart)              window.addToCart              = karaAddToCart;
+  if (!window.updateCartBadge)        window.updateCartBadge        = karaUpdateCartBadge;
+  if (!window.toggleWishlist)         window.toggleWishlist         = karaToggleWishlist;
+  if (!window.updateWishlistBadge)    window.updateWishlistBadge    = karaUpdateWishlistBadge;
+  if (!window.initProductActions)     window.initProductActions     = karaInitProductActions;
+  if (!window.changeQty)              window.changeQty              = karaChangeQty;
+  if (!window.removeCartItem)         window.removeCartItem         = karaRemoveCartItem;
+  if (!window.recalcCart)             window.recalcCart             = karaRecalcCart;
+  if (!window.applyPromo)             window.applyPromo             = karaApplyPromo;
+  if (!window.selectShipping)         window.selectShipping         = karaSelectShipping;
+  if (!window.selectPayment)          window.selectPayment          = karaSelectPayment;
+  if (!window.formatCard)             window.formatCard             = karaFormatCard;
+  if (!window.goToStep)               window.goToStep               = karaGoToStep;
+  if (!window.placeOrder)             window.placeOrder             = karaPlaceOrder;
+  if (!window.handleNewsletterSubmit) window.handleNewsletterSubmit = karaHandleNewsletterSubmit;
+  if (!window.openCartModal)          window.openCartModal          = karaOpenCartModal;
+  if (!window.closeCartModal)         window.closeCartModal         = karaCloseCartModal;
+  if (!window.changeMiniCartQty)      window.changeMiniCartQty      = karaChangeMiniCartQty;
+  if (!window.removeMiniCartItem)     window.removeMiniCartItem     = karaRemoveMiniCartItem;
+  if (!window.openWishlistModal)      window.openWishlistModal      = karaOpenWishlistModal;
+  if (!window.closeWishlistModal)     window.closeWishlistModal     = karaCloseWishlistModal;
+  if (!window.removeMiniWishlistItem) window.removeMiniWishlistItem = karaRemoveMiniWishlistItem;
 
   document.addEventListener('DOMContentLoaded', function () {
-    velaInitProductActions();
-    velaUpdateCartBadge();
-    velaUpdateWishlistBadge();
+    karaInitProductActions();
+    karaUpdateCartBadge();
+    karaUpdateWishlistBadge();
 
     /* ثبت فرم خبرنامه (اگر در صفحه وجود داشت) */
     document.querySelectorAll('[data-form="newsletter"]').forEach(function (form) {
-      form.addEventListener('submit', velaHandleNewsletterSubmit);
+      form.addEventListener('submit', karaHandleNewsletterSubmit);
     });
   });
 })();

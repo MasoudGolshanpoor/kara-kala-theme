@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>صفحه محصول - VELA Style</title>
+  <title>صفحه محصول - Kara</title>
     <link rel="stylesheet" href="css/tokens.css?v=2">
   <link rel="stylesheet" href="css/base.css">
   <link rel="stylesheet" href="css/single-product.css">
@@ -742,138 +742,9 @@
 </div>
 
   </main>
-
-  <script>
-    // در وردپرس این اسکریپت در فایل js قالب یا footer.php قرار می‌گیرد
-    document.addEventListener('DOMContentLoaded', () => {
-const variantBtns = document.querySelectorAll('.variant-btn');
-const selectedValue=document.querySelector('.selected-value');
-variantBtns.forEach(btn=>{
-    btn.addEventListener("click",()=>{
-        variantBtns.forEach(b=>b.classList.remove("active"));
-        btn.classList.add("active");
-        if(selectedValue){
-            selectedValue.textContent=btn.getAttribute("aria-label");
-        }
-    });
-});
-
-      // ─── Add to Cart Button Demo ───
-      const addToCartBtn = document.querySelector('.btn-add-to-cart');
-      if(addToCartBtn) {
-        addToCartBtn.addEventListener('click', () => {
-          addToCartBtn.innerHTML = '<i class="fa-solid fa-check" aria-hidden="true"></i> به سبد اضافه شد';
-          addToCartBtn.style.background = 'var(--success)';
-          setTimeout(() => {
-            addToCartBtn.innerHTML = '<i class="fa-solid fa-cart-plus" aria-hidden="true"></i> افزودن به سبد خرید';
-            addToCartBtn.style.background = '';
-          }, 2000);
-        });
-      }
-
-      // ─── Sticky Tabs Active State on Scroll ───
-      const sections = document.querySelectorAll('.pdp-block');
-      const tabLinks = document.querySelectorAll('.pdp-tabs a');
-
-      const observerOptions = {
-        root: null,
-        rootMargin: '-40% 0px -55% 0px',
-        threshold: 0
-      };
-
-      const observer = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-          if (entry.isIntersecting) {
-            const id = entry.target.getAttribute('id');
-            tabLinks.forEach(link => {
-              link.classList.remove('active');
-              if (link.getAttribute('href') === `#${id}`) {
-                link.classList.add('active');
-              }
-            });
-          }
-        });
-      }, observerOptions);
-
-      sections.forEach(section => {
-        observer.observe(section);
-      });
-
-      // ─── Smooth Scroll for Tab Links ───
-      tabLinks.forEach(link => {
-        link.addEventListener('click', (e) => {
-          e.preventDefault();
-          const targetId = link.getAttribute('href');
-          const targetSection = document.querySelector(targetId);
-          
-          if (targetSection) {
-            const headerOffset = 120; 
-            const elementPosition = targetSection.getBoundingClientRect().top;
-            const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
-
-            window.scrollTo({
-              top: offsetPosition,
-              behavior: 'smooth'
-            });
-          }
-        });
-      });
-
-    });
-
-// ─── Quantity Selector (Desktop & Mobile) ───
-function initQuantitySelector(container) {
-    const qtyInput = container.querySelector('.qty-input, .qty-input-mobile');
-    const qtyMinus = container.querySelector('.qty-minus, .qty-minus-mobile');
-    const qtyPlus = container.querySelector('.qty-plus, .qty-plus-mobile');
-
-    if (!qtyInput || !qtyMinus || !qtyPlus) return;
-
-    qtyMinus.addEventListener('click', () => {
-        let val = parseInt(qtyInput.value) || 1;
-        if (val > parseInt(qtyInput.min)) {
-            qtyInput.value = val - 1;
-            syncQuantity(qtyInput.value);
-        }
-    });
-
-    qtyPlus.addEventListener('click', () => {
-        let val = parseInt(qtyInput.value) || 1;
-        let max = parseInt(qtyInput.max);
-        if (val < max) {
-            qtyInput.value = val + 1;
-            syncQuantity(qtyInput.value);
-        }
-    });
-
-    qtyInput.addEventListener('input', () => {
-        let val = parseInt(qtyInput.value);
-        let min = parseInt(qtyInput.min);
-        let max = parseInt(qtyInput.max);
-        
-        if (isNaN(val) || val < min) qtyInput.value = min;
-        if (val > max) qtyInput.value = max;
-        
-        syncQuantity(qtyInput.value);
-    });
-}
-
-// همگام‌سازی مقدار بین دسکتاپ و موبایل
-function syncQuantity(value) {
-    const desktopInput = document.querySelector('.buy-box-actions .qty-input');
-    const mobileInput = document.querySelector('.sticky-mobile-bar .qty-input-mobile');
-    
-    if (desktopInput) desktopInput.value = value;
-    if (mobileInput) mobileInput.value = value;
-}
-
-// فعال‌سازی هر دو نسخه
-initQuantitySelector(document.querySelector('.buy-box-actions'));
-initQuantitySelector(document.querySelector('.sticky-mobile-bar'));
-
-  </script>
+<script src="js/kara-product.js"></script>
     <script src="js/swiper-bundle.min.js"></script>
-  <script src="js/swipers.js"></script>
+  <script src="js/kara-swipers.js"></script>
 </body>
 
 </html>
